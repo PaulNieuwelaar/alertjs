@@ -1,0 +1,130 @@
+﻿body {
+    direction: LTR;
+    margin: 0px;
+    border: 0px;
+    cursor: default;
+    font-family: Segoe UI,Tahoma,Arial;
+    font-size: 11px;
+}
+
+.ms-crm-RefreshDialog-Header {
+    top: 0px;
+    position: absolute;
+    width: 96%;
+    height: 75px;
+    padding-top: 10px;
+    background-color: #FFFFFF;
+    border-bottom-color: #A4ABB2;
+}
+
+.ms-crm-RefreshDialog-Warning {
+    position: absolute;
+    bottom: 44px;
+    top: 0px;
+    right: 30px;
+    left: 30px;
+    font-family: Segoe UI,Tahoma,Arial;
+    font-size: 12px;
+    height: calc(100% - 44px);
+    height: 80%;
+}
+
+.ms-crm-RefreshDialog-Footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    min-width: 288px;
+    height: 44px;
+    text-align: right;
+    background-color: #F8F8F8;
+    border-top-color: #FFFFFF;
+    right: 0;
+    padding-right: 30px;
+}
+
+.ms-crm-RefreshDialog-Button {
+    color: #444444;
+    background-color: #FFFFFF;
+    height: 24px;
+    font-family: Segoe UI,Tahoma,Arial;
+    border: 1px solid #C6C6C6;
+    background-image: none;
+    margin-top: 10px;
+    width: auto;
+    min-width: 84px;
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+    background-repeat: repeat-x;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 8px;
+}
+
+    .ms-crm-RefreshDialog-Button:hover {
+        background-color: #B1D6F0;
+    }
+
+:disabled {
+    cursor: auto;
+    color: #888888;
+}
+
+    :disabled:hover {
+        background-color: #ffffff;
+    }
+
+.table-wrapper {
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+}
+
+.ms-crm-ErrorMessage-row {
+    vertical-align: middle;
+}
+
+.ms-crm-Error-Header {
+    font-family: Segoe UI Light, Segoe UI, Tahoma, Arial !important;
+    font-weight: lighter !important;
+    font-size: 24px !important;
+}
+
+.hide {
+    display: none;
+}
+
+.image {
+    height: 53px;
+    width: 52px;
+    background: transparent url(../img/alert_dialog.png) no-repeat scroll;
+}
+
+.image-ques {
+    background-position: -208px 0px;
+}
+
+.image-tick {
+    background-position: -156px 0px;
+}
+
+.image-info {
+    background-position: -104px 0px;
+}
+
+.image-warn {
+    background-position: -52px 0px;
+}
+
+.image-crit {
+    background-position: 0px 0px;
+}
+
+.error-td {
+}
+
+.image-td {
+    width: 68px;
+}
