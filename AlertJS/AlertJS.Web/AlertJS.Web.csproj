@@ -78,6 +78,7 @@
     <Content Include="mag_\img\alert_dialog.png" />
     <Content Include="mag_\js\alert.js" />
     <Content Include="mag_\js\alert_dialog.js" />
+    <Content Include="mag_\js\jquery_1.11.3.min.js" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
