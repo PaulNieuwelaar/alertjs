@@ -1,17 +1,18 @@
-/*    
-    Alert.show("Would you like to create a new Sale?", null,
-        [{
-            label: "Create Sale",
-            callback: function () {
-                Alert.show("Sale created successfully!", null, null, "SUCCESS", 500, 200);
-            }
-        },
-        {
-            label: "Not now"
-        }], "QUESTION", 500, 200);
+﻿/*    
+Alert.show("Would you like to create a new Sale?", null,
+    [{
+        label: "Create Sale",
+        callback: function () {
+            Alert.show("Sale created successfully!", null, null, "SUCCESS", 500, 200);
+        }
+    },
+    {
+        label: "Not now"
+    }], "QUESTION", 500, 200);
 */
 
 var Alert = Alert || {};
+var Mscrm = Mscrm && Mscrm.CrmDialog && Mscrm.CrmUri && Mscrm.CrmUri.create ? Mscrm : parent.Mscrm;
 
 Alert._dialogHeight = 225;
 Alert._dialogWidth = 450;
