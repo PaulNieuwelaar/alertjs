@@ -12,7 +12,6 @@ Alert.show("Would you like to create a new Sale?", null,
 */
 
 var Alert = Alert || {};
-var Mscrm = Mscrm && Mscrm.CrmDialog && Mscrm.CrmUri && Mscrm.CrmUri.create ? Mscrm : parent.Mscrm;
 
 Alert._dialogHeight = 225;
 Alert._dialogWidth = 450;
@@ -43,6 +42,7 @@ Alert.tryShowDialog = function (url, width, height, callback, baseUrl) {
 
     try {
         // Web (IE, Chrome, FireFox)
+        var Mscrm = Mscrm && Mscrm.CrmDialog && Mscrm.CrmUri && Mscrm.CrmUri.create ? Mscrm : parent.Mscrm;
         if (Mscrm && Mscrm.CrmDialog && Mscrm.CrmUri && Mscrm.CrmUri.create) {
             // Use CRM light-box (unsupported)
             var crmUrl = Mscrm.CrmUri.create(url);
