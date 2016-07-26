@@ -73,12 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="mag_\css\alert_dialog.css" />
-    <Content Include="mag_\html\alert_dialog.html" />
-    <Content Include="mag_\img\alert_dialog.png" />
+    <Content Include="mag_\css\alert.css" />
+    <Content Include="mag_\img\alert.png" />
     <Content Include="mag_\js\alert.js" />
-    <Content Include="mag_\js\alert_dialog.js" />
-    <Content Include="mag_\js\jquery_1.11.3.min.js" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

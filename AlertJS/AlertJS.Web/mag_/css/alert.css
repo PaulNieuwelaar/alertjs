@@ -1,0 +1,190 @@
+﻿.alert-js-background {
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1005;
+    opacity: 0.5;
+    background-color: grey;
+}
+
+.alert-js-dialog {
+    left: 50%;
+    top: 50%;
+    /*margin-top: height * -0.5;
+    margin-left: width * -0.5;*/
+    position: absolute;
+    z-index: 1006;
+    border: 0px currentColor;
+    border-image: none;
+    box-shadow: 0px 0px 1em black;
+    border: 1px solid #D6D6D6;
+    background-color: white;
+}
+
+.alert-js-wrapper {
+    height: 100%;
+    width: 100%;
+    direction: LTR;
+    margin: 0px;
+    border: 0px;
+    cursor: default;
+    font-family: Segoe UI,Tahoma,Arial;
+    font-size: 11px;
+}
+
+.alert-js-InlineDialogCloseContainer {
+    z-index: 1008;
+}
+
+.alert-js-RefreshDialog-Header {
+    top: 0px;
+    position: absolute;
+    width: 96%;
+    height: 75px;
+    padding-top: 10px;
+    background-color: #FFFFFF;
+    border-bottom-color: #A4ABB2;
+}
+
+.alert-js-RefreshDialog-Warning {
+    position: absolute;
+    bottom: 44px;
+    top: 0px;
+    right: 30px;
+    left: 30px;
+    font-family: Segoe UI,Tahoma,Arial;
+    font-size: 12px;
+    height: calc(100% - 44px);
+    height: 80%;
+}
+
+.alert-js-RefreshDialog-Footer {
+    position: absolute;
+    bottom: 0px;
+    width: calc(100% - 30px);
+    min-width: 288px;
+    height: 44px;
+    text-align: right;
+    background-color: #F8F8F8;
+    border-top-color: #FFFFFF;
+    right: 0;
+    padding-right: 30px;
+}
+
+.alert-js-RefreshDialog-Button {
+    color: #444444;
+    background-color: #FFFFFF;
+    height: 24px;
+    font-family: Segoe UI,Tahoma,Arial;
+    border: 1px solid #C6C6C6;
+    background-image: none;
+    margin-top: 10px;
+    width: auto;
+    min-width: 84px;
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+    background-repeat: repeat-x;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 8px;
+}
+
+    .alert-js-RefreshDialog-Button:hover {
+        background-color: #B1D6F0;
+    }
+
+    .alert-js-RefreshDialog-Button:disabled {
+        cursor: auto;
+        color: #888888;
+    }
+
+        .alert-js-RefreshDialog-Button:disabled:hover {
+            background-color: #ffffff;
+        }
+
+.alert-js-table-wrapper {
+    width: 100%;
+    height: 100%;
+    table-layout: fixed;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.alert-js-ErrorMessage-row {
+    vertical-align: middle;
+}
+
+.alert-js-ErrorMessage-row-top {
+    vertical-align: top;
+}
+
+    .alert-js-ErrorMessage-row-top .alert-js-Error-Header {
+        margin-top: 8px;
+    }
+
+.alert-js-Error-Header {
+    font-family: Segoe UI Light, Segoe UI, Tahoma, Arial !important;
+    font-weight: lighter !important;
+    font-size: 24px !important;
+}
+
+.alert-js-Error-Message {
+    -ms-word-wrap: break-word;
+    overflow-x: hidden;
+    padding-right: 10px;
+}
+
+.alert-js-hide {
+    display: none;
+}
+
+.alert-js-image {
+    height: 53px;
+    width: 52px;
+    background: transparent url(../img/alert.png) no-repeat scroll;
+}
+
+.alert-js-image-ques {
+    background-position: -208px 0px;
+}
+
+.alert-js-image-tick {
+    background-position: -156px 0px;
+}
+
+.alert-js-image-info {
+    background-position: -104px 0px;
+}
+
+.alert-js-image-warn {
+    background-position: -52px 0px;
+}
+
+.alert-js-image-crit {
+    background-position: 0px 0px;
+}
+
+.alert-js-close-wrapper {
+    width: 100%;
+}
+
+.alert-js-close {
+    height: 16px;
+    width: 16px;
+    background: transparent url(../img/alert.png) no-repeat scroll;
+    background-position: -260px 0px;
+    float: right;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.alert-js-error-td {
+}
+
+.alert-js-image-td {
+    width: 68px;
+}
