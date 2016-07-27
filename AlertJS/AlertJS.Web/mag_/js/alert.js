@@ -14,8 +14,8 @@ Alert.show("Would you like to create a new Sale?", null,
 var Alert = Alert || {};
 
 Alert._prefix = "mag_"; // Change this if you have your own solution prefix (as long as the file structure's the same)
-Alert._dialogHeight = 225;
-Alert._dialogWidth = 450;
+Alert._dialogHeight = 250;
+Alert._dialogWidth = 500;
 
 Alert._initialised = false;
 Alert._context = null;
@@ -84,9 +84,11 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
         Alert._initialised = true;
     }
 
+    // Update the title and message
     $("#alertJs-title", Alert._context).html(title);
     $("#alertJs-message", Alert._context).html(message);
 
+    // Add the icon
     if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION"].indexOf(icon) !== -1) {
         var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : "ques";
 
@@ -108,6 +110,12 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
     for (var i = 0; i < buttons.length; i++) {
         var $button = $("<button>", { tabindex: "1", type: "button" });
         $button.addClass("alert-js-RefreshDialog-Button");
+
+        // Set focus to the button if explicitly specified, or if only one button
+        if ((buttons.length == 1 && buttons[i].setFocus !== false) || buttons[i].setFocus === true) {
+            $button.addClass("alert-js-RefreshDialog-Button-focus");
+        }
+
         $button.html(buttons[i].label);
 
         // Create the callback for the button
@@ -120,17 +128,22 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
         $("#alertJs-tdDialogFooter", Alert._context).append($button);
     }
 
+    // Set focus to the button(s) if applicable
+    $(".alert-js-RefreshDialog-Button-focus", Alert._context).focus();
+
     // Show or hide the manual cancel button
     if (preventCancel) { $("#alertJs-closeWrapper", Alert._context).hide(); }
     else { $("#alertJs-closeWrapper", Alert._context).show(); }
 
     // Makes the formatting nicer if the popup is huge (for displaying trace logs etc)
-    if (height > 350) { $("#alertJs-errorRow", Alert._context).addClass("alert-js-ErrorMessage-row-top"); }
+    if (height > 250) { $("#alertJs-errorRow", Alert._context).addClass("alert-js-ErrorMessage-row-top"); }
     else { $("#alertJs-errorRow", Alert._context).removeClass("alert-js-ErrorMessage-row-top"); }
 
-    // Set height/width and display
+    // Set height/width of the alert
     $("#alertJs-dialog", Alert._context).css("height", height).css("width", width).css("margin-top", height * -0.5).css("margin-left", width * -0.5);
     $("#alertJs-message", Alert._context).css("max-height", height - 140);
+
+    // Show the alert wrapper
     $("#alertJs-wrapper", Alert._context).show();
 }
 
@@ -150,6 +163,7 @@ Alert._buttonClicked = function (callback, preventClose) {
             callback();
         }
 
+        // Unless specified, close the alert after executing the callback
         if (!preventClose) {
             Alert.hide();
         }
@@ -169,8 +183,9 @@ Alert.htmlEncode = function (s) {
 }
 
 // Helper to build the buttons
-Alert.Button = function (label, callback, preventClose) {
+Alert.Button = function (label, callback, setFocus, preventClose) {
     this.label = label;
     this.callback = callback;
+    this.setFocus = setFocus;
     this.preventClose = preventClose;
 }

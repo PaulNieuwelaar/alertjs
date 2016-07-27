@@ -11,8 +11,6 @@
 .alert-js-dialog {
     left: 50%;
     top: 50%;
-    /*margin-top: height * -0.5;
-    margin-left: width * -0.5;*/
     position: absolute;
     z-index: 1006;
     border: 0px currentColor;
@@ -55,15 +53,12 @@
     left: 30px;
     font-family: Segoe UI,Tahoma,Arial;
     font-size: 12px;
-    height: calc(100% - 44px);
-    height: 80%;
 }
 
 .alert-js-RefreshDialog-Footer {
     position: absolute;
     bottom: 0px;
     width: calc(100% - 30px);
-    min-width: 288px;
     height: 44px;
     text-align: right;
     background-color: #F8F8F8;
