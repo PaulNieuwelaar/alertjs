@@ -106,7 +106,7 @@
     height: 100%;
     table-layout: fixed;
     padding-top: 30px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 .alert-js-ErrorMessage-row {
@@ -163,6 +163,11 @@
     background-position: 0px 0px;
 }
 
+.alert-js-image-load {
+    background: transparent url(../img/alert_load.gif) no-repeat scroll;
+    background-position: 0px 0px;
+}
+
 .alert-js-close-wrapper {
     width: 100%;
 }
@@ -182,4 +187,8 @@
 
 .alert-js-image-td {
     width: 68px;
+}
+
+.alert-js-maxHeight{
+    height: 100%;
 }

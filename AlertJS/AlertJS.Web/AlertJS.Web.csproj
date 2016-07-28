@@ -75,6 +75,7 @@
   <ItemGroup>
     <Content Include="mag_\css\alert.css" />
     <Content Include="mag_\img\alert.png" />
+    <Content Include="mag_\img\process_load.gif" />
     <Content Include="mag_\js\alert.js" />
   </ItemGroup>
   <ItemGroup />
