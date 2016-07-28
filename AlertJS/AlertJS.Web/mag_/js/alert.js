@@ -25,7 +25,7 @@ Alert._context = null;
 // title = Main big message
 // message = (optional) Sub-heading shown below the title
 // buttons = (otional, defaults to 'Ok') Array of buttons and callback functions for each button. Callbacks optional. E.g. [{label: "OK", callback: function(){}},{label: "Cancel"}]
-// icon = (optional, defaults to none) Displays a custom icon on the alert: INFO, WARNING, ERROR, SUCCESS, QUESTION
+// icon = (optional, defaults to none) Displays a custom icon on the alert: INFO, WARNING, ERROR, SUCCESS, QUESTION, LOADING
 // width = (optional, defaults to _dialogWidth) Custom width of the dialog
 // height = (optional, defaults to _dialogHeight) Custom height of the dialog
 // baseUrl = (optional, defaults to getClientUrl) Base url of CRM (only required if no access to Xrm.Page)
@@ -89,14 +89,14 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
     $("#alertJs-message", Alert._context).html(message);
 
     // Add the icon
-    if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION"].indexOf(icon) !== -1) {
-        var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : "ques";
+    if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION", "LOADING"].indexOf(icon) !== -1) {
+        var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : icon == "QUESTION" ? "ques" : "load";
 
         $("#alertJs-imageWrapper", Alert._context).removeClass("alert-js-hide");
 
         // Remove any existing image classes before adding the new one
         $("#alertJs-image", Alert._context)
-            .removeClass("alert-js-image-crit alert-js-image-warn alert-js-image-info alert-js-image-tick alert-js-image-ques")
+            .removeClass("alert-js-image-crit alert-js-image-warn alert-js-image-info alert-js-image-tick alert-js-image-ques alert-js-image-load")
             .addClass("alert-js-image-" + imgType);;
     }
     else {
@@ -128,8 +128,19 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
         $("#alertJs-tdDialogFooter", Alert._context).append($button);
     }
 
-    // Set focus to the button(s) if applicable
-    $(".alert-js-RefreshDialog-Button-focus", Alert._context).focus();
+    if (buttons.length > 0) {
+        // Set focus to the button(s) if applicable
+        $(".alert-js-RefreshDialog-Button-focus", Alert._context).focus();
+
+        // Show the buttons bar
+        $("#alertJs-divWarning", Alert._context).removeClass("alert-js-maxHeight");
+        $("#alertJs-tdDialogFooter", Alert._context).show();
+    }
+    else {
+        // Hide the buttons bar
+        $("#alertJs-divWarning", Alert._context).addClass("alert-js-maxHeight");
+        $("#alertJs-tdDialogFooter", Alert._context).hide();
+    }
 
     // Show or hide the manual cancel button
     if (preventCancel) { $("#alertJs-closeWrapper", Alert._context).hide(); }
@@ -154,6 +165,7 @@ Alert.hide = function () {
     }
 }
 
+// Internal button click event
 Alert._buttonClicked = function (callback, preventClose) {
     $(".alert-js-RefreshDialog-Button", Alert._context).prop("disabled", true);
 
@@ -180,6 +192,10 @@ Alert.htmlEncode = function (s) {
     if (s == null || typeof s !== "string") { return s; }
 
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/  /g, '&nbsp;&nbsp;').replace(/\n/g, '<br />');
+}
+
+Alert.showLoading = function (url) {
+    Alert.show("Loading...", null, [], "LOADING", 230, 115, url, true);
 }
 
 // Helper to build the buttons
