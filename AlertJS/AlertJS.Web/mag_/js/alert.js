@@ -1,14 +1,11 @@
 ﻿/*    
-Alert.show("Would you like to create a new Sale?", null,
-    [{
-        label: "Create Sale",
-        callback: function () {
+Alert.show("Would you like to create a sale?", "This will create and open the new sale record.",
+    [
+        new Alert.Button("Create Sale", function () {
             Alert.show("Sale created successfully!", null, null, "SUCCESS", 500, 200);
-        }
-    },
-    {
-        label: "Not now"
-    }], "QUESTION", 500, 200);
+        }, true, true),
+        new Alert.Button("Not now")
+    ], "QUESTION", 500, 200);
 */
 
 var Alert = Alert || {};
@@ -170,14 +167,14 @@ Alert._buttonClicked = function (callback, preventClose) {
     $(".alert-js-RefreshDialog-Button", Alert._context).prop("disabled", true);
 
     try {
-        // Calls the callback function
-        if (callback) {
-            callback();
-        }
-
         // Unless specified, close the alert after executing the callback
         if (!preventClose) {
             Alert.hide();
+        }
+
+        // Calls the callback function (after closing the previous alert in case we show another alert)
+        if (callback) {
+            callback();
         }
     } catch (e) {
         alert(e);
@@ -188,10 +185,10 @@ Alert._buttonClicked = function (callback, preventClose) {
 
 // Encode the Title or Message to display xml tags, e.g. from a plugin error trace
 // Also replaces javascript line breaks with <br>
-Alert.htmlEncode = function (s) {
-    if (s == null || typeof s !== "string") { return s; }
+Alert.htmlEncode = function (text) {
+    if (text == null || typeof text !== "string") { return text; }
 
-    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/  /g, '&nbsp;&nbsp;').replace(/\n/g, '<br />');
+    return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/  /g, '&nbsp;&nbsp;').replace(/\n/g, '<br />');
 }
 
 Alert.showLoading = function (url) {
