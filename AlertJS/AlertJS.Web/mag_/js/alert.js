@@ -52,11 +52,11 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
                     "</div>" +
                     "<div class='alert-js-RefreshDialog-Warning' id='alertJs-divWarning'>" +
                       "<table class='alert-js-table-wrapper' cellspacing='0' cellpadding='0'>" +
-                        "<tr id='alertJs-errorRow' class='alert-js-ErrorMessage-row'>" +
-                          "<td id='alertJs-imageWrapper' class='alert-js-image-td'>" +
+                        "<tr id='alertJs-errorRow'>" +
+                          "<td id='alertJs-imageWrapper' class='alert-js-image-td alert-js-td'>" +
                             "<div id='alertJs-image' class='alert-js-image'></div>" +
                           "</td>" +
-                          "<td class='alert-js-error-td'>" +
+                          "<td class='alert-js-td'>" +
                             "<div class='alert-js-Error-Header ms-crm-Field-Data-Print' id='alertJs-title'></div>" +
                             "<div class='alert-js-Error-Message ms-crm-Field-Data-Print' id='alertJs-message'></div>" +
                           "</td>" +
@@ -144,12 +144,12 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
     else { $("#alertJs-closeWrapper", Alert._context).show(); }
 
     // Makes the formatting nicer if the popup is huge (for displaying trace logs etc)
-    if (height > 250) { $("#alertJs-errorRow", Alert._context).addClass("alert-js-ErrorMessage-row-top"); }
-    else { $("#alertJs-errorRow", Alert._context).removeClass("alert-js-ErrorMessage-row-top"); }
+    if (height > 250) { $(".alert-js-td", Alert._context).addClass("alert-js-td-top"); }
+    else { $(".alert-js-td", Alert._context).removeClass("alert-js-td-top"); }
 
     // Set height/width of the alert
     $("#alertJs-dialog", Alert._context).css("height", height).css("width", width).css("margin-top", height * -0.5).css("margin-left", width * -0.5);
-    $("#alertJs-message", Alert._context).css("max-height", height - 140);
+    $("#alertJs-message", Alert._context).css("max-height", height - 96 - (buttons.length > 0 ? 44 : 0));
 
     // Show the alert wrapper
     $("#alertJs-wrapper", Alert._context).show();
