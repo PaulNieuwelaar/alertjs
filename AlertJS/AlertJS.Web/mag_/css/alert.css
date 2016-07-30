@@ -105,21 +105,7 @@
     width: 100%;
     height: 100%;
     table-layout: fixed;
-    padding-top: 30px;
-    padding-bottom: 30px;
 }
-
-.alert-js-ErrorMessage-row {
-    vertical-align: middle;
-}
-
-.alert-js-ErrorMessage-row-top {
-    vertical-align: top;
-}
-
-    .alert-js-ErrorMessage-row-top .alert-js-Error-Header {
-        margin-top: 8px;
-    }
 
 .alert-js-Error-Header {
     font-family: Segoe UI Light, Segoe UI, Tahoma, Arial !important;
@@ -131,6 +117,7 @@
     -ms-word-wrap: break-word;
     overflow-x: hidden;
     padding-right: 10px;
+    font-size: 11px !important;
 }
 
 .alert-js-hide {
@@ -182,13 +169,25 @@
     cursor: pointer;
 }
 
-.alert-js-error-td {
+.alert-js-td {
+    vertical-align: middle;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
+
+
+.alert-js-td-top {
+    vertical-align: top !important;
+}
+
+    .alert-js-td-top .alert-js-Error-Header {
+        margin-top: 8px;
+    }
 
 .alert-js-image-td {
     width: 68px;
 }
 
-.alert-js-maxHeight{
+.alert-js-maxHeight {
     height: 100%;
 }
