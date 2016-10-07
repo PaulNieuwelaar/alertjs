@@ -118,10 +118,7 @@
     overflow-x: hidden;
     padding-right: 10px;
     font-size: 11px !important;
-}
-
-.alert-js-hide {
-    display: none;
+    width: 100%;
 }
 
 .alert-js-image {
@@ -157,6 +154,7 @@
 
 .alert-js-close-wrapper {
     width: 100%;
+    position: absolute;
 }
 
 .alert-js-close {
@@ -178,16 +176,31 @@
 
 .alert-js-td-top {
     vertical-align: top !important;
+    height: 100%;
 }
 
     .alert-js-td-top .alert-js-Error-Header {
         margin-top: 8px;
     }
 
+    .alert-js-td-top .alert-js-Error-Message {
+        height: 100%;
+    }
+
 .alert-js-image-td {
     width: 68px;
 }
 
+.alert-js-error-td {
+    height: 100%;
+}
+
 .alert-js-maxHeight {
     height: 100%;
+}
+
+.alert-js-iframe {
+    width: 100%;
+    height: calc(100% - 2px);
+    border: none;
 }
