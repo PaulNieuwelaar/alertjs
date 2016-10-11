@@ -1,4 +1,4 @@
-﻿// Alert.js v2.1 - Copyright Paul Nieuwelaar Magnetism 2016 
+﻿// Alert.js v2.1 - Copyright Paul Nieuwelaar Magnetism 2016
 
 /*    
 Alert.show("Would you like to create a sale?", "This will create and open the new sale record.",
@@ -234,7 +234,6 @@ Alert.showLoading = function (url) {
 
 Alert.showWebResource = function (webResourceName, width, height, title, buttons, baseUrl, preventCancel, padding) {
     baseUrl = baseUrl || Xrm.Page.context.getClientUrl();
-    buttons = buttons || []; // No buttons displayed if null, rather than 'OK'
 
     var iframeUrl = baseUrl + "/webresources/" + webResourceName;
 
@@ -294,6 +293,11 @@ Alert.getIFrameWindow = function () {
     }
 
     return iframeContext;
+}
+
+// Get the CRM window from inside an iframe to access custom functions, e.g. parent.Alert.getCrmWindow().doSomething();
+Alert.getCrmWindow = function () {
+    return Alert._crmContext;
 }
 
 // Helper to build the buttons
