@@ -1,4 +1,4 @@
-﻿// Alert.js v2.1 - Copyright Paul Nieuwelaar Magnetism 2016
+﻿// Alert.js v2.1 - Copyright Paul Nieuwelaar Magnetism 2016 
 
 /*    
 Alert.show("Would you like to create a sale?", "This will create and open the new sale record.",
