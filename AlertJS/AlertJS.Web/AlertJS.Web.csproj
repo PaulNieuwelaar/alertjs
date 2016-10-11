@@ -74,9 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="mag_\css\alert.css" />
+    <Content Include="mag_\css\alert_2_0.css" />
     <Content Include="mag_\img\alert.png" />
     <Content Include="mag_\img\alert_load.gif" />
     <Content Include="mag_\js\alert.js" />
+    <Content Include="mag_\js\alert_2_0.js" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
