@@ -10,7 +10,11 @@ Alert.show("Would you like to create a sale?", "This will create and open the ne
     ], "QUESTION", 500, 200);
 */
 
-var Alert = Alert || {};
+// This acts as a constructor and/or a namespace, e.g.: Alert.show("Hello World!"); works the same as: new Alert().setTitle("Hello World!").show();
+var Alert = function (baseUrl) {
+    this.baseUrl = baseUrl;
+    return this;
+}
 
 Alert._prefix = "mag_"; // Change this if you have your own solution prefix (as long as the file structure's the same)
 Alert._dialogHeight = 250;
@@ -38,7 +42,7 @@ Alert.$ = function (selector, context) {
 // height = (optional, defaults to _dialogHeight) Custom height of the dialog
 // baseUrl = (optional, defaults to getClientUrl) Base url of CRM (only required if no access to Xrm.Page)
 // preventCancel = (optional, defaults to false) Hides the 'X' in the top right corner, meaning you can only dismiss the alert using the buttons
-// padding = (optional, defaults to 30) Sets the amount of padding around the light-box. Set to 0 for no padding (on iframes etc)
+// padding = (optional, defaults to 20) Sets the amount of padding around the light-box. Set to 0 for no padding (on iframes etc)
 Alert.show = function (title, message, buttons, icon, width, height, baseUrl, preventCancel, padding) {
     title = title || "";
     message = message || "";
@@ -306,4 +310,96 @@ Alert.Button = function (label, callback, setFocus, preventClose) {
     this.callback = callback;
     this.setFocus = setFocus;
     this.preventClose = preventClose;
+}
+
+// Title of the Alert
+Alert.prototype.setTitle = function (title) {
+    this.title = title;
+    return this;
+}
+
+// Main body of the Alert
+Alert.prototype.setMessage = function (message) {
+    this.message = message;
+    return this;
+}
+
+// Array of new Alert.Button() to show on the Alert
+Alert.prototype.setButtons = function (buttons) {
+    if (buttons === undefined) { buttons = []; }
+    this.buttons = buttons;
+    return this;
+}
+
+// INFORMATION
+// WARNING
+// ERROR
+// QUESTION
+// SUCCESS
+// LOADING
+Alert.prototype.setIcon = function (icon) {
+    this.icon = icon;
+    return this;
+}
+
+// Whole number, width of the Alert
+Alert.prototype.setWidth = function (width) {
+    this.width = width;
+    return this;
+}
+
+// Whole number, height of the Alert
+Alert.prototype.setHeight = function (height) {
+    this.height = height;
+    return this;
+}
+
+Alert.prototype.setBaseUrl = function (baseUrl) {
+    this.baseUrl = baseUrl;
+    return this;
+}
+
+Alert.prototype.preventCancel = function (isPreventCancel) {
+    if (isPreventCancel === undefined) { isPreventCancel = true; }
+    this.isPreventCancel = isPreventCancel;
+    return this;
+}
+
+// Whole number, number of pixels padding the Alert
+Alert.prototype.setPadding = function (padding) {
+    if (padding === undefined) { padding = 0; }
+    this.padding = padding;
+    return this;
+}
+
+Alert.prototype.show = function () {
+    Alert.show(this.title, this.message, this.buttons, this.icon, this.width, this.height, this.baseUrl, this.isPreventCancel, this.padding);
+}
+
+Alert.prototype.hide = function () {
+    Alert.hide();
+}
+
+Alert.prototype.getIFrameWindow = function () {
+    return Alert.getIFrameWindow();
+}
+
+Alert.prototype.getCrmWindow = function () {
+    return Alert.getCrmWindow();
+}
+
+Alert.prototype.showLoading = function () {
+    Alert.showLoading();
+}
+
+Alert.prototype.showWebResource = function (webResourceName) {
+    Alert.showWebResource(webResourceName, this.width, this.height, this.title, this.buttons, this.baseUrl, this.isPreventCancel, this.padding);
+}
+
+Alert.prototype.showDialogProcess = function (dialogId, entityName, recordId, callback) {
+    Alert.showDialogProcess(dialogId, entityName, recordId, callback, this.width, this.height, this.baseUrl);
+}
+
+Alert.prototype.showIFrame = function (iframeUrl) {
+    Alert.showIFrame(iframeUrl, this.width, this.height, this.title, this.buttons, this.baseUrl, this.isPreventCancel, this.padding);
 }
