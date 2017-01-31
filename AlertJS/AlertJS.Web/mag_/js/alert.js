@@ -11,8 +11,7 @@ Alert.show("Would you like to create a sale?", "This will create and open the ne
 */
 
 // This acts as a constructor and/or a namespace, e.g.: Alert.show("Hello World!"); works the same as: new Alert().setTitle("Hello World!").show();
-var Alert = function (baseUrl) {
-    this.baseUrl = baseUrl;
+var Alert = function () {
     return this;
 }
 
