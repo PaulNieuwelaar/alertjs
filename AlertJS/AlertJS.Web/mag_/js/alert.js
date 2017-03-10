@@ -1,4 +1,5 @@
-﻿// Alert.js v2.1 - Copyright Paul Nieuwelaar Magnetism 2016
+﻿// Alert.js v2.2 *Beta* - Copyright Paul Nieuwelaar Magnetism 2017
+// Download the latest version from https://alertjs.codeplex.com
 
 /*    
 Alert.show("Would you like to create a sale?", "This will create and open the new sale record.",
@@ -55,7 +56,7 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
         // The parent/top document which we append the wrapper to
         Alert._context = window.top.document;
 
-        // The CRM window, for calling back from an Alert iframe. Use parent.Alert._crmContext to get back to the CRM window from inside an iframe
+        // The CRM window, for calling back from an Alert iframe. Use parent.Alert.getCrmWindow() to get back to the CRM window from inside an iframe
         Alert._crmContext = window;
         window.top.Alert = Alert;
 
@@ -280,7 +281,7 @@ Alert.showIFrame = function (iframeUrl, width, height, title, buttons, baseUrl, 
     Alert.$("#alertJs-iFrame").css("height", Alert._calculateMessageHeight(height, padding, buttons.length, title) - 3);
 }
 
-// Use the returned iframe context with jQuery to get data from the iframe, i.e. Alert.$("#something", Alert.getIFrameContext().document);
+// Use the returned iframe context with jQuery to get data from the iframe, i.e. Alert.$("#something", Alert.getIFrameWindow().document);
 Alert.getIFrameWindow = function () {
     var iframeContext = null;
 
