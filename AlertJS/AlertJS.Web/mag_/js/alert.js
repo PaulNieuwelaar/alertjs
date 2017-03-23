@@ -115,14 +115,14 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
     else { Alert.$("#alertJs-message").show(); }
 
     // Add the icon
-    if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION", "LOADING"].indexOf(icon) !== -1) {
-        var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : icon == "QUESTION" ? "ques" : "load";
+    if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION", "LOADING", "SEARCH"].indexOf(icon) !== -1) {
+        var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : icon == "QUESTION" ? "ques" : icon == "LOADING" ? "load" : "find";
 
         Alert.$("#alertJs-imageWrapper").show();
 
         // Remove any existing image classes before adding the new one
         Alert.$("#alertJs-image")
-            .removeClass("alert-js-image-crit alert-js-image-warn alert-js-image-info alert-js-image-tick alert-js-image-ques alert-js-image-load")
+            .removeClass("alert-js-image-crit alert-js-image-warn alert-js-image-info alert-js-image-tick alert-js-image-ques alert-js-image-load alert-js-image-find")
             .addClass("alert-js-image-" + imgType);;
     }
     else {
