@@ -1,5 +1,5 @@
 # Alert.js - CRM 2013-D365 Custom Alerts and Popup Dialogs JavaScript Lightbox
-[![download](https://user-images.githubusercontent.com/14048382/27844360-c7ea9670-6174-11e7-8658-80d356c1ba8f.png)](https://github.com/PaulNieuwelaar/alertjs/blob/master/AlertJS_2_1_0_0_managed.zip) (v2.1) [<img align="right" src="https://user-images.githubusercontent.com/14048382/29433676-4eb13ea6-83f4-11e7-8c07-eca514b1b197.png"/>](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation)
+[![download](https://user-images.githubusercontent.com/14048382/27844360-c7ea9670-6174-11e7-8658-80d356c1ba8f.png)](https://github.com/PaulNieuwelaar/alertjs/raw/master/AlertJS_2_1_0_0_managed.zip) (v2.1) [<img align="right" src="https://user-images.githubusercontent.com/14048382/29433676-4eb13ea6-83f4-11e7-8c07-eca514b1b197.png"/>](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation)
 
 ![home_sale](https://user-images.githubusercontent.com/14048382/27886544-a4e8af74-6230-11e7-85e5-e8ad3a08cbb4.PNG)
 
