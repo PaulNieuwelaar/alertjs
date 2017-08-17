@@ -19,7 +19,7 @@ As of version 2.1, you can also display custom HTML web resources, iFrames, and 
 
 ## How it Works
 
-Check out the [Documentation](https://alertjs.codeplex.com/documentation) page for installation and usage details.
+Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation) page for installation and usage details.
 
 Download and install the unmanaged solution, then simply add a reference to mag_/js/alert.js wherever you want to use the custom alerts. This will work from forms, views, command bars, and pretty much anywhere in CRM that supports JavaScript.
 
