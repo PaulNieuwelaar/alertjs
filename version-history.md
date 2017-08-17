@@ -1,4 +1,5 @@
 ## v2.1
+Includes some new features:
 * New methods for showing web resources, dialog processes, and custom iframes
 * Better support for working with iframes, like easily accessing the CRM form from the iframe, and easily accessing the iframe from the CRM form
 * New way of specifying custom padding on the alerts, to allow for 0 padding on iframes etc
@@ -6,6 +7,11 @@
 * Documentation for new methods
 
 ## v2.0
+Version 2.0 makes the solution more supported, by creating our own lightbox instead of hi-jacking CRM's lightbox. This means the lightboxes work in outlook and all major browsers as well.
+
+Since it's no longer depending on CRM components, it's more likely this solution will work with future releases.
+
+New features include:
 * Backwards compatibility for v1.0, meaning you can upgrade to v2.0 without making any changes to existing code.
 * Uses custom lightbox instead of CRM lightbox, so no more slow HTML web resource loading, and no more modal dialogs in outlook, just 100% lightbox everywhere! Even on the tablet client!
 * New "LOADING" icon available.
