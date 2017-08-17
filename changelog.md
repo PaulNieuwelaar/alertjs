@@ -1,5 +1,9 @@
-## v2.1
-Includes some new features:
+## v2.2 (beta - unstable)
+* Added a new "SEARCH" icon, which can be used to display a "Searching..." popup etc.
+* Added the ability to create an Alert instance, and add individual properties rather than one big function with lots of parameters, meaning you don't have to remember the order of parameter each time. This works like: new Alert().setTitle("Hello World!").setButtons([new Alert.Button("Hello!")]).show(); Works with all types of Alert, e.g. new Alert().setHeight(500).setWidth(1000).showWebResource("new_something.html");
+* Backwards compatibility for old sytle of function calling, e.g.: Alert.show("Hello!"); works exactly the same as: var x = new Alert(); x.setTitle("Hello!"); x.show();
+
+## v2.1 (stable)
 * New methods for showing web resources, dialog processes, and custom iframes
 * Better support for working with iframes, like easily accessing the CRM form from the iframe, and easily accessing the iframe from the CRM form
 * New way of specifying custom padding on the alerts, to allow for 0 padding on iframes etc
