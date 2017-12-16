@@ -1,5 +1,5 @@
 ﻿// Alert.js v2.2 *Beta* - Copyright Paul Nieuwelaar Magnetism 2017
-// Download the latest version from https://alertjs.codeplex.com
+// Download the latest version from https://github.com/PaulNieuwelaar/alertjs
 
 /*    
 Alert.show("Would you like to create a sale?", "This will create and open the new sale record.",
