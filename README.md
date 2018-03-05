@@ -3,6 +3,18 @@
 
 ![home_sale](https://user-images.githubusercontent.com/14048382/27886544-a4e8af74-6230-11e7-85e5-e8ad3a08cbb4.PNG)
 
+## Key Features
+
+* Show confirmation messages to users
+* Display informative error messages
+* Fully customizable buttons and callback functions
+* Open custom HTML web resources inside a lightbox
+* Access web resource data from button callbacks
+* Capture input from a user and process their response
+* Show CRM dialog processes with custom callbacks
+* Display a loading spinner during async tasks
+* 100% customizable and configurable
+
 ## Overview
 
 This JavaScript library allows us to create custom popup alerts in CRM forms and views, using a nice lightbox with custom buttons and messages.
