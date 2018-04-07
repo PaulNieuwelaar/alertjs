@@ -1,11 +1,12 @@
 # Alert.js - CRM 2013-Dynamics 365 Custom Alerts and Popup Dialogs JavaScript Lightbox
 [![download](https://user-images.githubusercontent.com/14048382/27844360-c7ea9670-6174-11e7-8658-80d356c1ba8f.png)](https://github.com/PaulNieuwelaar/alertjs/releases/download/v2.1/AlertJS_2_1_0_0.zip) (v2.1) [<img align="right" src="https://user-images.githubusercontent.com/14048382/29433676-4eb13ea6-83f4-11e7-8c07-eca514b1b197.png"/>](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation)
 
-![home_sale](https://user-images.githubusercontent.com/14048382/27886544-a4e8af74-6230-11e7-85e5-e8ad3a08cbb4.PNG)
+![](https://user-images.githubusercontent.com/14048382/38449752-a634bbce-3a67-11e8-8d1c-570ef763a162.PNG)
 
 ## Key Features
 
 * Show confirmation messages to users
+* Capture input from users and process their responses
 * Display informative error messages
 * Fully customizable buttons and callback functions
 * Open custom HTML web resources inside a lightbox
@@ -25,36 +26,22 @@ Using this library we can now create our own seamless alerts and popups using cu
 
 While technically unsupported, this code is 100% contained within the solution, and doesn't depend on anything CRM related, so it's unlikely this will break with CRM updates.
 
-As of version 2.1, you can also display custom HTML web resources, iFrames, and dialog processes inside the light-box seemlessly.
+As of version 3.0, you can also display custom prompts to capture input from a user, and take their responses to perform other tasks.
 
-![home_alertjs2](https://user-images.githubusercontent.com/14048382/27886545-a50497a2-6230-11e7-9d08-6b4d5c9ce764.PNG)
+![](https://user-images.githubusercontent.com/14048382/38449753-a6656062-3a67-11e8-91c0-3dfb4bfe69d6.PNG)
 
 ## How it Works
-
 Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation) page for installation and usage details.
 
-Download and install the unmanaged solution, then simply add a reference to mag_/js/alert.js wherever you want to use the custom alerts. This will work from forms, views, command bars, and pretty much anywhere in CRM that supports JavaScript.
+## Licensing
 
-Next simply call the Alert.show function. All other dependent web resources will be loaded automatically.
+### Alert.js v2.1
+Alert.js v2.1 is and always will be available for free here on Github, and on [Microsoft AppSource](https://appsource.microsoft.com/en-us/product/dynamics-365/magnetism.alertjs). This version will continue to receive updates in the form of bug fixes only. For more info about the license details, check out the [license page](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md) in this project.
 
-Parameters: Title (main message), Subtitle (smaller message), Buttons (array), Icon, Width (px), Height (px), CRM Base URL, Prevent Cancel (bool), Padding (px).
+### Alert.js v3.0
+Alert.js v3.0 is free for non-production use. This means you can use it for free in DEV and TEST systems only. The solution is currently available by contact request only. The v3.0 code is NOT open source, meaning you cannot modify it. Production licenses cost $2,400 NZD per year per production organisation. [Contact us](https://www.magnetismsolutions.com/contact-us) to purchase a production license, or to trial the solution first.
+For more information about what's available in v3.0, check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
-All the parameters are _technically_ optional. If no buttons are specified, a default 'OK' button with no callback will be added. If no icon is specified, then no icon will be displayed. If height is not specified, it will default to 250. If width is not specified it will default to 500. The URL only needs to be specified if the alert is being called from somewhere that doesn't have Xrm.Page access (e.g. web resource). To hide the 'X' on the alert, set preventCancel to true, otherwise it displays the 'X' by default. If padding is not specified, it will default to 20px.
-
-Each button object in the buttons array needs to have a 'label' (text displayed on the button), and optionally a 'callback' (function called if the button is clicked). You can also specify whether focus should be set to the button by default, and whether clicking the button should close the alert by default. You can use: new Alert.Button(label, callback, setFocus, preventClose); to create each button. 
-
-The following icons are supported: "INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION", "LOADING".
-
-```javascript
-Alert.show("Would you like to create a sale?", "This will create and open the new sale record.", [
-    new Alert.Button("Create Sale", function() {
-        Alert.show("Sale created successfully!", null, null, "SUCCESS", 500, 200);
-    }, true, true),
-    new Alert.Button("Not now")
-], "QUESTION", 500, 200);
-```
-
-![home_sale2](https://user-images.githubusercontent.com/14048382/27886546-a507bcde-6230-11e7-8981-fd58adb715d0.PNG)
 
 Created by [Paul Nieuwelaar](http://paulnieuwelaar.wordpress.com) - [@paulnz1](https://twitter.com/paulnz1)  
 Sponsored by [Magnetism Solutions - Dynamics CRM Specialists](http://www.magnetismsolutions.com)
