@@ -1,6 +1,8 @@
 # Alert.js - CRM 2013-Dynamics 365 Custom Alerts and Popup Dialogs JavaScript Lightbox
 [![download](https://user-images.githubusercontent.com/14048382/27844360-c7ea9670-6174-11e7-8658-80d356c1ba8f.png)](https://github.com/PaulNieuwelaar/alertjs/releases/download/v2.1/AlertJS_2_1_0_0.zip) (v2.1) [<img align="right" src="https://user-images.githubusercontent.com/14048382/29433676-4eb13ea6-83f4-11e7-8c07-eca514b1b197.png"/>](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation)
 
+Alert.js v3.0 (including showPrompt) is now available. Please review the [licensing info](#licensing) below.
+
 ![](https://user-images.githubusercontent.com/14048382/38449752-a634bbce-3a67-11e8-8d1c-570ef763a162.PNG)
 
 ## Key Features
