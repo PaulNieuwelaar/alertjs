@@ -41,7 +41,7 @@ Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Doc
 Alert.js v2.1 is and always will be available for free here on Github, and on [Microsoft AppSource](https://appsource.microsoft.com/en-us/product/dynamics-365/magnetism.alertjs). This version will continue to receive updates in the form of bug fixes only. For more info about the license details, check out the [license page](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md) in this project.
 
 ### Alert.js v3.0
-Alert.js v3.0 is free for non-production use. This means you can use it for free in DEV and TEST systems only. The solution is currently available by contact request only. The v3.0 code is NOT open source, meaning you cannot modify it. Production licenses cost $2,400 NZD per year per production organisation. [Contact us](https://www.magnetismsolutions.com/contact-us) to purchase a production license, or to trial the solution first.
+Alert.js v3.0 is free for non-production use. This means you can use it for free in DEV and TEST systems only. The solution is currently available by contact request only. The v3.0 code is NOT open source, meaning you cannot modify it. [Contact us](https://www.magnetismsolutions.com/contact-us) for a free trial, or to purchase a production license.
 For more information about what's available in v3.0, check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
 
