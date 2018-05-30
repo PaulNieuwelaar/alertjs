@@ -51,7 +51,7 @@ For more information about what's available in v3.0, check out the "what's new i
 * Added new object constructor, which can be used alongside the new function constructors:
    * e.g. new Alert({ title: "Hello World", message: "Hello", width: 500, height: 300 }).show();
 * Added new function constructors to call all existing functions,
-   * e.g. new Alert().title("Hello World").content("Hello").with(500).height(300).show();
+   * e.g. new Alert().title("Hello World").message("Hello").width(500).height(300).show();
 * Existing function calls still work using Alert.show() etc. however these will be deprecated in the future
 * Added the iFrame window context as the first and only parameter of the alert button callbacks when using Alert.showIFrame and Alert.showWebResource,
    * e.g. new Button("Close", function(iframeWindow) { alert(iframeWindow.document.getElementById("textbox").value); });
