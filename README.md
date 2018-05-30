@@ -13,10 +13,9 @@ Alert.js v3.0 (including showPrompt) is now available. Please review the [licens
 * Fully customizable buttons and callback functions
 * Open custom HTML web resources inside a lightbox
 * Access web resource data from button callbacks
-* Capture input from a user and process their response
 * Show CRM dialog processes with custom callbacks
 * Display a loading spinner during async tasks
-* 100% customizable and configurable
+* Fully customizable and configurable
 
 ## Overview
 
