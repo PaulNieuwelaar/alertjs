@@ -3,7 +3,7 @@
 
 Alert.js v3.0 (including showPrompt) is now available. Please review the [licensing info](#licensing) below.
 
-![](https://user-images.githubusercontent.com/14048382/38449752-a634bbce-3a67-11e8-8d1c-570ef763a162.PNG)
+![](https://user-images.githubusercontent.com/14048382/40751240-74f24b68-64be-11e8-8c2f-1d6bae31428f.png)
 
 ## Key Features
 
