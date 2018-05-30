@@ -42,8 +42,31 @@ Alert.js v2.1 is and always will be available for free here on Github, and on [M
 
 ### Alert.js v3.0
 Alert.js v3.0 is free for non-production use. This means you can use it for free in DEV and TEST systems only. The solution is currently available by contact request only. The v3.0 code is NOT open source, meaning you cannot modify it. [Contact us](https://www.magnetismsolutions.com/contact-us) for a free trial, or to purchase a production license.
-For more information about what's available in v3.0, check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
+For more information about what's available in v3.0, check out the "what's new in v3.0" section below, or check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
+## What's new in v3.0?
+* Added a new Alert.showPrompt function for easily capturing input of different types (see documentation for more detail)
+* Added a new Alert.getPromptResponses function for accessing field values from a prompt
+* Added support for nested/overlapping alerts with a new 'id' parameter on all functions (will overwrite existing alerts with the same id)
+* Updated styles to reflect v9.0 colours
+* Added new object constructor, which can be used alongside the new function constructors:
+   * e.g. new Alert({ title: "Hello World", message: "Hello", width: 500, height: 300 }).show();
+* Added new function constructors to call all existing functions,
+   * e.g. new Alert().title("Hello World").content("Hello").with(500).height(300).show();
+* Existing function calls still work using Alert.show() etc. however these will be deprecated in the future
+* Added the iFrame window context as the first and only parameter of the alert button callbacks when using Alert.showIFrame and Alert.showWebResource,
+   * e.g. new Button("Close", function(iframeWindow) { alert(iframeWindow.document.getElementById("textbox").value); });
+* Added the prompt responses as the first and only parameter of the alert button callbacks when using Alert.showPrompt,
+   * e.g. new Button("Update", function(responses) { Xrm.Page.getAttribute("name").setValue(responses[0].value); });
+* Updated showLoading function to include customizable options for things like title, message, icon, height, width
+* Added a fullscreen property
+* Add a new .remove() function to completely delete the alert, rather than just hiding it
+* Deprecated baseUrl parameter - when being used outside of CRM forms/views the CSS should be loaded onto the page manually
+* Updated the Alert.show function to accept jQeury objects into the content parameter (previously called message)
+* Added an additional message parameter to go above the content (for showing a message with an iframe/prompt etc)
+* Added a new SEARCH icon type
+* Added official support for Alert.$ to access alert dialogs using jquery
+* Added a .get() function to return the jquery object for the alert
 
 Created by [Paul Nieuwelaar](http://paulnieuwelaar.wordpress.com) - [@paulnz1](https://twitter.com/paulnz1)  
 Sponsored by [Magnetism Solutions - Dynamics CRM Specialists](http://www.magnetismsolutions.com)
