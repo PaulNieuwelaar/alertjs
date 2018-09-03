@@ -60,7 +60,7 @@ For more information about what's available in v3.0, check out the "what's new i
 * Added a fullscreen property
 * Add a new .remove() function to completely delete the alert, rather than just hiding it
 * Deprecated baseUrl parameter - when being used outside of CRM forms/views the CSS should be loaded onto the page manually
-* Updated the Alert.show function to accept jQeury objects into the content parameter (previously called message)
+* Updated the Alert.show function to accept jQuery objects into the content parameter (previously called message)
 * Added an additional message parameter to go above the content (for showing a message with an iframe/prompt etc)
 * Added a new SEARCH icon type
 * Added official support for Alert.$ to access alert dialogs using jquery
