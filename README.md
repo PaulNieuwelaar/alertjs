@@ -40,7 +40,7 @@ Alert.js v3.0 is free for non-production use. This means you can use it for free
 For more information about what's available in v3.0, check out the "what's new in v3.0" section below, or check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
 ### Alert.js v2.1
-Alert.js v2.1 is and always will be available for free here on Github under other releases. This version will continue to receive updates in the form of bug fixes only, and does not include any of the new features introduced in v3.0 or any versions going forward. For more info about the v2.1 license details, check out the [license page](https://github.com/PaulNieuwelaar/alertjs/blob/master/license-v2.1.md) in this project.
+Alert.js v2.1 is and always will be available for free here on Github under other releases. This version will continue to receive updates in the form of bug fixes only, and does not include any of the new features introduced in v3.0 or any versions going forward. For more info about the v2.1 license details, check out the [v2.1 license page](https://github.com/PaulNieuwelaar/alertjs/blob/master/license-v2.1.md) in this project.
 
 ## What's new in v3.0?
 * Added a new Alert.showPrompt function for easily capturing input of different types (see documentation for more detail)
