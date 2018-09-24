@@ -31,7 +31,7 @@ As of version 3.0, you can also display custom prompts to capture input from a u
 ![](https://user-images.githubusercontent.com/14048382/38449753-a6656062-3a67-11e8-91c0-3dfb4bfe69d6.PNG)
 
 ## How it Works
-Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation) page for installation and usage details.
+Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0) page for installation and usage details.
 
 ## Licensing
 
