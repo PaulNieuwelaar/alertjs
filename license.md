@@ -1,132 +1,252 @@
-TL;DR:
+Alert.JS Terms of Use
+Welcome to the Magnetism Alert.JS module which allow you to build beautiful UI (user interfaces) within Microsoft Dynamics and other web platforms. These Terms of Use are intended to explain our obligations as a service provider and Your obligations as a customer. Please read them carefully.
 
-This solution is free to use for all Dynamics 365 customers and partners. Free means you can include this solution as a part of a larger solution, and make any changes to the source code as needed, provided you maintain the copyright notice and repository links at the top of each file. Free does not mean you can onsell this as a standalone solution, and/or claim this solution as your own. If you're unsure about any of this, please create an issue; I can usually reply within about 12 hours.
+These Terms are binding on any use of Alert.JS (the Service) and apply to You from the time that Magnetism provides You with access to the Service.
 
-Common Development and Distribution License (CDDL)
-1. Definitions.
+The Service will evolve over time based on user feedback. These Terms are not intended to answer every question or address every issue raised by the use of the Service. Magnetism reserves the right to change these terms at any time, effective upon the posting of modified terms and Magnetism will make every effort to communicate these changes to You via email or notification via the Website. It is likely the terms of use will change over time. It is Your obligation to ensure that You have read, understood and agree to the most recent terms available on the Website.
 
-1.1. Contributor means each individual or entity that creates or contributes to the creation of Modifications.
+By registering to use the Service you acknowledge that You have read and understood these Terms and have the authority to act on behalf of any person for whom You are using the Service. You are deemed to have agreed to these Terms on behalf of any entity for whom you use the Service.
 
-1.2. Contributor Version means the combination of the Original Software, prior Modifications used by a Contributor (if any), and the Modifications made by that particular Contributor.
+These Terms were last updated on 1st August 2018.
 
-1.3. Covered Software means (a) the Original Software, or (b) Modifications, or (c) the combination of files containing Original Software with files containing Modifications, in each case including portions thereof.
+DEFINITIONS
+"Agreement"
 
-1.4. Executable means the Covered Software in any form other than Source Code.
+means these Terms of Use.
 
-1.5. Initial Developer means the individual or entity that first makes Original Software available under this License.
+"Access Fee"
 
-1.6. Larger Work means a work which combines Covered Software or portions thereof with code not governed by the terms of this License.
+means the monthly or annual fee (excluding any taxes and duties) payable by You in accordance with the fee schedule set out on the Website (which Magnetism may change from time to time on notice to You).
 
-1.7. License means this document.
+"Confidential Information"
 
-1.8. Licensable means having the right to grant, to the maximum extent possible, whether at the time of the initial grant or subsequently acquired, any and all of the rights conveyed herein.
+includes all information exchanged between the parties to this Agreement, whether in writing, electronically or orally, including the Service but does not include information which is, or becomes, publicly available other than through unauthorised disclosure by the other party.
 
-1.9. Modifications means the Source Code and Executable form of any of the following:
+"Data"
 
-A. Any file that results from an addition to, deletion from or modification of the contents of a file containing Original Software or previous Modifications;
+means any data inputted by You or with Your authority into the Service.
 
-B. Any new file that contains any part of the Original Software or previous Modification; or
+"Intellectual Property Right"
 
-C. Any new file that is contributed or otherwise made available under the terms of this License.
+means any patent, trade mark, service mark, copyright, moral right, right in a design, know-how and any other intellectual or industrial property rights, anywhere in the world whether or not registered.
 
-1.10. Original Software means the Source Code and Executable form of computer software code that is originally released under this License.
+"Service"
 
-1.11. Patent Claims means any patent claim(s), now owned or hereafter acquired, including without limitation, method, process, and apparatus claims, in any patent Licensable by grantor.
+means Alert.JS made available as may be changed or updated from time to time by Magnetism.
 
-1.12. Source Code means (a) the common form of computer software code in which modifications are made and (b) associated documentation included in or with such code.
+"Website"
 
-1.13. You (or Your) means an individual or a legal entity exercising rights under, and complying with all of the terms of, this License. For legal entities, You includes any entity which controls, is controlled by, or is under common control with You. For purposes of this definition, control means (a) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (b) ownership of more than fifty percent (50%) of the outstanding shares or beneficial ownership of such entity.
+means the Internet site at the domain www.magnetismsolutions.com or any other site operated by Magnetism.
 
-2. License Grants.
+"Magnetism"
 
-2.1. The Initial Developer Grant.
+means Magnetism Solutions Limited which is a registered limited liability company in New Zealand.
 
-Conditioned upon Your compliance with Section 3.1 below and subject to third party intellectual property claims, the Initial Developer hereby grants You a world-wide, royalty-free, non-exclusive license:
+"User"
 
-(a) under intellectual property rights (other than patent or trademark) Licensable by Initial Developer, to use, reproduce, modify, display, perform, sublicense and distribute the Original Software (or portions thereof), with or without Modifications, and/or as part of a Larger Work; and
+means any person, other than the Subscriber, that uses the Service with the authorisation of the Subscriber from time to time.
 
-(b) under Patent Claims infringed by the making, using or selling of Original Software, to make, have made, use, practice, sell, and offer for sale, and/or otherwise dispose of the Original Software (or portions thereof).
+"Subscriber"
 
-(c) The licenses granted in Sections 2.1(a) and (b) are effective on the date Initial Developer first distributes or otherwise makes the Original Software available to a third party under the terms of this License.
+means the person who registers to use the Service, and, where the context permits, includes any entity on whose behalf that person registers to use the Service.
 
-(d) Notwithstanding Section 2.1(b) above, no patent license is granted: (1) for code that You delete from the Original Software, or (2) for infringements caused by: (i) the modification of the Original Software, or (ii) the combination of the Original Software with other software or devices.
+"You"
 
-2.2. Contributor Grant.
+means the Subscriber, and where the context permits, an Invited User. "Your" has a corresponding meaning.
 
-Conditioned upon Your compliance with Section 3.1 below and subject to third party intellectual property claims, each Contributor hereby grants You a world-wide, royalty-free, non-exclusive license:
+USE OF SOFTWARE
+Magnetism grants You the right to access and use the Service. This right is non-exclusive, non-transferable, and limited by and subject to this Agreement. You acknowledge and agree that, subject to any applicable written agreement between the Subscriber and the Users, or any other applicable laws:
 
-(a) under intellectual property rights (other than patent or trademark) Licensable by Contributor to use, reproduce, modify, display, perform, sublicense and distribute the Modifications created by such Contributor (or portions thereof), either on an unmodified basis, with other Modifications, as Covered Software and/or as part of a Larger Work; and
+2.1.   the Subscriber determines who is a User;
 
-(b) under Patent Claims infringed by the making, using, or selling of Modifications made by that Contributor either alone and/or in combination with its Contributor Version (or portions of such combination), to make, use, sell, offer for sale, have made, and/or otherwise dispose of: (1) Modifications made by that Contributor (or portions thereof); and (2) the combination of Modifications made by that Contributor with its Contributor Version (or portions of such combination).
+2.2.   the Subscriber is responsible for all Users’ use of the Service;
 
-(c) The licenses granted in Sections 2.2(a) and 2.2(b) are effective on the date Contributor first distributes or otherwise makes the Modifications available to a third party.
+YOUR OBLIGATIONS
+3.1.   Payment obligations:
 
-(d) Notwithstanding Section 2.2(b) above, no patent license is granted: (1) for any code that Contributor has deleted from the Contributor Version; (2) for infringements caused by: (i) third party modifications of Contributor Version, or (ii) the combination of Modifications made by that Contributor with other software (except as part of the Contributor Version) or other devices; or (3) under Patent Claims infringed by Covered Software in the absence of Modifications made by that Contributor.
+All subscription are annual billing; an invoice for the annual Service Fee will be issued and dated on the date You subscribed to the Service and on each anniversary of this date. All invoices will include the Service Fee for the following 12 months of use. Magnetism will continue invoicing You annually until this Agreement is terminated in accordance with clause 8. 
 
-3. Distribution Obligations.
+All Magnetism invoices will be sent to You, or to a Billing Contact whose details are provided by You, by email. You must pay or arrange payment of all amounts specified in any invoice by the due date for payment which shall be 7 days after the invoice date. You are responsible for payment of all taxes and duties in addition to the Service Fee.
 
-3.1. Availability of Source Code.
+3.2.   General obligations:
 
-Any Covered Software that You distribute or otherwise make available in Executable form must also be made available in Source Code form and that Source Code form must be distributed only under the terms of this License. You must include a copy of this License with every copy of the Source Code form of the Covered Software You distribute or otherwise make available. You must inform recipients of any such Covered Software in Executable form as to how they can obtain such Covered Software in Source Code form in a reasonable manner on or through a medium customarily used for software exchange.
+You must only use the Service for Your own lawful internal business purposes, in accordance with these Terms and any notice sent by Magnetism or condition posted on the Website. You may use the Service on behalf of others or in order to provide services to others but if You do so you must ensure that You are authorised to do so and that all persons for whom or to whom services are provided comply with and accept all terms of this Agreement that apply to You.
 
-3.2. Modifications.
+3.3.   Access conditions:
 
-The Modifications that You create or to which You contribute are governed by the terms of this License. You represent that You believe Your Modifications are Your original creation(s) and/or You have sufficient rights to grant the rights conveyed by this License.
+3.3.1. As a condition of these Terms, when accessing and using the Service, You must:
 
-3.3. Required Notices.
+3.3.1.1.  not attempt to undermine the security or integrity of Magnetism’s computing systems or networks or, where the Service is hosted by a third party, that third party's computing systems and networks;
 
-You must include a notice in each of Your Modifications that identifies You as the Contributor of the Modification. You may not remove or alter any copyright, patent or trademark notices contained within the Covered Software, or any notices of licensing or any descriptive text giving attribution to any Contributor or the Initial Developer.
+3.3.1.2. not use, or misuse, the Service in any way which may impair the functionality of the Service or other systems used to deliver the Service or impair the ability of any other user to use the Service;
 
-3.4. Application of Additional Terms.
+3.3.1.3. not attempt to gain unauthorised access to any materials other than those to which You have been given express permission to access or to the computer system on which the Service is hosted;
 
-You may not offer or impose any terms on any Covered Software in Source Code form that alters or restricts the applicable version of this License or the recipients rights hereunder. You may choose to offer, and to charge a fee for, warranty, support, indemnity or liability obligations to one or more recipients of Covered Software. However, you may do so only on Your own behalf, and not on behalf of the Initial Developer or any Contributor. You must make it absolutely clear that any such warranty, support, indemnity or liability obligation is offered by You alone, and You hereby agree to indemnify the Initial Developer and every Contributor for any liability incurred by the Initial Developer or such Contributor as a result of warranty, support, indemnity or liability terms You offer.
+3.3.1.4. not attempt to modify, copy, adapt, reproduce, disassemble, decompile or reverse engineer any computer programs used to deliver the Service.
 
-3.5. Distribution of Executable Versions.
+3.4.   Usage Limitations:
 
-You may distribute the Executable form of the Covered Software under the terms of this License or under the terms of a license of Your choice, which may contain terms different from this License, provided that You are in compliance with the terms of this License and that the license for the Executable form does not attempt to limit or alter the recipients rights in the Source Code form from the rights set forth in this License. If You distribute the Covered Software in Executable form under a different license, You must make it absolutely clear that any terms which differ from this License are offered by You alone, not by the Initial Developer or Contributor. You hereby agree to indemnify the Initial Developer and every Contributor for any liability incurred by the Initial Developer or such Contributor as a result of any such terms You offer.
+Use of the Service may be subject to limitations, including but not limited to monthly transaction volumes. Any such limitations will be advised.
 
-3.6. Larger Works.
+3.5.   Indemnity.
 
-You may create a Larger Work by combining Covered Software with other code not governed by the terms of this License and distribute the Larger Work as a single product. In such a case, You must make sure the requirements of this License are fulfilled for the Covered Software.
+You indemnify Magnetism against: all claims, costs, damage and loss arising from Your breach of any of these Terms or any obligation You may have to Magnetism, including (but not limited to) any costs relating to the recovery of any Service Fees that are due but have not been paid by You.
 
-4. Versions of the License.
+CONFIDENTIALITY AND PRIVACY
+4.1.   Confidentiality:
 
-4.1. New Versions.
+ Unless the relevant party has the prior written consent of the other or unless required to do so by law:
 
-Sun Microsystems, Inc. is the initial license steward and may publish revised and/or new versions of this License from time to time. Each version will be given a distinguishing version number. Except as provided in Section 4.3, no one other than the license steward has the right to modify this License.
+4.1.1.  Each party will preserve the confidentiality of all Confidential Information of the other obtained in connection with these Terms. Neither party will, without the prior written consent of the other, disclose or make any Confidential Information available to any person, or use the same for its own benefit, other than as contemplated by these Terms.
 
-4.2. Effect of New Versions.
+4.1.2. Each party's obligations under this clause will survive termination of these Terms.
 
-You may always continue to use, distribute or otherwise make the Covered Software available under the terms of the version of the License under which You originally received the Covered Software. If the Initial Developer includes a notice in the Original Software prohibiting it from being distributed or otherwise made available under any subsequent version of the License, You must distribute and make the Covered Software available under the terms of the version of the License under which You originally received the Covered Software. Otherwise, You may also choose to use, distribute or otherwise make the Covered Software available under the terms of any subsequent version of the License published by the license steward.
+4.1.3. The provisions of clauses 4.1.1 and 4.1.2 shall not apply to any information which:
 
-4.3. Modified Versions.
+4.1.3.1. is or becomes public knowledge other than by a breach of this clause;
 
-When You are an Initial Developer and You want to create a new license for Your Original Software, You may create and use a modified version of this License if You: (a) rename the license and remove any references to the name of the license steward (except to note that the license differs from this License); and (b) otherwise make it clear that the license contains terms which differ from this License.
+4.1.3.2. is received from a third party who lawfully acquired it and who is under no obligation restricting its disclosure;
 
-5. DISCLAIMER OF WARRANTY.
+4.1.3.3. is in the possession of the receiving party without restriction in relation to disclosure before the date of receipt from the disclosing party; or
 
-COVERED SOFTWARE IS PROVIDED UNDER THIS LICENSE ON AN AS IS BASIS, WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, WITHOUT LIMITATION, WARRANTIES THAT THE COVERED SOFTWARE IS FREE OF DEFECTS, MERCHANTABLE, FIT FOR A PARTICULAR PURPOSE OR NON-INFRINGING. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE COVERED SOFTWARE IS WITH YOU. SHOULD ANY COVERED SOFTWARE PROVE DEFECTIVE IN ANY RESPECT, YOU (NOT THE INITIAL DEVELOPER OR ANY OTHER CONTRIBUTOR) ASSUME THE COST OF ANY NECESSARY SERVICING, REPAIR OR CORRECTION. THIS DISCLAIMER OF WARRANTY CONSTITUTES AN ESSENTIAL PART OF THIS LICENSE. NO USE OF ANY COVERED SOFTWARE IS AUTHORIZED HEREUNDER EXCEPT UNDER THIS DISCLAIMER.
+4.1.3.4. is independently developed without access to the Confidential Information.
 
-6. TERMINATION.
+4.2.   Privacy:
 
-6.1. This License and the rights granted hereunder will terminate automatically if You fail to comply with terms herein and fail to cure such breach within 30 days of becoming aware of the breach. Provisions which, by their nature, must remain in effect beyond the termination of this License shall survive.
+ Magnetism maintains a privacy policy that sets out the parties’ obligations in respect of personal information. You should read that policy at www.magnetismsolutions.com/privacy/ and You will be taken to have accepted that policy when You accept these Terms.
 
-6.2. If You assert a patent infringement claim (excluding declaratory judgment actions) against Initial Developer or a Contributor (the Initial Developer or Contributor against whom You assert such claim is referred to as Participant) alleging that the Participant Software (meaning the Contributor Version where the Participant is a Contributor or the Original Software where the Participant is the Initial Developer) directly or indirectly infringes any patent, then any and all rights granted directly or indirectly to You by such Participant, the Initial Developer (if the Initial Developer is not the Participant) and all Contributors under Sections 2.1 and/or 2.2 of this License shall, upon 60 days notice from Participant terminate prospectively and automatically at the expiration of such 60 day notice period, unless if within such 60 day period You withdraw Your claim with respect to the Participant Software against such Participant either unilaterally or pursuant to a written agreement with Participant.
+INTELLECTUAL PROPERTY
+5.1.   General:
 
-6.3. In the event of termination under Sections 6.1 or 6.2 above, all end user licenses that have been validly granted by You or any distributor hereunder prior to termination (excluding licenses granted to You by any distributor) shall survive termination.
+Title to, and all Intellectual Property Rights in the Service, the Website and any documentation relating to the Service remain the property of Magnetism (or its licensors).
 
-7. LIMITATION OF LIABILITY.
+5.2.   Ownership of Data:
 
-UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER TORT (INCLUDING NEGLIGENCE), CONTRACT, OR OTHERWISE, SHALL YOU, THE INITIAL DEVELOPER, ANY OTHER CONTRIBUTOR, OR ANY DISTRIBUTOR OF COVERED SOFTWARE, OR ANY SUPPLIER OF ANY OF SUCH PARTIES, BE LIABLE TO ANY PERSON FOR ANY INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY CHARACTER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOST PROFITS, LOSS OF GOODWILL, WORK STOPPAGE, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER COMMERCIAL DAMAGES OR LOSSES, EVEN IF SUCH PARTY SHALL HAVE BEEN INFORMED OF THE POSSIBILITY OF SUCH DAMAGES. THIS LIMITATION OF LIABILITY SHALL NOT APPLY TO LIABILITY FOR DEATH OR PERSONAL INJURY RESULTING FROM SUCH PARTYS NEGLIGENCE TO THE EXTENT APPLICABLE LAW PROHIBITS SUCH LIMITATION. SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THIS EXCLUSION AND LIMITATION MAY NOT APPLY TO YOU.
+Title to, and all Intellectual Property Rights in, the Data remain Your property. However, your access to the Data via CRM is contingent on full payment of the Service Fee when due.
 
-8. U.S. GOVERNMENT END USERS.
+WARRANTIES AND ACKNOWLEDGEMENTS
+6.1.   Authority:
 
-The Covered Software is a commercial item, as that term is defined in 48 C.F.R. 2.101 (Oct. 1995), consisting of commercial computer software (as that term is defined at 48 C.F.R. 252.227-7014(a)(1)) and commercial computer software documentation as such terms are used in 48 C.F.R. 12.212 (Sept. 1995). Consistent with 48 C.F.R. 12.212 and 48 C.F.R. 227.7202-1 through 227.7202-4 (June 1995), all U.S. Government End Users acquire Covered Software with only those rights set forth herein. This U.S. Government Rights clause is in lieu of, and supersedes, any other FAR, DFAR, or other clause or provision that addresses Government rights in computer software under this License.
+You warrant that where You have registered to use the Service on behalf of another person, You have the authority to agree to these Terms on behalf of that person and agree that by registering to use the Service You bind the person on whose behalf You act to the performance of any and all obligations that You become subject to by virtue of these Terms, without limiting Your own personal obligations under these Terms.
 
-9. MISCELLANEOUS.
+6.2.   Acknowledgement:
 
-This License represents the complete agreement concerning subject matter hereof. If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable. This License shall be governed by the law of the jurisdiction specified in a notice contained within the Original Software (except to the extent applicable law, if any, provides otherwise), excluding such jurisdictions conflict-of-law provisions. Any litigation relating to this License shall be subject to the jurisdiction of the courts located in the jurisdiction and venue specified in a notice contained within the Original Software, with the losing party responsible for costs, including, without limitation, court costs and reasonable attorneys fees and expenses. The application of the United Nations Convention on Contracts for the International Sale of Goods is expressly excluded. Any law or regulation which provides that the language of a contract shall be construed against the drafter shall not apply to this License. You agree that You alone are responsible for compliance with the United States export administration regulations (and the export control laws and regulation of any other countries) when You use, distribute or otherwise make available any Covered Software.
+You acknowledge that:
 
-10. RESPONSIBILITY FOR CLAIMS.
+6.2.1. You are authorised to use the Service and to access the information and Data that You input into the Service, including any information or Data input into the Service by any person you have authorised to use the Service. You are also authorised to access the processed information and Data that is made available to You through Your use of the Service (whether that information and Data is Your own or that of anyone else).
 
-As between Initial Developer and the Contributors, each party is responsible for claims and damages arising, directly or indirectly, out of its utilization of rights under this License and You agree to work with Initial Developer and Contributors to distribute such responsibility on an equitable basis. Nothing herein is intended or shall be deemed to constitute any admission of liability.
+6.2.2. Magnetism has no responsibility to any person other than You and nothing in this Agreement confers, or purports to confer, a benefit on any person other than You. If You use the Service on behalf of or for the benefit of anyone other than yourself (whether a body corporate or otherwise) you agree that:
+
+6.2.2.1. You are responsible for ensuring that You have the right to do so;
+
+6.2.2.2.          You are responsible for authorising any person who is given access to information or Data, and you agree that Magnetism has no obligation to provide any person access to such information or Data without Your authorisation and may refer any requests for information to You to address; and
+
+6.2.2.3.          You will indemnify Magnetism against any claims or loss relating to:
+
+6.2.2.3.1. Magnetism's refusal to provide any person access to Your information or Data in accordance with these Terms,
+
+6.2.2.3.2.              Magnetism’s making available information or Data to any person with Your authorisation.
+
+6.2.3. The provision of, access to, and use of, the Service is on an "as is " basis and at Your own risk.
+
+6.2.4. Magnetism does not warrant that the use of the Service will be uninterrupted or error free. Among other things, the operation and availability of the systems used for accessing the Service, including public telephone services, computer networks and the Internet, can be unpredictable and may from time to time interfere with or prevent access to the Service. Magnetism is not in any way responsible for any such interference or prevention of Your access or use of the Service.
+
+6.2.5. It is Your sole responsibility to determine that the Service meets the needs of Your business and are suitable for the purposes for which it is used.
+
+6.3.   No warranties:
+
+Magnetism gives no warranty about the Service. Without limiting the foregoing, Magnetism does not warrant that the Service will meet Your requirements or that it will be suitable for any particular purpose. To avoid doubt, all implied conditions or warranties are excluded in so far as is permitted by law, including (without limitation) warranties of merchantability, fitness for purpose, title and non-infringement.
+
+6.4.   Consumer guarantees:
+
+You warrant and represent that You are acquiring the right to access and use the Service for the purposes of a business and that, to the maximum extent permitted by law, any statutory consumer guarantees or legislation intended to protect non-business consumers in any jurisdiction does not apply to the supply of the Service or these Terms.
+
+LIMITATION OF LIABILITY
+7.1.    To the maximum extent permitted by law, Magnetism excludes all liability and responsibility to You (or any other person) in contract, tort (including negligence), or otherwise, for any loss (including loss of information, Data, profits and savings) or damage resulting, directly or indirectly, from any use of, or reliance on, the Service or Website.
+
+7.2.   If You suffer loss or damage as a result of Magnetism's negligence or failure to comply with these Terms, any claim by You against Magnetism arising from Magnetism's negligence or failure will be limited in respect of any one incident, or series of connected incidents, to the Access Fees paid by You in the previous 12 months.
+
+7.3.   If You are not satisfied with the Service, Your sole and exclusive remedy is to terminate these Terms in accordance with Clause 8.
+
+TERMINATION
+8.1.   Trial policy
+
+When You first sign up for access to the Service You can evaluate the Service this Service for a maximum of 30 calendar days with no obligation to continue to use the Service. If You choose to continue using the Service thereafter, You will be billed from the day You first agreed to pay for the Service. If You choose not to continue using the Service the Service will be de-activated immediately after the 30 day trial.
+
+8.2.   Prepaid Subscriptions
+
+Magnetism will not provide any refund for any remaining prepaid period for a prepaid Access Fee subscription.
+
+8.3.   No-fault termination:
+
+These Terms will continue for the period covered by the Access Fee paid or payable under clause 3.1. At the end of each billing period these Terms will automatically continue for another period of the same duration as that period, provided You continue to pay the prescribed Access Fee when due, unless either party terminates these Terms by giving notice to the other party at least 30 days before the end of the relevant payment period. If You terminate these Terms You shall be liable to pay all relevant Access Fees on a pro-rata basis for each day of the then current period up to and including the day of termination of these Terms.
+
+8.4.   Breach:
+
+If You:
+
+8.4.1. breach any of these Terms (including, without limitation, by non-payment of any Access Fees) and do not remedy the breach within 14 days after receiving notice of the breach if the breach is capable of being remedied;
+
+8.4.2. breach any of these Terms and the breach is not capable of being remedied (which includes (without limitation) any breach of clause 3 or any payment of Access Fees that are more than 15 days overdue); or
+
+8.4.3. You or Your business become insolvent or Your business goes into liquidation or has a receiver or manager appointed of any of its assets or if You become insolvent, or make any arrangement with Your creditors, or become subject to any similar insolvency event in any jurisdiction,
+
+Magnetism may take any or all of the following actions, at its sole discretion:
+
+8.4.4. Terminate this Agreement and Your use of the Service;
+
+8.4.5. Suspend for any definite or indefinite period of time, Your use of the Service;
+
+For the avoidance of doubt, if payment of any invoice for Access Fees due in relation to any of Your Billing Contacts or any of Your Organisations (as defined in clause 3) is not made in full by the relevant due date, Magnetism may suspend or terminate Your use of the Service.
+
+8.5.   Accrued Rights:
+
+Termination of these Terms is without prejudice to any rights and obligations of the parties accrued up to and including the date of termination. On termination of this Agreement You will:
+
+d.    remain liable for any accrued charges and amounts which become due for payment before or after termination; and
+
+e.     immediately cease to use the Service.
+
+8.6.   Expiry or termination:
+
+Clauses 3.1, 3.5, 4, 5, 6, 7, 8 and 10 survive the expiry or termination of these Terms.
+
+HELP DESK
+9.1.   Technical Problems:
+
+ In the case of technical problems You must make all reasonable efforts to investigate and diagnose problems before contacting Magnetism. If You still need technical help, please check the support provided online by Magnetism on the Website or failing that email us at help@magnetismsolutions.com.
+
+9.2.   Service availability:
+
+Whilst Magnetism intends that the Service should be available 24 hours a day, seven days a week, it is possible that on occasions the Service may be unavailable.
+
+GENERAL
+10.1.  Entire agreement:
+
+These Terms, together with the Magnetism Privacy Policy and the terms of any other notices or instructions given to You under these Terms of Use, supersede and extinguish all prior agreements, representations (whether oral or written), and understandings and constitute the entire agreement between You and Magnetism relating to the Service and the other matters dealt with in these Terms.
+
+10.2. Waiver:
+
+If either party waives any breach of these Terms, this will not constitute a waiver of any other breach. No waiver will be effective unless made in writing.
+
+10.3. Delays:
+
+Neither party will be liable for any delay or failure in performance of its obligations under these Terms if the delay or failure is due to any cause outside its reasonable control. This clause does not apply to any obligation to pay money.
+
+10.4. No Assignment:
+
+You may not assign or transfer any rights to any other person without Magnetism's prior written consent.
+
+10.5. Governing law and jurisdiction:
+
+New Zealand law governs this Agreement and You submit to the exclusive jurisdiction of the courts of New Zealand for all disputes arising out of or in connection with this Agreement. Severability:
+
+If any part or provision of these Terms is invalid, unenforceable or in conflict with the law, that part or provision is replaced with a provision which, as far as possible, accomplishes the original purpose of that part or provision. The remainder of this Agreement will be binding on the parties.
+
+10.6. Notices:
+
+Any notice given under these Terms by either party to the other must be in writing by email and will be deemed to have been given on transmission. Notices to Magnetism must be sent to support@magnetismsolutions.com or to any other email address notified by email to You by Magnetism. Notices to You will be sent to the email address which You provided when setting up Your access to the Service.
+
+10.7. Rights of Third Parties:
+
+A person who is not a party to these Terms has no right to benefit under or to enforce any term of these Terms.
