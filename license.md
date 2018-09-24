@@ -1,4 +1,5 @@
 Alert.JS Terms of Use
+
 Welcome to the Magnetism Alert.JS module which allow you to build beautiful UI (user interfaces) within Microsoft Dynamics and other web platforms. These Terms of Use are intended to explain our obligations as a service provider and Your obligations as a customer. Please read them carefully.
 
 These Terms are binding on any use of Alert.JS (the Service) and apply to You from the time that Magnetism provides You with access to the Service.
