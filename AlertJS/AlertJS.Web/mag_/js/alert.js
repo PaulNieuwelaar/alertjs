@@ -1,5 +1,4 @@
-﻿// Alert.js v2.2 *Beta* - Copyright Paul Nieuwelaar Magnetism 2017
-// Download the latest version from https://github.com/PaulNieuwelaar/alertjs
+// Alert.js v2.1 - Copyright Paul Nieuwelaar Magnetism 2016
 
 /*    
 Alert.show("Would you like to create a sale?", "This will create and open the new sale record.",
@@ -11,10 +10,7 @@ Alert.show("Would you like to create a sale?", "This will create and open the ne
     ], "QUESTION", 500, 200);
 */
 
-// This acts as a constructor and/or a namespace, e.g.: Alert.show("Hello World!"); works the same as: new Alert().setTitle("Hello World!").show();
-var Alert = function () {
-    return this;
-}
+var Alert = Alert || {};
 
 Alert._prefix = "mag_"; // Change this if you have your own solution prefix (as long as the file structure's the same)
 Alert._dialogHeight = 250;
@@ -42,7 +38,7 @@ Alert.$ = function (selector, context) {
 // height = (optional, defaults to _dialogHeight) Custom height of the dialog
 // baseUrl = (optional, defaults to getClientUrl) Base url of CRM (only required if no access to Xrm.Page)
 // preventCancel = (optional, defaults to false) Hides the 'X' in the top right corner, meaning you can only dismiss the alert using the buttons
-// padding = (optional, defaults to 20) Sets the amount of padding around the light-box. Set to 0 for no padding (on iframes etc)
+// padding = (optional, defaults to 30) Sets the amount of padding around the light-box. Set to 0 for no padding (on iframes etc)
 Alert.show = function (title, message, buttons, icon, width, height, baseUrl, preventCancel, padding) {
     title = title || "";
     message = message || "";
@@ -56,7 +52,7 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
         // The parent/top document which we append the wrapper to
         Alert._context = window.top.document;
 
-        // The CRM window, for calling back from an Alert iframe. Use parent.Alert.getCrmWindow() to get back to the CRM window from inside an iframe
+        // The CRM window, for calling back from an Alert iframe. Use parent.Alert._crmContext to get back to the CRM window from inside an iframe
         Alert._crmContext = window;
         window.top.Alert = Alert;
 
@@ -115,14 +111,14 @@ Alert.show = function (title, message, buttons, icon, width, height, baseUrl, pr
     else { Alert.$("#alertJs-message").show(); }
 
     // Add the icon
-    if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION", "LOADING", "SEARCH"].indexOf(icon) !== -1) {
-        var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : icon == "QUESTION" ? "ques" : icon == "LOADING" ? "load" : "find";
+    if (icon && ["INFO", "WARNING", "ERROR", "SUCCESS", "QUESTION", "LOADING"].indexOf(icon) !== -1) {
+        var imgType = icon == "ERROR" ? "crit" : icon == "WARNING" ? "warn" : icon == "INFO" ? "info" : icon == "SUCCESS" ? "tick" : icon == "QUESTION" ? "ques" : "load";
 
         Alert.$("#alertJs-imageWrapper").show();
 
         // Remove any existing image classes before adding the new one
         Alert.$("#alertJs-image")
-            .removeClass("alert-js-image-crit alert-js-image-warn alert-js-image-info alert-js-image-tick alert-js-image-ques alert-js-image-load alert-js-image-find")
+            .removeClass("alert-js-image-crit alert-js-image-warn alert-js-image-info alert-js-image-tick alert-js-image-ques alert-js-image-load")
             .addClass("alert-js-image-" + imgType);;
     }
     else {
@@ -281,7 +277,7 @@ Alert.showIFrame = function (iframeUrl, width, height, title, buttons, baseUrl, 
     Alert.$("#alertJs-iFrame").css("height", Alert._calculateMessageHeight(height, padding, buttons.length, title) - 3);
 }
 
-// Use the returned iframe context with jQuery to get data from the iframe, i.e. Alert.$("#something", Alert.getIFrameWindow().document);
+// Use the returned iframe context with jQuery to get data from the iframe, i.e. Alert.$("#something", Alert.getIFrameContext().document);
 Alert.getIFrameWindow = function () {
     var iframeContext = null;
 
@@ -310,96 +306,4 @@ Alert.Button = function (label, callback, setFocus, preventClose) {
     this.callback = callback;
     this.setFocus = setFocus;
     this.preventClose = preventClose;
-}
-
-// Title of the Alert
-Alert.prototype.setTitle = function (title) {
-    this.title = title;
-    return this;
-}
-
-// Main body of the Alert
-Alert.prototype.setMessage = function (message) {
-    this.message = message;
-    return this;
-}
-
-// Array of new Alert.Button() to show on the Alert
-Alert.prototype.setButtons = function (buttons) {
-    if (buttons === undefined) { buttons = []; }
-    this.buttons = buttons;
-    return this;
-}
-
-// INFORMATION
-// WARNING
-// ERROR
-// QUESTION
-// SUCCESS
-// LOADING
-Alert.prototype.setIcon = function (icon) {
-    this.icon = icon;
-    return this;
-}
-
-// Whole number, width of the Alert
-Alert.prototype.setWidth = function (width) {
-    this.width = width;
-    return this;
-}
-
-// Whole number, height of the Alert
-Alert.prototype.setHeight = function (height) {
-    this.height = height;
-    return this;
-}
-
-Alert.prototype.setBaseUrl = function (baseUrl) {
-    this.baseUrl = baseUrl;
-    return this;
-}
-
-Alert.prototype.preventCancel = function (isPreventCancel) {
-    if (isPreventCancel === undefined) { isPreventCancel = true; }
-    this.isPreventCancel = isPreventCancel;
-    return this;
-}
-
-// Whole number, number of pixels padding the Alert
-Alert.prototype.setPadding = function (padding) {
-    if (padding === undefined) { padding = 0; }
-    this.padding = padding;
-    return this;
-}
-
-Alert.prototype.show = function () {
-    Alert.show(this.title, this.message, this.buttons, this.icon, this.width, this.height, this.baseUrl, this.isPreventCancel, this.padding);
-}
-
-Alert.prototype.hide = function () {
-    Alert.hide();
-}
-
-Alert.prototype.getIFrameWindow = function () {
-    return Alert.getIFrameWindow();
-}
-
-Alert.prototype.getCrmWindow = function () {
-    return Alert.getCrmWindow();
-}
-
-Alert.prototype.showLoading = function () {
-    Alert.showLoading();
-}
-
-Alert.prototype.showWebResource = function (webResourceName) {
-    Alert.showWebResource(webResourceName, this.width, this.height, this.title, this.buttons, this.baseUrl, this.isPreventCancel, this.padding);
-}
-
-Alert.prototype.showDialogProcess = function (dialogId, entityName, recordId, callback) {
-    Alert.showDialogProcess(dialogId, entityName, recordId, callback, this.width, this.height, this.baseUrl);
-}
-
-Alert.prototype.showIFrame = function (iframeUrl) {
-    Alert.showIFrame(iframeUrl, this.width, this.height, this.title, this.buttons, this.baseUrl, this.isPreventCancel, this.padding);
 }
