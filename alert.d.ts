@@ -190,8 +190,6 @@ export declare class Dialog {
      * @param text The text to encode, e.g. a trace log.
      */
     htmlEncode(text: string): string;
-    static _setGlobals(): void;
-    static _initialize(): void;
     private _createDialog;
     private _attachEventHandlers;
     private _buttonClicked;
@@ -209,6 +207,8 @@ export declare class Dialog {
     private static _getColorFromCrm;
     private static _getBaseUrl;
     private static _getDialogContext;
+    static _setGlobals(): void;
+    private static _initialize;
     private static LM;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
