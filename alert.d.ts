@@ -11,7 +11,6 @@ export declare class Dialog {
     private static _crmColor;
     private static _context;
     private static _crmContext;
-    private static _initialized;
     private _dialog;
     private _getDialogId;
     private _getPopupName;
@@ -44,7 +43,7 @@ export declare class Dialog {
     /**
      * This function acts as a wrapper for jQuery, which can be used to access elements within an Dialog.
      *
-     * @param selector The jQuery selector to use, e.g. ".dialog-js-wrapper div".
+     * @param selector The jQuery selector to use, e.g. ".dialog-js-dialog-wrapper div".
      * @param context The context in which to apply the selector. Use .get() to scope to a particular dialog, otherwise scopes to all dialogs by default.
      */
     static $(selector: string, context?: JQuery | HTMLElement | Document): JQuery;
@@ -191,7 +190,8 @@ export declare class Dialog {
      * @param text The text to encode, e.g. a trace log.
      */
     htmlEncode(text: string): string;
-    private _initialize;
+    static _setGlobals(): void;
+    private _createDialog;
     private _attachEventHandlers;
     private _buttonClicked;
     private _getChildFieldResponses;
@@ -200,13 +200,14 @@ export declare class Dialog {
     private _createField;
     private _utcToLocalTime;
     private _addExtraAttributes;
-    private _getBaseUrl;
-    private _brightenColor;
-    private _brightenRgbComponent;
-    private _getColorFromCrm;
-    private _setDialogColors;
     private _setupDragElement;
     private _showHeadingOrContent;
+    private _brightenColor;
+    private _brightenRgbComponent;
+    private _setDialogColors;
+    private static _getColorFromCrm;
+    private static _getBaseUrl;
+    private static _getDialogContext;
     private static LM;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
@@ -265,7 +266,7 @@ export declare namespace Dialog {
     /**
      * Class for Button constructor
      */
-    export class Button {
+    class Button {
         label: string;
         callback?: (data: PromptResponses | Window) => void;
         setFocus?: boolean;
@@ -299,7 +300,7 @@ export declare namespace Dialog {
     /**
      * Class for Input constructor
      */
-    export class Input extends _Field {
+    class Input extends _Field {
         type: string;
         /**
          * Creates a standard input. This can be plain text, or other HTML 5 input types.
@@ -314,7 +315,7 @@ export declare namespace Dialog {
     /**
      * Class for MultiLine constructor
      */
-    export class MultiLine extends _Field {
+    class MultiLine extends _Field {
         /**
          * Creates a multiline textarea with default height of 60px.
          *
@@ -328,7 +329,7 @@ export declare namespace Dialog {
     /**
      * Class for OptionSet constructor
      */
-    export class OptionSet extends _Field {
+    class OptionSet extends _Field {
         options?: OptionSetValue[];
         /**
          * Creates an optionset/select field.
@@ -343,7 +344,7 @@ export declare namespace Dialog {
     /**
      * Class for Lookup constructor
      */
-    export class Lookup extends _Field {
+    class Lookup extends _Field {
         entityTypes?: string[] | string;
         customFilters?: string[];
         disableMru?: boolean;
@@ -361,7 +362,7 @@ export declare namespace Dialog {
     /**
      * Class for Group constructor
      */
-    export class Group extends _Field {
+    class Group extends _Field {
         fields?: (Dialog.Group | Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup)[];
         /**
          * Creates an outlined section/container for multiple fields. Useful for displaying multiple radio buttons together. Can also be used without fields to just show an extra static label.
@@ -373,7 +374,6 @@ export declare namespace Dialog {
             [key: string]: string;
         });
     }
-    export {};
 }
 /**
 * Class for PromptResponses
@@ -388,6 +388,12 @@ export declare class PromptResponses extends Array<PromptResponse> {
      * Get the ids of any prompt responses with a value of true. Used to get the selected value(s) from a group of radio or checkbox fields.
      */
     getSelected(): string[];
+    /**
+     * Get the values of the responses in a cleaner object structure which can be used with HTTP requests etc. Object key = the field ID or array index with an underscore (e.g. "_0") if ID is null. Object value = the actual field value. Groups follow the same structure.
+     */
+    getData(): {
+        [key: string]: any;
+    };
 }
 /**
  * Module for Alert (backwards compatability). Includes all functionality from Dialog, including the legacy methods e.g. Alert.show();
@@ -662,9 +668,13 @@ export interface LookupFilter {
 /**
  * Interface for FileData
  */
-export interface FileData extends File {
+export interface FileData {
     /**
      * Base64 string contents of the uploaded file.
      */
-    value?: string;
+    value: string;
+    lastModified: number;
+    name: string;
+    size: number;
+    type: string;
 }
