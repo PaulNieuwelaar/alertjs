@@ -191,6 +191,7 @@ export declare class Dialog {
      */
     htmlEncode(text: string): string;
     static _setGlobals(): void;
+    static _initialize(): void;
     private _createDialog;
     private _attachEventHandlers;
     private _buttonClicked;
