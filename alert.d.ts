@@ -204,11 +204,10 @@ export declare class Dialog {
     private _brightenColor;
     private _brightenRgbComponent;
     private _setDialogColors;
-    private static _getColorFromCrm;
-    private static _getBaseUrl;
-    private static _getDialogContext;
+    private _getColorFromCrm;
+    private _getBaseUrl;
     static _setGlobals(): void;
-    private static _initialize;
+    private static _getDialogContext;
     private static LM;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
