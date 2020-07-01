@@ -38,6 +38,7 @@ For more information about what's new in v3, check out the latest [release notes
 ### Alert.js v2.1
 Alert.js v2.1 is and always will be available for free here on Github under other releases. This version will continue to receive updates in the form of bug fixes only, and does not include any of the new features introduced in v3.0 or any versions going forward. For more info about the v2.1 license details, check out the [v2.1 license](https://github.com/PaulNieuwelaar/alertjs/blob/master/license-v2.1.md) in this project.
 
+---
 
 Created by [Paul Nieuwelaar](http://paulnieuwelaar.wordpress.com) - [@paulnz1](https://twitter.com/paulnz1)  
 Sponsored by [Magnetism Solutions - Dynamics CRM Specialists](http://www.magnetismsolutions.com)
