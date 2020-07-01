@@ -116,7 +116,7 @@ export declare class Dialog {
     fullscreen(fullscreen?: boolean): Dialog;
     private _color?;
     /**
-     * Set the primary color of the title, buttons, and prompt field shadows. If not specified, this will default to the CRM theme's main color.
+     * Set the primary color of the title and buttons. If not specified, this will default to the CRM theme's main color.
      */
     color(hex?: string): Dialog;
     private _id;
@@ -385,7 +385,7 @@ export declare class PromptResponses extends Array<PromptResponse> {
      */
     getValue(id: string | number): string | number | string[] | Date | FileData[] | boolean | LookupObject[] | PromptResponses | null | undefined;
     /**
-     * Get the ids of any prompt responses with a value of true. Used to get the selected value(s) from a group of radio or checkbox fields.
+     * Get the ids of any prompt responses with a value of true. Used to get just the selected field(s) from a group of radio or checkbox fields.
      */
     getSelected(): string[];
     /**
@@ -478,11 +478,11 @@ export interface InputOptions {
      */
     label?: string;
     /**
-     * Sets the label to be aligned above the field, or beside the field inline.
+     * Sets the label to be aligned above the field, or beside the field inline. Defaults to true.
      */
     inline?: boolean;
     /**
-     * The default value for the input. The type of object depends on the 'type' used for this input. E.g. 'number' takes a Number, 'date' and 'datetime-local' take a Date object, and 'text' takes a String.
+     * The default value for the input. The type of object depends on the 'type' used for this input. E.g. 'number' takes a Number, 'date' and 'datetime-local' take a Date object, 'text' takes a String, and 'radio' or 'checkbox' take a bool.
      */
     value?: string | number | string[] | Date | boolean | null;
     /**
@@ -512,7 +512,7 @@ export interface MultiLineOptions {
      */
     label?: string;
     /**
-     * Sets the label to be aligned above the field, or beside the field inline.
+     * Sets the label to be aligned above the field, or beside the field inline. Defaults to true.
      */
     inline?: boolean;
     /**
@@ -533,7 +533,7 @@ export interface OptionSetOptions {
      */
     label?: string;
     /**
-     * Sets the label to be aligned above the field, or beside the field inline.
+     * Sets the label to be aligned above the field, or beside the field inline. Defaults to true.
      */
     inline?: boolean;
     /**
@@ -558,7 +558,7 @@ export interface LookupOptions {
      */
     label?: string;
     /**
-     * Sets the label to be aligned above the field, or beside the field inline.
+     * Sets the label to be aligned above the field, or beside the field inline. Defaults to true.
      */
     inline?: boolean;
     /**
@@ -596,7 +596,7 @@ export interface GroupOptions {
      */
     label?: string;
     /**
-     * Sets the label to be aligned above the field, or beside the field inline. Defaults to true.
+     * Sets the label to be aligned above the group, or beside the group inline. Defaults to false.
      */
     inline?: boolean;
     /**
