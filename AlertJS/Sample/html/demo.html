@@ -5,22 +5,251 @@
     <meta charset="utf-8" />
     <title>Dialog Builder Demo</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../js/alert.js"></script>
+    <script src="../src/alert.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/alert.css" />
+
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: SegoeUI,"Segoe UI",Arial,Calibre;
+        }
+
+        .example-wrapper {
+            margin: 20px;
+            padding-bottom: 20px;
+        }
+
+        .heading {
+            margin-bottom: 8px;
+            font-size: 22px;
+            color: #3B79B7;
+        }
+
+        .example {
+            display: flex;
+        }
+
+        textarea {
+            min-height: 200px;
+            min-width: 200px;
+            height: 350px;
+            width: 600px;
+            box-sizing: border-box;
+            margin-right: 20px;
+            padding: 10px;
+            border: none;
+            border-left: 3px solid #6CE26C;
+            overflow: auto;
+            resize: both;
+            font-weight: 400;
+            color: #000;
+            background-color: #F9F9F9;
+            line-height: 1.1em;
+            font-family: Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace !important;
+            font-style: normal;
+            font-size: 0.8em;
+            white-space: pre;
+        }
+
+        img {
+            max-height: 350px;
+            width: 100%;
+        }
+
+        button {
+            margin-top: 8px;
+            height: 35px;
+            width: 150px;
+            padding: 5px;
+            background-color: #3B79B7;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid #3B79B7 !important;
+            font-family: SegoeUI 'Segoe UI';
+            font-size: 1rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+            button:hover {
+                background-color: #236099 !important;
+                transition: 0.3s;
+            }
+    </style>
 
     <script>
         function pageLoad() {
-            let but = document.createElement("button");
-            but.innerHTML = "CLICK ME!";
-            but.onclick = showDialog;
+            $(document).ready(() => {
+                Dialog.LM.customKey = "github-demo";
 
-            document.body.appendChild(but);
+                var examples = [];
 
-            showDialog();
-        }
+                examples.push({
+                    blurb: "Recreate the Close Opportunity screen",
+                    imageUrl: "https://user-images.githubusercontent.com/14048382/86326459-d81ab780-bc95-11ea-88cb-02b50f85724b.png",
+                    code: `new Dialog({
+    id: "closeOpp",
+    height: 480,
+    width: 450,
+    title: "Close Opportunity",
+    message: "Provide the following information about why this opportunity is being closed.",
+    buttons: [
+        new Dialog.Button("OK", null, true),
+        new Dialog.Button("Cancel")]
+}).showPrompt([
+    new Dialog.OptionSet({ id: "status", label: "Status Reason", value: 3, options: [
+        { text: "Won", value: 3 },
+        { text: "Canceled", value: 4 },
+        { text: "Out-Sold", value: 5 }] }),
+    new Dialog.Input({ id: "revenue", label: "Actual Revenue ($)", type: "number", value: "0.00" }),
+    new Dialog.Input({ id: "closedate", label: "Close Date", type: "date", value: new Date() }),
+    new Dialog.Lookup({ id: "competitor", label: "Competitor", entityTypes: ["competitor"] }),
+    new Dialog.MultiLine({ id: "description", label: "Description" })
+]);` });
 
-        function showDialog() {
-            new Dialog({ title: "Test dialog" }).show();
+                examples.push({
+                    blurb: "Simple dialog with callback",
+                    imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
+                    code: `new Dialog({
+    title: "Would you like to create a sale?",
+    message: "This will create and open the new sale record",
+    icon: "INFO",
+    buttons: [
+        new Dialog.Button("Create Sale", function() {
+            new Dialog({
+                title: "Sale successfully created!",
+                icon: "SUCCESS"
+            }).show();
+        }, true),
+        new Dialog.Button("Not now")
+    ]}).show();`
+                });
+
+                examples.push({
+                    blurb: "Example using file upload, and using the base64 data to display the image on screen",
+                    imageUrl: "https://user-images.githubusercontent.com/14048382/86326576-08625600-bc96-11ea-911e-a3f6b291a72b.png",
+                    code: `new Dialog({
+    id: "image", 
+    width: 380, 
+    height: 200, 
+    title: "Image Preview", 
+    message: "Please select an image file you wish to preview.", 
+    buttons: [
+        new Dialog.Button("View", function (results) {
+            var img = results.getValue("img");
+            if (img != null && img.length > 0) {
+                // Display the image on screen
+                new Dialog({ 
+                    id: "image", 
+                    width: 650, 
+                    height: 500, 
+                    content: "<img src='data:" + img[0].type + ";base64," + img[0].value + "' style='width:100%' />" 
+                }).show();
+            }
+            else { 
+                new Dialog({ 
+                    title: "404", 
+                    message: "Image not found.", 
+                    icon: "ERROR", 
+                    height: 150, 
+                    width: 230 
+                }).show(); 
+            }
+        }, true, true),
+        new Dialog.Button("Cancel")]
+}).showPrompt([
+    new Dialog.Input({ 
+        id: "img", 
+        label: "Image", 
+        type: "file" 
+    }, { accept: "image/*" })
+]);` });
+
+                examples.push({
+                    blurb: "Using various different field types",
+                    imageUrl: "https://user-images.githubusercontent.com/14048382/86327421-680d3100-bc97-11ea-9f9b-551f366223ff.png",
+                    code: `new Dialog({ 
+    height: 700, 
+    padding: 20, 
+    title: "Using various different field types", 
+    message: "Select some stuff from all the different field types", 
+    icon: "SUCCESS" 
+}).showPrompt([
+    new Alert.Input({ type: "number", label: "Number" }), 
+    new Alert.Input({ type: "file", label: "File" }), 
+    new Alert.Input({ type: "date", label: "Date" }), 
+    new Alert.Lookup({ label: "Lookup", entityTypes: ["contact"] }), 
+    new Alert.Group({ label: "Inline Group", inline: true, fields: [
+        new Alert.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }), 
+        new Alert.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }), 
+        new Alert.Input({ label: "Or check this", type: "checkbox", value: true })
+    ] }), 
+    new Alert.OptionSet({ label: "OptionSet", options: [
+        { text: "One", value: "1" },
+        { text: "Two", value: "2" }
+    ] }),
+    new Alert.MultiLine({ label: "MultiLine", inline: false })
+]);`
+                });
+
+                examples.push({
+                    blurb: "Login screen with custom keypress event",
+                    imageUrl: "https://user-images.githubusercontent.com/14048382/86327927-2466f700-bc98-11ea-8d6a-6435b6d74576.png",
+                    code: `function signInCallback(data) {
+    Dialog.show(data.getValue(0).getValue(0) + "<br />" + data.getValue(0).getValue(1));
+}
+
+var dialog = new Alert({
+    height: 300,
+    title: "Portal Sign-in",
+    icon: "SEARCH",
+    message: "Please enter your login details below (don't worry this is all client side).",
+    padding: 20,
+    buttons: [
+        new Alert.Button("Sign in", signInCallback, true), 
+        new Alert.Button("Cancel")
+    ]
+}).showPrompt([new Alert.Group({
+    label: "Login details",
+    fields: [
+        new Alert.Input({ id: "email", label: "Email", type: "email" }),
+        new Alert.Input({ id: "password", label: "Password", type: "password" })
+    ]
+})]);
+dialog.$("#email input").on("keydown", function (e) {
+    e = e || window.event;
+    if (e.which == 13) { // Enter
+        e.preventDefault();
+        dialog.$("#password input").focus();
+    }
+});
+dialog.$("#password input").on("keydown", function (e) {
+    e = e || window.event;
+    if (e.which == 13) { // Enter
+        e.preventDefault();
+        signInCallback(Alert.getPromptResponses());
+    }
+});`
+                });
+
+                examples.forEach((example, index) => {
+                    let $element = $("<div>", { class: "example-wrapper" });
+                    $element.html(`<div class="heading">${example.blurb}</div><div class="example"><div><textarea spellcheck="false" id="code-${index}">${example.code}</textarea><div><button id="button-${index}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
+                    $(document.body).append($element);
+
+                    $(`#button-${index}`).click(() => {
+                        try {
+                            eval($(`#code-${index}`).val());
+                        }
+                        catch (e) {
+                            console.error(e);
+                            alert(e);
+                        }
+                    });
+                });
+            });
         }
     </script>
 </head>
