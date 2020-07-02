@@ -199,38 +199,32 @@
                     blurb: "Login screen with custom keypress event",
                     imageUrl: "https://user-images.githubusercontent.com/14048382/86327927-2466f700-bc98-11ea-8d6a-6435b6d74576.png",
                     code: `function signInCallback(data) {
-    Dialog.show(data.getValue(0).getValue(0) + "<br />" + data.getValue(0).getValue(1));
+    new Dialog({ 
+        title: data.getValue(0).getValue("email") + "<br />" + data.getValue(0).getValue("password")
+    }).show();
 }
 
-var dialog = new Alert({
-    height: 300,
-    title: "Portal Sign-in",
+var dialog = new Dialog({
     icon: "SEARCH",
+    title: "Portal Sign-in",
     message: "Please enter your login details below (don't worry this is all client side).",
-    padding: 20,
+    height: 300,
     buttons: [
-        new Alert.Button("Sign in", signInCallback, true), 
-        new Alert.Button("Cancel")
+        new Dialog.Button("Sign in", signInCallback, true), 
+        new Dialog.Button("Cancel")
     ]
-}).showPrompt([new Alert.Group({
+}).showPrompt([new Dialog.Group({
     label: "Login details",
     fields: [
-        new Alert.Input({ id: "email", label: "Email", type: "email" }),
-        new Alert.Input({ id: "password", label: "Password", type: "password" })
+        new Dialog.Input({ id: "email", label: "Email", type: "email" }),
+        new Dialog.Input({ id: "password", label: "Password", type: "password" })
     ]
 })]);
-dialog.$("#email input").on("keydown", function (e) {
-    e = e || window.event;
-    if (e.which == 13) { // Enter
-        e.preventDefault();
-        dialog.$("#password input").focus();
-    }
-});
 dialog.$("#password input").on("keydown", function (e) {
     e = e || window.event;
     if (e.which == 13) { // Enter
         e.preventDefault();
-        signInCallback(Alert.getPromptResponses());
+        signInCallback(dialog.getPromptResponses());
     }
 });`
                 });
