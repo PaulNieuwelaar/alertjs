@@ -24,6 +24,8 @@ Dialog Builder for Dynamics 365 allows you to create fully customisable dialogs 
 
 Dialog Builder gives you the power to extend Dynamics 365 with a seamless user experience when building end to end processes for your users.
 
+### [View a live demo of some use cases](https://paulnieuwelaar.github.io/alertjs/AlertJS/Sample/html/demo.html)
+
 ![](https://user-images.githubusercontent.com/14048382/86217379-827dd680-bbd3-11ea-9b30-2f3a2262c619.png)
 
 ## How it Works
