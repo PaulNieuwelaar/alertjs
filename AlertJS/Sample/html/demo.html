@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Dialog Builder Demo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../src/alert.js"></script>
+    <link rel="stylesheet" href="../css/alert.css" />
+
+    <script>
+        function pageLoad() {
+            let but = document.createElement("button");
+            but.innerHTML = "CLICK ME!";
+            but.onclick = showDialog;
+
+            document.body.appendChild(but);
+
+            showDialog();
+        }
+
+        function showDialog() {
+            new Dialog({ title: "Test dialog" }).show();
+        }
+    </script>
+</head>
+<body onload="pageLoad();">
+
+</body>
+</html>
