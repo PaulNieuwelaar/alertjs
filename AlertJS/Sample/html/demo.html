@@ -99,52 +99,51 @@
     </style>
 
     <script>
-        function pageLoad() {
-            $(document).ready(() => {
-                Dialog.LM.customKey = "github-demo";
+        $(document).ready(() => {
+            Dialog.LM.customKey = "github-demo";
 
-                var examples = [];
+            var examples = [];
 
-                examples.push({
-                    blurb: "Recreate the Close Opportunity screen",
-                    imageUrl: "https://user-images.githubusercontent.com/14048382/86326459-d81ab780-bc95-11ea-88cb-02b50f85724b.png",
-                    code: `new Dialog({
-    id: "closeOpp",
-    height: 480,
-    width: 450,
-    title: "Close Opportunity",
-    message: "Provide the following information about why this opportunity is being closed.",
-    buttons: [
-        new Dialog.Button("OK", null, true),
-        new Dialog.Button("Cancel")
-    ]
+            examples.push({
+                blurb: "Recreate the Close Opportunity screen",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86326459-d81ab780-bc95-11ea-88cb-02b50f85724b.png",
+                code: `new Dialog({
+        id: "closeOpp",
+        height: 480,
+        width: 450,
+        title: "Close Opportunity",
+        message: "Provide the following information about why this opportunity is being closed.",
+        buttons: [
+            new Dialog.Button("OK", null, true),
+            new Dialog.Button("Cancel")
+        ]
 }).showPrompt([
-    new Dialog.OptionSet({ id: "status", label: "Status Reason", value: 3, options: [
-        { text: "Won", value: 3 },
-        { text: "Canceled", value: 4 },
-        { text: "Out-Sold", value: 5 }] }),
-    new Dialog.Input({ id: "revenue", label: "Actual Revenue ($)", type: "number", value: "0.00" }),
-    new Dialog.Input({ id: "closedate", label: "Close Date", type: "date", value: new Date() }),
-    new Dialog.Lookup({ id: "competitor", label: "Competitor", entityTypes: ["competitor"] }),
-    new Dialog.MultiLine({ id: "description", label: "Description" })
+        new Dialog.OptionSet({ id: "status", label: "Status Reason", value: 3, options: [
+            { text: "Won", value: 3 },
+            { text: "Canceled", value: 4 },
+            { text: "Out-Sold", value: 5 }] }),
+        new Dialog.Input({ id: "revenue", label: "Actual Revenue ($)", type: "number", value: "0.00" }),
+        new Dialog.Input({ id: "closedate", label: "Close Date", type: "date", value: new Date() }),
+        new Dialog.Lookup({ id: "competitor", label: "Competitor", entityTypes: ["competitor"] }),
+        new Dialog.MultiLine({ id: "description", label: "Description" })
 ]);` });
 
-                examples.push({
-                    blurb: "Simple dialog with callback",
-                    imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
-                    code: `new Dialog({
-    title: "Would you like to create a sale?",
-    message: "This will create and open the new sale record",
-    icon: "INFO",
-    buttons: [
-        new Dialog.Button("Create Sale", function() {
-            new Dialog({
-                title: "Sale successfully created!",
-                icon: "SUCCESS"
-            }).show();
-        }, true),
-        new Dialog.Button("Not now")
-    ]
+            examples.push({
+                blurb: "Simple dialog with callback",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
+                code: `new Dialog({
+        title: "Would you like to create a sale?",
+        message: "This will create and open the new sale record",
+        icon: "INFO",
+        buttons: [
+            new Dialog.Button("Create Sale", function() {
+                new Dialog({
+                    title: "Sale successfully created!",
+                    icon: "SUCCESS"
+                }).show();
+            }, true),
+            new Dialog.Button("Not now")
+        ]
 }).show();`
             });
 
@@ -152,157 +151,156 @@
                 blurb: "Example using file upload, and using the base64 data to display the image on screen",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86326576-08625600-bc96-11ea-911e-a3f6b291a72b.png",
                 code: `new Dialog({
-    id: "image",
-    width: 380,
-    height: 200,
-    title: "Image Preview",
-    message: "Please select an image file you wish to preview.",
-    buttons: [
-        new Dialog.Button("View", function (results) {
-            var img = results.getValue("img");
-            if (img != null && img.length > 0) {
-                new Dialog({
-                    id: "image",
-                    width: 650,
-                    height: 500,
-                    content: "<img src='data:" + img[0].type + ";base64," + img[0].value + "' style='width:100%' />"
-                }).show();
-            }
-            else {
-                new Dialog({
-                    title: "404",
-                    message: "Image not found.",
-                    icon: "ERROR",
-                    height: 150,
-                    width: 230
-                }).show();
-            }
-        }, true, true),
-        new Dialog.Button("Cancel")
-    ]
+        id: "image",
+        width: 380,
+        height: 200,
+        title: "Image Preview",
+        message: "Please select an image file you wish to preview.",
+        buttons: [
+            new Dialog.Button("View", function (results) {
+                var img = results.getValue("img");
+                if (img != null && img.length > 0) {
+                    new Dialog({
+                        id: "image",
+                        width: 650,
+                        height: 500,
+                        content: "<img src='data:" + img[0].type + ";base64," + img[0].value + "' style='width:100%' />"
+                    }).show();
+                }
+                else {
+                    new Dialog({
+                        title: "404",
+                        message: "Image not found.",
+                        icon: "ERROR",
+                        height: 150,
+                        width: 230
+                    }).show();
+                }
+            }, true, true),
+            new Dialog.Button("Cancel")
+        ]
 }).showPrompt([
-    new Dialog.Input({
-        id: "img",
-        label: "Image",
-        type: "file"
-    }, { accept: "image/*" })
+        new Dialog.Input({
+            id: "img",
+            label: "Image",
+            type: "file"
+        }, { accept: "image/*" })
 ]);` });
 
-                examples.push({
-                    blurb: "Using various different field types",
-                    imageUrl: "https://user-images.githubusercontent.com/14048382/86327421-680d3100-bc97-11ea-9f9b-551f366223ff.png",
-                    code: `new Dialog({
-    height: 700,
-    padding: 20,
-    title: "Using various different field types",
-    message: "Select some stuff from all the different field types",
-    icon: "SUCCESS"
+            examples.push({
+                blurb: "Using various different field types",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86327421-680d3100-bc97-11ea-9f9b-551f366223ff.png",
+                code: `new Dialog({
+        height: 700,
+        padding: 20,
+        title: "Using various different field types",
+        message: "Select some stuff from all the different field types",
+        icon: "SUCCESS"
 }).showPrompt([
-    new Alert.Input({ type: "number", label: "Number" }),
-    new Alert.Input({ type: "file", label: "File" }),
-    new Alert.Input({ type: "date", label: "Date" }),
-    new Alert.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
-    new Alert.Group({ label: "Inline Group", inline: true, fields: [
-        new Alert.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
-        new Alert.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
-        new Alert.Input({ label: "Or check this", type: "checkbox", value: true })
-    ] }),
-    new Alert.OptionSet({ label: "OptionSet", options: [
-        { text: "One", value: "1" },
-        { text: "Two", value: "2" }
-    ] }),
-    new Alert.MultiLine({ label: "MultiLine", inline: false })
+        new Alert.Input({ type: "number", label: "Number" }),
+        new Alert.Input({ type: "file", label: "File" }),
+        new Alert.Input({ type: "date", label: "Date" }),
+        new Alert.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
+        new Alert.Group({ label: "Inline Group", inline: true, fields: [
+            new Alert.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
+            new Alert.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
+            new Alert.Input({ label: "Or check this", type: "checkbox", value: true })
+        ] }),
+        new Alert.OptionSet({ label: "OptionSet", options: [
+            { text: "One", value: "1" },
+            { text: "Two", value: "2" }
+        ] }),
+        new Alert.MultiLine({ label: "MultiLine", inline: false })
 ]);`
-                });
+            });
 
-                examples.push({
-                    blurb: "Login screen with custom keypress event",
-                    imageUrl: "https://user-images.githubusercontent.com/14048382/86327927-2466f700-bc98-11ea-8d6a-6435b6d74576.png",
-                    code: `function signInCallback(data) {
-    new Dialog({
-        title: data.getValue(0).getValue("email") + "<br />" + data.getValue(0).getValue("password")
-    }).show();
+            examples.push({
+                blurb: "Login screen with custom keypress event",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86327927-2466f700-bc98-11ea-8d6a-6435b6d74576.png",
+                code: `function signInCallback(data) {
+        new Dialog({
+            title: data.getValue(0).getValue("email") + "<br />" + data.getValue(0).getValue("password")
+        }).show();
 }
 var dialog = new Dialog({
-    icon: "SEARCH",
-    title: "Portal Sign-in",
-    message: "Please enter your login details below (don't worry this is all client side).",
-    height: 300,
-    buttons: [
-        new Dialog.Button("Sign in", signInCallback, true),
-        new Dialog.Button("Cancel")
-    ]
-}).showPrompt([
-    new Dialog.Group({
-        label: "Login details",
-        fields: [
-            new Dialog.Input({ id: "email", label: "Email", type: "email" }),
-            new Dialog.Input({ id: "password", label: "Password", type: "password" })
+        icon: "SEARCH",
+        title: "Portal Sign-in",
+        message: "Please enter your login details below (don't worry this is all client side).",
+        height: 300,
+        buttons: [
+            new Dialog.Button("Sign in", signInCallback, true),
+            new Dialog.Button("Cancel")
         ]
-    })
+}).showPrompt([
+        new Dialog.Group({
+            label: "Login details",
+            fields: [
+                new Dialog.Input({ id: "email", label: "Email", type: "email" }),
+                new Dialog.Input({ id: "password", label: "Password", type: "password" })
+            ]
+        })
 ]);
 dialog.$("#password input").on("keydown", function (e) {
-    e = e || window.event;
-    if (e.which == 13) { // Enter
-        e.preventDefault();
-        signInCallback(dialog.getPromptResponses());
-    }
+        e = e || window.event;
+        if (e.which == 13) { // Enter
+            e.preventDefault();
+            signInCallback(dialog.getPromptResponses());
+        }
 });`
-                });
+            });
 
-                examples.push({
-                    blurb: "Progress bar for async tasks",
-                    imageUrl: "https://user-images.githubusercontent.com/14048382/86429346-639e5200-bd43-11ea-8c09-65bb693f851c.png",
-                    code: `function process(results, i, loading) {
-    if (i <= results.length) {
-        loading.message("Record " + (i + 1) + " of " + (results.length + 1));
+            examples.push({
+                blurb: "Progress bar for async tasks",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86429346-639e5200-bd43-11ea-8c09-65bb693f851c.png",
+                code: `function process(results, i, loading) {
+        if (i <= results.length) {
+            loading.message("Record " + (i + 1) + " of " + (results.length + 1));
 
-        // Do something async and then call the next record to process
-        setTimeout(function() {
-            process(results, ++i, loading);
-        }, 1000);
-    }
-    else {
-        loading.remove();
-        new Dialog({ 
-            icon: "SUCCESS",
-            title: "Process complete!",
-            message: "All records processed successfully."
-        }).show();
-    }
+            // Do something async and then call the next record to process
+            setTimeout(function() {
+                process(results, ++i, loading);
+            }, 1000);
+        }
+        else {
+            loading.remove();
+            new Dialog({
+                icon: "SUCCESS",
+                title: "Process complete!",
+                message: "All records processed successfully."
+            }).show();
+        }
 }
 var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
 process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
-                });
+            });
 
-                $(document.body).append(`<h1 class="title">Dialog Builder Examples</h1>`);
+            examples.forEach((example, index) => {
+                let $element = $("<div>", { class: "example-wrapper" });
+                $element.html(`<div class="heading"><a id="${index}">${example.blurb}</a></div><div class="example"><div><textarea spellcheck="false" id="code-${index}">${example.code}</textarea><div><button id="button-${index}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
+                $("#exampleWrapper").append($element);
 
-                let $toc = $("<ui>", { id: "toc" });
-                $(document.body).append($toc);
+                $("#toc").append(`<li><a href="#${index}">${example.blurb}</a></li>`)
 
-
-                examples.forEach((example, index) => {
-                    let $element = $("<div>", { class: "example-wrapper" });
-                    $element.html(`<div class="heading"><a id="${index}">${example.blurb}</a></div><div class="example"><div><textarea spellcheck="false" id="code-${index}">${example.code}</textarea><div><button id="button-${index}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
-                    $(document.body).append($element);
-
-                    $toc.append(`<li><a href="#${index}">${example.blurb}</a></li>`)
-
-                    $(`#button-${index}`).click(() => {
-                        try {
-                            eval($(`#code-${index}`).val());
-                        }
-                        catch (e) {
-                            console.error(e);
-                            alert(e);
-                        }
-                    });
+                $(`#button-${index}`).click(() => {
+                    try {
+                        eval($(`#code-${index}`).val());
+                    }
+                    catch (e) {
+                        console.error(e);
+                        alert(e);
+                    }
                 });
             });
-        }
+        });
     </script>
 </head>
-<body onload="pageLoad();">
-
+<body>
+    <h1 class="title">Dialog Builder Examples</h1>
+    <ul id="toc">
+        <li><a href="https://github.com/PaulNieuwelaar/alertjs">Dialog Builder Home</a></li>
+    </ul>
+    <div id="exampleWrapper"></div>
+    <hr>
+    For more information, please check out the <a href="https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0">Documentation</a>.
 </body>
 </html>
