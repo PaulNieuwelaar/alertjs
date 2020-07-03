@@ -5,6 +5,14 @@ Please review the [licensing info](#licensing) below before downloading.
 
 ![](https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png)
 
+## Overview
+
+Dialog Builder for Dynamics 365 allows you to create fully customisable dialogs and popups in Dynamics 365, using custom fields, buttons, messages, and icons. Capture input from users with a variety of different field types, displayed in a seamless Dynamics 365 style popup.
+
+Dialog Builder gives you the power to extend Dynamics 365 with a seamless user experience when building end to end processes for your users.
+
+[Check out some working example of common use cases](https://paulnieuwelaar.github.io/alertjs/AlertJS/Sample/html/demo.html)
+
 ## Key Features
 
 * Create user driven dialog processes
@@ -18,18 +26,12 @@ Please review the [licensing info](#licensing) below before downloading.
 * Open custom HTML web resources inside a lightbox
 * Display a loading spinner during async tasks
 
-## Overview
-
-Dialog Builder for Dynamics 365 allows you to create fully customisable dialogs and popups in Dynamics 365, using custom fields, buttons, messages, and icons. Capture input from users with a variety of different field types, displayed in a seamless Dynamics 365 style popup.
-
-Dialog Builder gives you the power to extend Dynamics 365 with a seamless user experience when building end to end processes for your users.
-
-### [View a live demo of some use cases](https://paulnieuwelaar.github.io/alertjs/AlertJS/Sample/html/demo.html)
-
 ![](https://user-images.githubusercontent.com/14048382/86217379-827dd680-bbd3-11ea-9b30-2f3a2262c619.png)
 
 ## How it Works
 Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0) page for installation and usage details.
+
+Or check out these [working examples](https://paulnieuwelaar.github.io/alertjs/AlertJS/Sample/html/demo.html) of some common use cases.
 
 ## Licensing
 
