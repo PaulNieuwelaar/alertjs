@@ -1,6 +1,6 @@
 <img width="120px" align="left" src="https://user-images.githubusercontent.com/14048382/86500237-e4ad2600-bde3-11ea-909e-8602a7012b22.png"/>
 
-# Dialog Builder (Alert.js) - Microsoft Dynamics 365 Custom JavaScript Alerts, Popups, and Prompts
+# Dialog Builder (Alert.js) - Microsoft Dynamics 365 Custom JavaScript Alerts and Popups
 [![download](https://user-images.githubusercontent.com/14048382/27844360-c7ea9670-6174-11e7-8658-80d356c1ba8f.png)](https://github.com/PaulNieuwelaar/alertjs/releases/download/v3.1/AlertJS_3_1_0_managed.zip) (v3.1 managed) [<img align="right" src="https://user-images.githubusercontent.com/14048382/29433676-4eb13ea6-83f4-11e7-8c07-eca514b1b197.png"/>](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0)
 
 Please review the [licensing info](#licensing) below before downloading.
