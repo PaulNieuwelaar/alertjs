@@ -274,6 +274,23 @@ var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading(
 process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
             });
 
+
+            examples.push({
+                blurb: "Displaying a simple IFrame",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86431682-86336980-bd49-11ea-955f-ec9b2c6ba684.png",
+                code: `new Dialog({
+    title: "Just Bing it!",
+    message: "Google doesn't allow embedding in a frame.",
+    icon: "SEARCH",
+    buttons: [
+        new Alert.Button("Open New Tab", function() {
+            window.open("https://bing.com");
+        }),
+        new Alert.Button("Close", null, true)
+    ]
+}).showIFrame("https://bing.com");`
+            });
+
             $(document.body).append(`
 <h1 class="title">Dialog Builder Examples</h1>
 <ul id="toc"><li><a href="https://github.com/PaulNieuwelaar/alertjs">Dialog Builder Home</a></li></ul>
