@@ -274,6 +274,14 @@ var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading(
 process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
             });
 
+            $(document.body).append(`
+<h1 class="title">Dialog Builder Examples</h1>
+<ul id="toc"><li><a href="https://github.com/PaulNieuwelaar/alertjs">Dialog Builder Home</a></li></ul>
+<div id="exampleWrapper"></div>
+<hr>
+For more information, please check out the <a href="https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0">Documentation</a>.
+`);
+
             examples.forEach((example, index) => {
                 let $element = $("<div>", { class: "example-wrapper" });
                 $element.html(`<div class="heading"><a id="${index}">${example.blurb}</a></div><div class="example"><div><textarea spellcheck="false" id="code-${index}">${example.code}</textarea><div><button id="button-${index}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
@@ -295,12 +303,5 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
     </script>
 </head>
 <body>
-    <h1 class="title">Dialog Builder Examples</h1>
-    <ul id="toc">
-        <li><a href="https://github.com/PaulNieuwelaar/alertjs">Dialog Builder Home</a></li>
-    </ul>
-    <div id="exampleWrapper"></div>
-    <hr>
-    For more information, please check out the <a href="https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0">Documentation</a>.
 </body>
 </html>
