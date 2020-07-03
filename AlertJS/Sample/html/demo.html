@@ -320,8 +320,8 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
     var loading = new Dialog({ id: "loading" }).showLoading();
     searchTerm = (searchTerm || "").toLowerCase();
     setTimeout(function () {
-        var accounts = ["Dialog Builder", "Magnetism",
-            "Microsoft", "Contoso", "Fabrikam", "ABC Limited"];
+        var accounts = ["ABC Limited", "Contoso", "Dialog Builder", 
+            "Fabrikam", "Magnetism", "Microsoft"];
         accounts = accounts.filter(a => a.toLowerCase().indexOf(searchTerm) != -1);
         accounts = accounts.map(function (a) { return { name: a, accountid: a } });
         showSearchPrompt(searchTerm, accounts);
