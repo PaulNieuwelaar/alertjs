@@ -316,15 +316,15 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
             examples.push({
                 blurb: "Showing filtered lookup/search results as a list of options",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86499824-4a4be300-bde1-11ea-8f1d-d1bdb81053e5.png",
-                code: `function searchAccounts(searchTerm, callback) {
+                code: `function searchAccounts(searchTerm) {
     var loading = new Dialog({ id: "loading" }).showLoading();
     searchTerm = (searchTerm || "").toLowerCase();
     setTimeout(function () {
-        var accounts = ["ABC Limited", "Contoso", "Dialog Builder", 
-            "Fabrikam", "Magnetism", "Microsoft"];
+        var accounts = ["Dialog Builder", "Magnetism",
+            "Microsoft", "Contoso", "Fabrikam", "ABC Limited"];
         accounts = accounts.filter(a => a.toLowerCase().indexOf(searchTerm) != -1);
         accounts = accounts.map(function (a) { return { name: a, accountid: a } });
-        callback(searchTerm, accounts);
+        showSearchPrompt(searchTerm, accounts);
         loading.remove();
     }, 1000);
     //Xrm.WebApi.retrieveMultipleRecords("account",
@@ -333,7 +333,7 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
     //    "&$orderby=name")
     //    .then(function (results) {
     //        var accounts = results.entities;
-    //        callback(searchTerm, accounts);
+    //        showSearchPrompt(searchTerm, accounts);
     //        loading.remove();
     //    });
 }
@@ -356,7 +356,7 @@ function showSearchPrompt(searchTerm, data) {
         height: 420,
         buttons: [
             new Alert.Button("Search", function (data) {
-                searchAccounts(data.getValue("search"), showSearchPrompt);
+                searchAccounts(data.getValue("search"));
             }, false, true),
             new Alert.Button("OK", function (data) {
                 var accountId = data.getValue("account").getSelected();
@@ -376,11 +376,11 @@ function showSearchPrompt(searchTerm, data) {
         e = e || window.event;
         if (e.which == 13) { // Enter
             e.preventDefault();
-            searchAccounts(dialog.getPromptResponses().getValue("search"), showSearchPrompt);
+            searchAccounts(dialog.getPromptResponses().getValue("search"));
         }
     });
 }
-searchAccounts(null, showSearchPrompt);`
+searchAccounts();`
             });
 
             examples.forEach((example, index) => {
