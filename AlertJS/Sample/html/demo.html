@@ -26,26 +26,27 @@
             font-family: SegoeUI,"Segoe UI",Arial,Calibre;
         }
 
-        .title {
+        .demo .title {
             font-size: 24px;
         }
 
-        .example-wrapper {
+        .demo .example-wrapper {
             margin: 20px;
             padding-bottom: 20px;
         }
 
-        .heading {
+        .demo .heading {
             margin-bottom: 8px;
-            font-size: 22px;
+            font-size: 24px;
+            font-weight: 300;
             color: #3B79B7;
         }
 
-        .example {
+        .demo .example {
             display: flex;
         }
 
-        textarea {
+        .demo textarea {
             min-height: 200px;
             min-width: 200px;
             height: 350px;
@@ -68,12 +69,12 @@
             outline: none;
         }
 
-        img {
+        .demo img {
             max-height: 350px;
             max-width: 100%;
         }
 
-        button {
+        .demo button {
             margin-top: 8px;
             height: 35px;
             width: 150px;
@@ -89,22 +90,22 @@
             white-space: nowrap;
         }
 
-            button:hover {
+            .demo button:hover {
                 background-color: #236099 !important;
                 transition: 0.3s;
             }
 
-        #toc {
+        .demo #toc {
             display: block;
             margin: 40px;
         }
 
-            #toc a {
+            .demo #toc a {
                 color: #3B79B7;
                 text-decoration: none;
             }
 
-                #toc a:hover {
+                .demo #toc a:hover {
                     text-decoration: underline;
                 }
     </style>
@@ -303,11 +304,13 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
             });
 
             $(document.body).append(`
+<div class="demo">
 <h1 class="title">Dialog Builder Examples</h1>
 <ul id="toc"><li><a href="https://github.com/PaulNieuwelaar/alertjs">Dialog Builder Home</a></li></ul>
 <div id="exampleWrapper"></div>
 <hr>
 For more information, please check out the <a href="https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0">Documentation</a>.
+</div>
 `);
 
             examples.forEach((example, index) => {
