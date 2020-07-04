@@ -394,9 +394,8 @@ searchAccounts();`
     height: 800,
     buttons: [
         new Dialog.Button("View Source", function(results) {
-            results = results.filter(a => a.value !== null && a.value !== false);
-            var options = results.getData();
-            var optionsJson = JSON.stringify(options, null, 4);
+            var options = results.filter(a => a.value !== null && a.value !== false).getData();
+            var optionsJson = JSON.stringify(options, null, 4).replace(/"([^"]+)":/g, '$1:');
             new Dialog({
                 title: "Dialog Source",
                 width: 400,
@@ -406,7 +405,7 @@ searchAccounts();`
             }).show();
         }, false, true),
         new Dialog.Button("Preview", function(results) {
-            var options = results.getData();
+            var options = results.filter(a => a.value !== null && a.value !== false).getData();
             new Dialog(options).show();
         }, true, true)
     ]
