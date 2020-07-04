@@ -382,6 +382,49 @@ function showSearchPrompt(searchTerm, data) {
 }
 searchAccounts();`
             });
+            
+            examples.push({
+                blurb: "Customize your own dialog right from within Dialog Builder",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86503239-1fbd5280-be00-11ea-9bd2-55e1aba50272.png",
+                code: `new Dialog({
+    id: "dialogBuilder",
+    title: "Dialog Builder... builder",
+    message: "Set each option and then view the generated source code, or preview the dialog.",
+    icon: "https://user-images.githubusercontent.com/14048382/86503047-34005000-bdfe-11ea-9b72-f7b7ceeeafac.png",
+    height: 800,
+    buttons: [
+        new Dialog.Button("View Source", function(results) {
+            results = results.filter(a => a.value !== null && a.value !== false);
+            var options = results.getData();
+            var optionsJson = JSON.stringify(options, null, 4);
+            new Dialog({
+                title: "Dialog Source",
+                width: 400,
+                height: 360,
+                content: "<pre>var options = " + optionsJson + ";\n\n" +
+                    "new Dialog(options).show();</pre>"
+            }).show();
+        }, false, true),
+        new Dialog.Button("Preview", function(results) {
+            var options = results.getData();
+            new Dialog(options).show();
+        }, true, true)
+    ]
+}).showPrompt([
+    new Dialog.Input({ id: "title", label: "title" }),
+    new Dialog.Input({ id:"message", label: "message" }),
+    new Dialog.MultiLine({ id:"content", label: "content" }),
+    new Dialog.Input({ id: "icon", label: "icon" }),
+    new Dialog.Input({ id: "width", label: "width" }),
+    new Dialog.Input({ id: "height", label: "height" }),
+    new Dialog.Input({ id: "preventCancel",label: "preventCancel", type: "checkbox" }),
+    new Dialog.Input({ id: "allowDismiss", label: "allowDismiss", type: "checkbox" }),
+    new Dialog.Input({ id: "padding", label: "padding" }),
+    new Dialog.Input({ id: "fullscreen", label: "fullscreen", type: "checkbox" }),
+    new Dialog.Input({ id: "color", label: "color" }),
+    new Dialog.Input({ id: "id", label: "id" }),
+]);`
+            });
 
             examples.forEach((example, index) => {
                 let $element = $("<div>", { class: "example-wrapper" });
