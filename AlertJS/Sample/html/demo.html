@@ -401,7 +401,7 @@ searchAccounts();`
                 title: "Dialog Source",
                 width: 400,
                 height: 360,
-                content: "<pre>var options = " + optionsJson + ";\n\n" +
+                content: "<pre>var options = " + optionsJson + ";\\n\\n" +
                     "new Dialog(options).show();</pre>"
             }).show();
         }, false, true),
