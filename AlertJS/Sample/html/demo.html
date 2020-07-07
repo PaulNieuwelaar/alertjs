@@ -21,104 +21,122 @@
         }
         
         html, body {
-            margin: 20px;
+            margin: 0;
             padding: 0;
             font-family: SegoeUI,"Segoe UI",Arial,Calibre;
+            height: 100%;
         }
 
-        .demo .title {
-            font-size: 24px;
-        }
-
-        .demo .example-wrapper {
-            margin: 20px;
-            padding-bottom: 20px;
-        }
-
-        .demo .heading {
-            margin-bottom: 8px;
-            font-size: 24px;
-            font-weight: 300;
-            color: #3B79B7;
-        }
-
-        .demo .example {
-            display: flex;
-        }
-
-        .demo textarea {
-            min-height: 200px;
-            min-width: 200px;
-            height: 350px;
-            width: 600px;
-            box-sizing: border-box;
-            margin-right: 20px;
-            padding: 10px;
-            border: none;
-            border-left: 3px solid #6CE26C;
+        .demo {
+            height: 100%;
             overflow: auto;
-            resize: both;
-            font-weight: 400;
-            color: #000;
-            background-color: #F9F9F9;
-            line-height: 1.1em;
-            font-family: Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace;
-            font-style: normal;
-            font-size: 0.8em;
-            white-space: pre;
-            outline: none;
+            padding: 0 40px;
+            box-sizing: border-box;
         }
 
-        .demo img {
-            max-height: 350px;
-            max-width: 100%;
-        }
-
-        .demo button {
-            margin-top: 8px;
-            height: 35px;
-            width: 150px;
-            padding: 5px;
-            background-color: #3B79B7;
-            color: #fff;
-            cursor: pointer;
-            border: 1px solid #3B79B7 !important;
-            font-family: SegoeUI, 'Segoe UI';
-            font-size: 1rem;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-            .demo button:hover {
-                background-color: #236099 !important;
-                transition: 0.3s;
+            .demo .title-wrapper {
+                display: flex;
+                align-items: center;
             }
 
-        .demo #toc {
-            display: block;
-            margin: 40px;
-        }
+            .demo .title {
+                font-size: 24px;
+                margin-left: 20px;
+            }
 
-            .demo #toc a {
+            .demo .example-wrapper {
+                margin: 20px;
+                padding-bottom: 20px;
+            }
+
+            .demo .heading {
+                margin-bottom: 8px;
+                font-size: 24px;
+                font-weight: 300;
                 color: #3B79B7;
-                text-decoration: none;
             }
 
-                .demo #toc a:hover {
-                    text-decoration: underline;
+            .demo .example {
+                display: flex;
+            }
+
+            .demo textarea {
+                min-height: 200px;
+                min-width: 200px;
+                height: 350px;
+                width: 600px;
+                box-sizing: border-box;
+                margin-right: 20px;
+                padding: 10px;
+                border: none;
+                border-left: 3px solid #6CE26C;
+                overflow: auto;
+                resize: both;
+                font-weight: 400;
+                color: #000;
+                background-color: #F9F9F9;
+                line-height: 1.1em;
+                font-family: Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+                font-style: normal;
+                font-size: 0.8em;
+                white-space: pre;
+                outline: none;
+            }
+
+            .demo img {
+                max-height: 350px;
+                max-width: 100%;
+            }
+
+            .demo button {
+                margin-top: 8px;
+                height: 35px;
+                width: 150px;
+                padding: 5px;
+                background-color: #3B79B7;
+                color: #fff;
+                cursor: pointer;
+                border: 1px solid #3B79B7 !important;
+                font-family: SegoeUI, 'Segoe UI';
+                font-size: 1rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+                .demo button:hover {
+                    background-color: #236099 !important;
+                    transition: 0.3s;
                 }
+
+            .demo #toc {
+                display: block;
+                margin-left: 30px;
+                margin-bottom: 50px;
+            }
+
+                .demo #toc a {
+                    color: #3B79B7;
+                    text-decoration: none;
+                }
+
+                    .demo #toc a:hover {
+                        text-decoration: underline;
+                    }
     </style>
 
     <script>
         $(document).ready(() => {
             $(document.body).append(`
 <div class="demo">
+<div class="title-wrapper">
+<a href="https://github.com/PaulNieuwelaar/alertjs"><img src="https://user-images.githubusercontent.com/14048382/86500237-e4ad2600-bde3-11ea-909e-8602a7012b22.png" style="width: 100px;"></a>
 <h1 class="title">Dialog Builder Examples</h1>
-<ul id="toc"><li><a href="https://github.com/PaulNieuwelaar/alertjs">Dialog Builder Home</a></li></ul>
+</div>
+<ul id="toc"></ul>
 <div id="exampleWrapper"></div>
 <hr>
-For more information, please check out the <a href="https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0">Documentation</a>.
+<div>For more information, please check out the <a href="https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0">Documentation</a>.</div><br />
 </div>
 `);
 
