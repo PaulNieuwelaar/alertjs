@@ -410,47 +410,323 @@ searchAccounts();`
             });
             
             examples.push({
-                blurb: "Customize your own dialog right from within Dialog Builder",
+                blurb: "Customize and build your own dialog right from within Dialog Builder!",
                 id: "builder",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86503239-1fbd5280-be00-11ea-9bd2-55e1aba50272.png",
-                code: `new Dialog({
+                code: `// This is an overly complex example to show just how far this solution can go
+var dialog = new Dialog({
     id: "dialogBuilder",
     title: "Dialog Builder... builder",
     message: "Set each option and then view the generated source code, or preview the dialog.",
     icon: "https://user-images.githubusercontent.com/14048382/86503047-34005000-bdfe-11ea-9b72-f7b7ceeeafac.png",
-    width: 550,
-    height: 800,
+    width: 600,
+    height: 900,
     buttons: [
-        new Dialog.Button("View Source", function(results) {
-            var options = results.filter(a => a.value !== null && a.value !== false).getData();
-            var optionsJson = JSON.stringify(options, null, 4).replace(/"([^"]+)":/g, '$1:');
-            new Dialog({
-                title: "Dialog Source",
-                width: 400,
-                height: 360,
-                content: "<pre>var options = " + optionsJson + ";\\n\\n" +
-                    "new Dialog(options).show();</pre>"
-            }).show();
+        new Dialog.Button("Add Button", addButton, false, true),
+        new Dialog.Button("Add Field", function (results) {
+            addField(results, dialog, "dialogBuilder");
         }, false, true),
-        new Dialog.Button("Preview", function(results) {
-            var options = results.filter(a => a.value !== null && a.value !== false).getData();
-            new Dialog(options).show();
-        }, true, true)
+        new Dialog.Button("View Source", viewSource, true, true),
+        new Dialog.Button("Preview", preview, true, true)
     ]
 }).showPrompt([
-    new Dialog.Input({ id: "title", label: "title" }),
-    new Dialog.Input({ id:"message", label: "message" }),
-    new Dialog.MultiLine({ id:"content", label: "content" }),
-    new Dialog.Input({ id: "icon", label: "icon" }),
-    new Dialog.Input({ id: "width", label: "width" }),
-    new Dialog.Input({ id: "height", label: "height" }),
-    new Dialog.Input({ id: "preventCancel",label: "preventCancel", type: "checkbox" }),
-    new Dialog.Input({ id: "allowDismiss", label: "allowDismiss", type: "checkbox" }),
-    new Dialog.Input({ id: "padding", label: "padding" }),
-    new Dialog.Input({ id: "fullscreen", label: "fullscreen", type: "checkbox" }),
-    new Dialog.Input({ id: "color", label: "color" }),
-    new Dialog.Input({ id: "id", label: "id" }),
-]);`
+    new Dialog.Group({
+        id: "options", label: "Dialog Options", fields: [
+            new Dialog.Input({ id: "title", label: "Title" }),
+            new Dialog.Input({ id: "message", label: "Message" }),
+            new Dialog.MultiLine({ id: "content", label: "Content" }, { style: "height: 35px" }),
+            new Dialog.Input({ id: "icon", label: "Icon" }),
+            new Dialog.Input({ id: "width", label: "Width" }),
+            new Dialog.Input({ id: "height", label: "Height" }),
+            new Dialog.Input({ id: "preventCancel", label: "Prevent Cancel", type: "checkbox" }),
+            new Dialog.Input({ id: "allowDismiss", label: "Allow Dismiss", type: "checkbox" }),
+            new Dialog.Input({ id: "padding", label: "Padding" }),
+            new Dialog.Input({ id: "fullscreen", label: "Fullscreen", type: "checkbox" }),
+            new Dialog.Input({ id: "color", label: "Color" }),
+            new Dialog.Input({ id: "id", label: "ID" })
+        ]
+    }, { style: "height: 300px" }),
+    new Dialog.MultiLine({ id: "buttons", label: "Buttons", inline: false },
+        { style: "height: 150px", title: "Example:\n[\n    new Dialog.Button(label, callback, setFocus, preventClose)\n]" }),
+    new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false },
+        { style: "height: 150px", title: "Example:\n[\n    new Dialog.Input(options, extraAttributes)\n]" })
+]);
+
+function viewSource(results) {
+    var options = results.getValue("options").filter(a => a.value !== null && a.value !== false).getData();
+    var buttonsString = results.getValue("buttons");
+    var fieldsString = results.getValue("fields");
+
+    var buttonsTemp = eval(buttonsString);
+    var fieldsTemp = eval(fieldsString);
+    options.buttons = buttonsTemp || undefined;
+
+    var buttonsPlaceholder;
+    if (options.buttons) {
+        buttonsPlaceholder = jsonStringify(options.buttons, true).replace(/\n/g, "\n    ");
+    }
+
+    var optionsJson = jsonStringify(options, true);
+    if (buttonsPlaceholder) { optionsJson = optionsJson.replace(buttonsPlaceholder, buttonsString.replace(/\n/g, "\n    ")) }
+
+    var functionName = fieldsString ? ("showPrompt(" + fieldsString + ")") : "show()";
+    var sourceCode = "new Dialog(" + (optionsJson != "{}" ? optionsJson : "") + ")." + functionName + ";";
+
+    new Dialog({
+        id: "viewSource",
+        title: "Dialog Source",
+        width: 550,
+        height: 170 + sourceCode.split("\n").length * 12,
+        content: "<pre>" + sourceCode + "</pre>",
+        buttons: [
+            new Dialog.Button("Preview", function () { eval(sourceCode); }, false, true),
+            new Dialog.Button("Close", null, true),
+        ]
+    }).show();
+}
+
+function preview(results) {
+    var options = results.getValue("options").filter(a => a.value !== null && a.value !== false).getData();
+    options.buttons = eval(results.getValue("buttons"));
+    var fields = eval(results.getValue("fields"));
+
+    var previewDialog = new Dialog(options);
+    if (fields) {
+        previewDialog.showPrompt(fields);
+    }
+    else {
+        previewDialog.show();
+    }
+}
+
+
+function addButton(results) {
+    var buttons = eval(results.getValue("buttons")) || [];
+
+    var buttonDialog = new Dialog({
+        id: "addButton",
+        title: "Add Button",
+        width: 400,
+        height: 400,
+        buttons: [
+            new Dialog.Button("Add", function (buttonResults) {
+                addButtonCallback(buttonResults, buttons, buttonDialog);
+            }, true, true),
+            new Dialog.Button("Cancel")
+        ]
+    }).showPrompt([
+        new Dialog.Input({ label: "Label", value: "OK" }),
+        new Dialog.MultiLine({ label: "Callback", inline: false, value: "function (results) {\n    \n}" }),
+        new Dialog.Input({ label: "Set Focus", value: true, type: "checkbox" }),
+        new Dialog.Input({ label: "Prevent Close", value: false, type: "checkbox" })
+    ]);
+}
+
+function addButtonCallback(results, buttons, buttonDialog) {
+    var label = results.getValue(0);
+    var callback = results.getValue(1);
+    var setFocus = results.getValue(2);
+    var preventClose = results.getValue(3);
+    if (callback) { callback = eval("(" + callback.replace(/\n/g, "\n    ") + ")"); }
+
+    buttons.push(new Dialog.Button(label, callback, setFocus, preventClose));
+
+    var buttonsText = mapButtonText(buttons);
+    dialog.$("#buttons textarea").val(buttonsText);
+
+    buttonDialog.remove();
+}
+
+function mapButtonText(buttons) {
+    var buttonsText = buttons.map(a => {
+        var buttonParams = [];
+
+        if (a.label) { buttonParams.push('"' + a.label + '"'); }
+        else if (a.callback || a.setFocus || a.preventClose) { buttonParams.push("null"); }
+
+        if (a.callback) { buttonParams.push(a.callback.toString()); }
+        else if (a.setFocus || a.preventClose) { buttonParams.push("null"); }
+
+        if (a.setFocus) { buttonParams.push(a.setFocus); }
+        else if (a.preventClose) { buttonParams.push("null"); }
+
+        if (a.preventClose) { buttonParams.push(a.preventClose); }
+
+        return "    new Dialog.Button(" + buttonParams.join(", ") + ")";
+    });
+
+    return "[\n" + buttonsText.join(",\n") + "\n]";
+}
+
+function addField(results, dialogContext, id) {
+    var fieldsValue = eval(results.getValue("fields")) || [];
+
+    new Dialog({
+        id: id + "-addField",
+        title: "Add Field",
+        width: 300,
+        height: 200,
+        buttons: [
+            new Dialog.Button("Next", function (fieldResults) {
+                addFieldType(fieldResults, fieldsValue, dialogContext, id);
+            }, true),
+            new Dialog.Button("Cancel")
+        ]
+    }).showPrompt([
+        new Dialog.OptionSet({
+            label: "Type",
+            value: "Input",
+            options: [
+                { text: "Input", value: "Input" },
+                { text: "OptionSet", value: "OptionSet" },
+                { text: "Lookup", value: "Lookup" },
+                { text: "MultiLine", value: "MultiLine" },
+                { text: "Group", value: "Group" }
+            ]
+        })
+    ]);
+}
+
+function addFieldType(results, fieldsValue, dialogContext, id) {
+    var fieldType = results.getValue(0);
+
+    var fields = [
+        new Dialog.Input({ id: "id", label: "ID" }),
+        new Dialog.Input({ id: "label", label: "Label" }),
+        new Dialog.Input({ id: "inline", label: "Inline", type: "checkbox", value: fieldType != "Group" }),
+    ];
+
+    if (fieldType != "Group") {
+        fields.push(new Dialog.Input({ id: "value", label: "Value" }));
+    }
+    if (fieldType == "Input") {
+        fields.push(new Dialog.Input({ id: "type", label: "Type" }));
+    }
+    if (fieldType == "OptionSet") {
+        fields.push(new Dialog.MultiLine({ id: "options", label: "Options (Array)", value: "[\n    { text: \"\", value: \"\" },\n]" }));
+    }
+    if (fieldType == "Lookup") {
+        fields.push(new Dialog.Input({ id: "entityTypes", label: "Entity Types (Array)", value: "[\"\"]" }));
+        fields.push(new Dialog.Input({ id: "disableMru", label: "Disable Most Recently Used", type: "checkbox" }));
+        fields.push(new Dialog.MultiLine({ id: "filters", label: "Filters (Array)" }));
+    }
+    if (fieldType == "Group") {
+        fields.push(new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false, value: "[\n    \n]" },
+            { style: "height: 100px", title: "Example:\n[\n    new Dialog.Input(options, extraAttributes)\n]" }));
+    }
+
+    fields.push(new Dialog.MultiLine({ id: "extraAttributes", label: "Extra Attributes (Object)" },
+        { title: "Example:\n{ style: \"height: 200px\" }" }));
+
+    var buttons = [
+        new Dialog.Button("Add", function (fieldResults) {
+            addFieldTypeCallback(fieldResults, fieldType, fieldsValue, addFieldDialog, dialogContext);
+        }, true, true),
+        new Dialog.Button("Cancel")
+    ];
+
+    if (fieldType == "Group") {
+        buttons.unshift(new Dialog.Button("Add Field", function (fieldResults) {
+            addField(fieldResults, addFieldDialog, id + "-addField");
+        }, false, true));
+    }
+
+    var addFieldDialog = new Dialog({
+        id: id + "-addField",
+        title: "Add " + fieldType,
+        height: fieldType == "Lookup" ? 640 : 540,
+        buttons: buttons
+    }).showPrompt(fields);
+}
+
+function addFieldTypeCallback(results, fieldType, fieldsValue, addFieldDialog, dialogContext) {
+    var data = results.filter(a => a.value !== null).getData();
+    data.fieldType = fieldType;
+    if (data.inline === true && fieldType != "Group") { data.inline = undefined; }
+    if (data.inline === false && fieldType == "Group") { data.inline = undefined; }
+    if (data.extraAttributes) { data.extraAttributes = eval("(" + data.extraAttributes + ")"); }
+    if (data.entityTypes) { data.entityTypes = eval(data.entityTypes); }
+    if (data.filters) { data.filters = eval(data.filters); }
+    if (data.disableMru === false) { data.disableMru = undefined; }
+    if (data.options) { data.options = eval(data.options); }
+    if (data.fields) { data.fields = eval(data.fields); }
+    data.value = mapValue(data.value, data.fieldType, data.type);
+
+    fieldsValue.push(data);
+
+    var fieldsText = mapFieldsText(fieldsValue);
+    dialogContext.$("#fields textarea").val(fieldsText);
+
+    addFieldDialog.remove();
+}
+
+function mapValue(value, fieldType, inputType) {
+    var returnValue = value;
+
+    if (typeof value !== "undefined" && value !== "") {
+        if (fieldType == "Lookup") {
+            returnValue = eval(value);
+        }
+        if (fieldType == "Input" && (inputType == "checkbox" || inputType == "radio")) {
+            if (value === "true") { returnValue = true; }
+            if (value === "false") { returnValue = false; }
+        }
+        if (fieldType == "Input" && (inputType == "number" || inputType == "range") && !isNaN(value)) {
+            returnValue = Number(value);
+        }
+    }
+
+    return returnValue;
+}
+
+function mapFieldsText(fields, indent) {
+    indent = indent || "";
+    var fieldsText = fields.map(a => {
+        var fieldType = a.fieldType;
+        a.fieldType = undefined;
+        if (typeof a.value == "undefined") { a.value = a.defaultValue; }
+        if (a.value === "") { a.value = undefined; }
+        a.defaultValue = undefined;
+        a.type = a.type || undefined;
+
+        var fieldsTemp;
+        var fieldsPlaceholder;
+        if (a.fields) {
+            fieldsTemp = mapFieldsText(a.fields, indent + "    ");
+            fieldsPlaceholder = jsonStringify(a.fields);
+        }
+
+        var extraAttr = "";
+        if (a.extraAttributes) {
+            extraAttr = ", " + jsonStringify(a.extraAttributes);
+        }
+        a.extraAttributes = undefined;
+
+        var options = jsonStringify(a);
+        if (options == "{}") { options = ""; }
+        if (options == "" && extraAttr != "") { options = "null"; }
+        if (fieldsTemp) { options = options.replace(fieldsPlaceholder, fieldsTemp); }
+
+        return indent + "    new Dialog." + fieldType + "(" + options + extraAttr + ")";
+    });
+
+    return "[\n" + (fieldsText.join(",\n") || "        ") + "\n" + indent + "]";
+}
+
+function jsonStringify(obj, pretty) {
+    var jsonString;
+
+    if (pretty) {
+        jsonString = JSON.stringify(obj, null, 4);
+    }
+    else {
+        jsonString = JSON.stringify(obj, null, "\n").replace(/\n/g, " ").replace(/  +/g, " ");
+    }
+
+    jsonString = jsonString.replace(/"([^"]+)":/g, '$1:');
+
+    return jsonString;
+}`
             });
 
             examples.forEach((example) => {
