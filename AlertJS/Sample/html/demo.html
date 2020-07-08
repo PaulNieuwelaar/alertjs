@@ -412,7 +412,7 @@ searchAccounts();`
             examples.push({
                 blurb: "Customize and build your own dialog right from within Dialog Builder!",
                 id: "builder",
-                imageUrl: "https://user-images.githubusercontent.com/14048382/86503239-1fbd5280-be00-11ea-9bd2-55e1aba50272.png",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86889882-95068b80-c150-11ea-94f2-08d2d432ae41.png",
                 code: `// This is an overly complex example to show just how far this solution can go
 var dialog = new Dialog({
     id: "dialogBuilder",
@@ -447,9 +447,9 @@ var dialog = new Dialog({
         ]
     }, { style: "height: 300px" }),
     new Dialog.MultiLine({ id: "buttons", label: "Buttons", inline: false },
-        { style: "height: 150px", title: "Example:\n[\n    new Dialog.Button(label, callback, setFocus, preventClose)\n]" }),
+        { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Button(label, callback, setFocus, preventClose)\\n]" }),
     new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false },
-        { style: "height: 150px", title: "Example:\n[\n    new Dialog.Input(options, extraAttributes)\n]" })
+        { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" })
 ]);
 
 function viewSource(results) {
@@ -463,11 +463,11 @@ function viewSource(results) {
 
     var buttonsPlaceholder;
     if (options.buttons) {
-        buttonsPlaceholder = jsonStringify(options.buttons, true).replace(/\n/g, "\n    ");
+        buttonsPlaceholder = jsonStringify(options.buttons, true).replace(/\\n/g, "\\n    ");
     }
 
     var optionsJson = jsonStringify(options, true);
-    if (buttonsPlaceholder) { optionsJson = optionsJson.replace(buttonsPlaceholder, buttonsString.replace(/\n/g, "\n    ")) }
+    if (buttonsPlaceholder) { optionsJson = optionsJson.replace(buttonsPlaceholder, buttonsString.replace(/\\n/g, "\\n    ")) }
 
     var functionName = fieldsString ? ("showPrompt(" + fieldsString + ")") : "show()";
     var sourceCode = "new Dialog(" + (optionsJson != "{}" ? optionsJson : "") + ")." + functionName + ";";
@@ -476,7 +476,7 @@ function viewSource(results) {
         id: "viewSource",
         title: "Dialog Source",
         width: 550,
-        height: 170 + sourceCode.split("\n").length * 12,
+        height: 170 + sourceCode.split("\\n").length * 12,
         content: "<pre>" + sourceCode + "</pre>",
         buttons: [
             new Dialog.Button("Preview", function () { eval(sourceCode); }, false, true),
@@ -516,7 +516,7 @@ function addButton(results) {
         ]
     }).showPrompt([
         new Dialog.Input({ label: "Label", value: "OK" }),
-        new Dialog.MultiLine({ label: "Callback", inline: false, value: "function (results) {\n    \n}" }),
+        new Dialog.MultiLine({ label: "Callback", inline: false, value: "function (results) {\\n    \\n}" }),
         new Dialog.Input({ label: "Set Focus", value: true, type: "checkbox" }),
         new Dialog.Input({ label: "Prevent Close", value: false, type: "checkbox" })
     ]);
@@ -527,7 +527,7 @@ function addButtonCallback(results, buttons, buttonDialog) {
     var callback = results.getValue(1);
     var setFocus = results.getValue(2);
     var preventClose = results.getValue(3);
-    if (callback) { callback = eval("(" + callback.replace(/\n/g, "\n    ") + ")"); }
+    if (callback) { callback = eval("(" + callback.replace(/\\n/g, "\\n    ") + ")"); }
 
     buttons.push(new Dialog.Button(label, callback, setFocus, preventClose));
 
@@ -555,7 +555,7 @@ function mapButtonText(buttons) {
         return "    new Dialog.Button(" + buttonParams.join(", ") + ")";
     });
 
-    return "[\n" + buttonsText.join(",\n") + "\n]";
+    return "[\\n" + buttonsText.join(",\\n") + "\\n]";
 }
 
 function addField(results, dialogContext, id) {
@@ -603,20 +603,20 @@ function addFieldType(results, fieldsValue, dialogContext, id) {
         fields.push(new Dialog.Input({ id: "type", label: "Type" }));
     }
     if (fieldType == "OptionSet") {
-        fields.push(new Dialog.MultiLine({ id: "options", label: "Options (Array)", value: "[\n    { text: \"\", value: \"\" },\n]" }));
+        fields.push(new Dialog.MultiLine({ id: "options", label: "Options (Array)", value: "[\\n    { text: \\"\\", value: \\"\\" },\\n]" }));
     }
     if (fieldType == "Lookup") {
-        fields.push(new Dialog.Input({ id: "entityTypes", label: "Entity Types (Array)", value: "[\"\"]" }));
+        fields.push(new Dialog.Input({ id: "entityTypes", label: "Entity Types (Array)", value: "[\\"\\"]" }));
         fields.push(new Dialog.Input({ id: "disableMru", label: "Disable Most Recently Used", type: "checkbox" }));
         fields.push(new Dialog.MultiLine({ id: "filters", label: "Filters (Array)" }));
     }
     if (fieldType == "Group") {
-        fields.push(new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false, value: "[\n    \n]" },
-            { style: "height: 100px", title: "Example:\n[\n    new Dialog.Input(options, extraAttributes)\n]" }));
+        fields.push(new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false, value: "[\\n    \\n]" },
+            { style: "height: 100px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" }));
     }
 
     fields.push(new Dialog.MultiLine({ id: "extraAttributes", label: "Extra Attributes (Object)" },
-        { title: "Example:\n{ style: \"height: 200px\" }" }));
+        { title: "Example:\\n{ style: \\"height: 200px\\" }" }));
 
     var buttons = [
         new Dialog.Button("Add", function (fieldResults) {
@@ -710,7 +710,7 @@ function mapFieldsText(fields, indent) {
         return indent + "    new Dialog." + fieldType + "(" + options + extraAttr + ")";
     });
 
-    return "[\n" + (fieldsText.join(",\n") || "        ") + "\n" + indent + "]";
+    return "[\\n" + (fieldsText.join(",\\n") || "        ") + "\\n" + indent + "]";
 }
 
 function jsonStringify(obj, pretty) {
@@ -720,7 +720,7 @@ function jsonStringify(obj, pretty) {
         jsonString = JSON.stringify(obj, null, 4);
     }
     else {
-        jsonString = JSON.stringify(obj, null, "\n").replace(/\n/g, " ").replace(/  +/g, " ");
+        jsonString = JSON.stringify(obj, null, "\\n").replace(/\\n/g, " ").replace(/  +/g, " ");
     }
 
     jsonString = jsonString.replace(/"([^"]+)":/g, '$1:');
