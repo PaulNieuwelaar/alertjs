@@ -146,6 +146,7 @@
 
             examples.push({
                 blurb: "Recreate the Close Opportunity screen",
+                id: "opportunity",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86326459-d81ab780-bc95-11ea-88cb-02b50f85724b.png",
                 code: `new Dialog({
     id: "closeOpp",
@@ -170,6 +171,7 @@
 
             examples.push({
                 blurb: "Simple dialog with callback",
+                id: "simplecallback",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
                 code: `new Dialog({
     title: "Would you like to create a sale?",
@@ -189,6 +191,7 @@
 
             examples.push({
                 blurb: "Example using file upload, and using the base64 data to display the image on screen",
+                id: "fileupload",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86326576-08625600-bc96-11ea-911e-a3f6b291a72b.png",
                 code: `new Dialog({
     id: "image",
@@ -229,6 +232,7 @@
 
             examples.push({
                 blurb: "Using various different field types",
+                id: "variousfields",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86327421-680d3100-bc97-11ea-9f9b-551f366223ff.png",
                 code: `new Dialog({
     height: 700,
@@ -256,6 +260,7 @@
 
             examples.push({
                 blurb: "Login screen with custom keypress event",
+                id: "loginkeypress",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86327927-2466f700-bc98-11ea-8d6a-6435b6d74576.png",
                 code: `function signInCallback(data) {
     new Dialog({
@@ -291,6 +296,7 @@ dialog.$("#password input").on("keydown", function (e) {
 
             examples.push({
                 blurb: "Progress bar for async tasks",
+                id: "progressbar",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86429346-639e5200-bd43-11ea-8c09-65bb693f851c.png",
                 code: `function process(results, i, loading) {
     if (i <= results.length) {
@@ -317,6 +323,7 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
 
             examples.push({
                 blurb: "Displaying a simple IFrame",
+                id: "iframe",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86431682-86336980-bd49-11ea-955f-ec9b2c6ba684.png",
                 code: `new Dialog({
     title: "Just Bing it!",
@@ -333,6 +340,7 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
 
             examples.push({
                 blurb: "Showing filtered lookup/search results as a list of options",
+                id: "filteredsearch",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86499824-4a4be300-bde1-11ea-8f1d-d1bdb81053e5.png",
                 code: `function searchAccounts(searchTerm) {
     var loading = new Dialog({ id: "loading" }).showLoading();
@@ -403,6 +411,7 @@ searchAccounts();`
             
             examples.push({
                 blurb: "Customize your own dialog right from within Dialog Builder",
+                id: "builder",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86503239-1fbd5280-be00-11ea-9bd2-55e1aba50272.png",
                 code: `new Dialog({
     id: "dialogBuilder",
@@ -444,16 +453,16 @@ searchAccounts();`
 ]);`
             });
 
-            examples.forEach((example, index) => {
+            examples.forEach((example) => {
                 let $element = $("<div>", { class: "example-wrapper" });
-                $element.html(`<div class="heading"><a id="${index}">${example.blurb}</a></div><div class="example"><div><textarea spellcheck="false" id="code-${index}">${example.code}</textarea><div><button id="button-${index}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
+                $element.html(`<div class="heading"><a id="${example.id}">${example.blurb}</a></div><div class="example"><div><textarea spellcheck="false" id="code-${example.id}">${example.code}</textarea><div><button id="button-${example.id}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
                 $("#exampleWrapper").append($element);
 
-                $("#toc").append(`<li><a href="#${index}">${example.blurb}</a></li>`)
+                $("#toc").append(`<li><a href="#${example.id}">${example.blurb}</a></li>`)
 
-                $(`#button-${index}`).click(() => {
+                $(`#button-${example.id}`).click(() => {
                     try {
-                        eval($(`#code-${index}`).val());
+                        eval($(`#code-${example.id}`).val());
                     }
                     catch (e) {
                         console.error(e);
