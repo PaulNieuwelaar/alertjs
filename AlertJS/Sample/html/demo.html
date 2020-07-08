@@ -476,7 +476,7 @@ function viewSource(results) {
         id: "viewSource",
         title: "Dialog Source",
         width: 550,
-        height: 170 + sourceCode.split("\\n").length * 12,
+        height: 170 + sourceCode.split("\\n").length * 13,
         content: "<pre>" + sourceCode + "</pre>",
         buttons: [
             new Dialog.Button("Preview", function () { eval(sourceCode); }, false, true),
