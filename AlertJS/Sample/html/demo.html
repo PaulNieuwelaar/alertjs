@@ -14,17 +14,19 @@
             font-weight: 300;
             src: url('https://d365prod-sdk.azureedge.net/assets/MASTER-1.0.5.3047/resources/fonts/segoe-ui/west-european/SegoeUI-SemiLight.woff2') format('woff2');
         }
+
         @font-face {
             font-family: "SegoeUI";
             font-weight: normal;
             src: local('Segoe UI');
         }
-        
+
         html, body {
             margin: 0;
             padding: 0;
             font-family: SegoeUI,"Segoe UI",Arial,Calibre;
             height: 100%;
+            background-color: #F9F9F9;
         }
 
         .demo {
@@ -69,12 +71,12 @@
                 margin-right: 20px;
                 padding: 10px;
                 border: none;
-                border-left: 3px solid #6CE26C;
+                border-left: 3px solid #EFF284;
                 overflow: auto;
                 resize: both;
                 font-weight: 400;
                 color: #000;
-                background-color: #F9F9F9;
+                background-color: #EEE;
                 line-height: 1.1em;
                 font-family: Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace;
                 font-style: normal;
@@ -115,14 +117,30 @@
                 margin-bottom: 50px;
             }
 
-                .demo #toc a {
-                    color: #3B79B7;
-                    text-decoration: none;
+            .demo a {
+                color: #3B79B7;
+                text-decoration: none;
+            }
+
+                .demo a:hover {
+                    text-decoration: underline;
                 }
 
-                    .demo #toc a:hover {
-                        text-decoration: underline;
-                    }
+        @media (prefers-color-scheme: dark) {
+            html,body  {
+                background: #2D2D30;
+                color: #ddd;
+            }
+
+            .demo a, .demo .heading {
+                color: #409AD4;
+            }
+
+            .demo textarea {
+                background-color: #1E1E1E;
+                color: #ddd;
+            }
+        }
     </style>
 
     <script>
@@ -476,7 +494,7 @@ function viewSource(results) {
         id: "viewSource",
         title: "Dialog Source",
         width: 550,
-        height: 170 + sourceCode.split("\\n").length * 13,
+        height: 170 + sourceCode.split("\\n").length * 12,
         content: "<pre>" + sourceCode + "</pre>",
         buttons: [
             new Dialog.Button("Preview", function () { eval(sourceCode); }, false, true),
@@ -731,7 +749,7 @@ function jsonStringify(obj, pretty) {
 
             examples.forEach((example) => {
                 let $element = $("<div>", { class: "example-wrapper" });
-                $element.html(`<div class="heading"><a id="${example.id}">${example.blurb}</a></div><div class="example"><div><textarea spellcheck="false" id="code-${example.id}">${example.code}</textarea><div><button id="button-${example.id}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
+                $element.html(`<div class="heading"><a id="${example.id}"></a>${example.blurb}</div><div class="example"><div><textarea spellcheck="false" id="code-${example.id}">${example.code}</textarea><div><button id="button-${example.id}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
                 $("#exampleWrapper").append($element);
 
                 $("#toc").append(`<li><a href="#${example.id}">${example.blurb}</a></li>`)
