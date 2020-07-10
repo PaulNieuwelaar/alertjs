@@ -426,6 +426,62 @@ function showSearchPrompt(searchTerm, data) {
 }
 searchAccounts();`
             });
+
+            examples.push({
+                blurb: "Time tracker with required fields validation",
+                id: "timetracker",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/87120947-d1172900-c2d5-11ea-80ad-020f306832c3.png",
+                code: `var timeTracker = new Dialog({
+    id: "timetracker",
+    icon: "https://user-images.githubusercontent.com/14048382/87119185-5ea44a00-c2d1-11ea-89df-8367771f6344.png",
+    title: "Time Tracker",
+    message: "Enter the details for the time entry against the ticket.",
+    height: 420,
+    width: 400,
+    buttons: [
+        new Alert.Button("Submit", submitTime, true, true),
+        new Alert.Button("Cancel")
+    ]
+}).showPrompt([
+    new Alert.Input({ id: "Ticket", label: "Ticket #", type: "number" }, { min: "1000", max: "9999" }),
+    new Alert.Input({ id: "Date", label: "Date", type: "date", value: new Date() }),
+    new Alert.Input({ id: "Duration", label: "Duration (hours)", type: "number" },
+        {
+            min: "0", max: "12", step: "0.25",
+            title: "0.25 = 15 minutes\\n0.5 = 30 minutes\\n0.75 = 45 minutes\\n1 = 1 hour\\n1.25 = 1 hour and 15 minutes"
+        }),
+    new Alert.MultiLine({ id: "Description", label: "Description" }, { maxlength: "350" })
+]);
+
+function submitTime(results) {
+    var nullFields = results.filter(a => a.value == null);
+    if (nullFields.length > 0) {
+        new Dialog({
+            id: "error",
+            icon: "ERROR",
+            title: "Required fields",
+            message: "You must provide a value for: " + nullFields.map(a => a.id).join(", "),
+            width: 280,
+            height: 180
+        }).show();
+        return;
+    }
+
+    var loading = new Dialog().showLoading();
+    setTimeout(function () {
+        new Dialog({
+            id: "timetracker",
+            title: "Success!",
+            message: "Your time has been tracked.",
+            icon: "SUCCESS",
+            width: 300,
+            height: 180
+        }).show();
+
+        loading.hide();
+    }, 2000);
+}`
+            });
             
             examples.push({
                 blurb: "Customize and build your own dialog right from within Dialog Builder!",
