@@ -163,6 +163,26 @@
             var examples = [];
 
             examples.push({
+                blurb: "Simple dialog with callback",
+                id: "simplecallback",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
+                code: `new Dialog({
+    title: "Would you like to create a sale?",
+    message: "This will create and open the new sale record",
+    icon: "INFO",
+    buttons: [
+        new Dialog.Button("Create Sale", function() {
+            new Dialog({
+                title: "Sale successfully created!",
+                icon: "SUCCESS"
+            }).show();
+        }, true),
+        new Dialog.Button("Not now")
+    ]
+}).show();`
+            });
+
+            examples.push({
                 blurb: "Recreate the Close Opportunity screen",
                 id: "opportunity",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/86326459-d81ab780-bc95-11ea-88cb-02b50f85724b.png",
@@ -188,24 +208,48 @@
 ]);` });
 
             examples.push({
-                blurb: "Simple dialog with callback",
-                id: "simplecallback",
-                imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
-                code: `new Dialog({
-    title: "Would you like to create a sale?",
-    message: "This will create and open the new sale record",
-    icon: "INFO",
+                blurb: "Recreate the Assign Records screen with disabled fields",
+                id: "assign",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/90233512-60ce6b00-de72-11ea-93fb-29c09e9d2763.png",
+                code: `var dialog = new Dialog({
+    id: "assign",
+    height: 300,
+    width: 400,
+    title: "Assign Lead",
+    message: "You have selected 1 Lead. To whom would you like to assign it?",
     buttons: [
-        new Dialog.Button("Create Sale", function() {
-            new Dialog({
-                title: "Sale successfully created!",
-                icon: "SUCCESS"
-            }).show();
-        }, true),
-        new Dialog.Button("Not now")
+        new Dialog.Button("Assign", function (results) {
+            if (results.getValue("assignto").getValue("assignuser") && results.getValue("userorteam") == null) {
+                new Dialog({
+                    icon: "ERROR",
+                    title: "Required fields",
+                    message: "You must provide a value for User or team.",
+                    width: 320,
+                    height: 180
+                }).show();
+            }
+            else {
+                dialog.hide();
+            }
+        }, true, true),
+        new Dialog.Button("Cancel")
     ]
-}).show();`
-            });
+}).showPrompt([
+    new Dialog.Group({
+        id: "assignto", label: "Assign to", inline: true, fields: [
+            new Dialog.Input({ id: "assignme", type: "radio", label: "Me", value: true }, { name: "assignto" }),
+            new Dialog.Input({ id: "assignuser", type: "radio", label: "User or team" }, { name: "assignto" }),
+        ]
+    }),
+    new Dialog.Lookup({ id: "userorteam", label: "User or team", entityTypes: ["systemuser", "team"] })
+]);
+dialog.$("#userorteam input").prop("disabled", true);
+dialog.$("#assignme").on("click", function () {
+    dialog.$("#userorteam input").prop("disabled", true);
+});
+dialog.$("#assignuser").on("click", function () {
+    dialog.$("#userorteam input").prop("disabled", false).focus();
+});` });
 
             examples.push({
                 blurb: "Example using file upload, and using the base64 data to display the image on screen",
