@@ -43,7 +43,7 @@ Dialog Builder (previously Alert.js v3.0) is free for non-production use. This m
 For more information about what's new in v3, check out the latest [release notes](https://github.com/PaulNieuwelaar/alertjs/releases), or check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
 ### Alert.js v2.1
-Alert.js v2.1 is and always will be available for free here on Github under other releases. This version will continue to receive updates in the form of bug fixes only, and does not include any of the new features introduced in v3.0 or any versions going forward. For more info about the v2.1 license details, check out the [v2.1 license](https://github.com/PaulNieuwelaar/alertjs/blob/master/license-v2.1.md) in this project.
+Alert.js v2.1 is and always will be available for free here on Github under other releases. This version is not supported by Microsoft, and will not be supported by us with future versions and updates going forward. This version does not include any of the new features introduced in v3.0 (e.g. showPrompt) or any versions going forward. If you're using this in a commercial system we recommend using Dialog Builder v3 instead, to ensure you receive support and updates going forward. For more info about the v2.1 license details, check out the [v2.1 license](https://github.com/PaulNieuwelaar/alertjs/blob/master/license-v2.1.md) in this project.
 
 ---
 
