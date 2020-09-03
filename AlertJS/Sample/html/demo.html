@@ -531,7 +531,7 @@ function submitTime(results) {
                 blurb: "Create branching dialogs with paging",
                 id: "paging",
                 imageUrl: "https://user-images.githubusercontent.com/14048382/92077525-b615f080-ee10-11ea-9cb4-37708e7b9634.png",
-                code: `var data = { page1: {}, page2: { interests: {} }, page3: {} };
+                code: `var data = { page1: { subscribe: true }, page2: { interests: {} }, page3: {} };
 var dialog = new Dialog({
     id: "onboarding",
     width: 400,
