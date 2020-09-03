@@ -210,7 +210,7 @@
             examples.push({
                 blurb: "Recreate the Assign Records screen with disabled fields",
                 id: "assign",
-                imageUrl: "https://user-images.githubusercontent.com/14048382/90233512-60ce6b00-de72-11ea-93fb-29c09e9d2763.png",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/90304139-9e7dd300-df08-11ea-81d9-af5823aeb869.png",
                 code: `var dialog = new Dialog({
     id: "assign",
     height: 300,
@@ -244,10 +244,10 @@
     new Dialog.Lookup({ id: "userorteam", label: "User or team", entityTypes: ["systemuser", "team"] })
 ]);
 dialog.$("#userorteam input").prop("disabled", true);
-dialog.$("#assignme").on("click", function () {
+dialog.$("#assignme input").on("click", function () {
     dialog.$("#userorteam input").prop("disabled", true);
 });
-dialog.$("#assignuser").on("click", function () {
+dialog.$("#assignuser input").on("click", function () {
     dialog.$("#userorteam input").prop("disabled", false).focus();
 });` });
 
