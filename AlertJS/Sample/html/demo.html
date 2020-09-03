@@ -210,7 +210,7 @@
             examples.push({
                 blurb: "Recreate the Assign Records screen with disabled fields",
                 id: "assign",
-                imageUrl: "https://user-images.githubusercontent.com/14048382/90304139-9e7dd300-df08-11ea-81d9-af5823aeb869.png",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/90233512-60ce6b00-de72-11ea-93fb-29c09e9d2763.png",
                 code: `var dialog = new Dialog({
     id: "assign",
     height: 300,
@@ -524,6 +524,104 @@ function submitTime(results) {
 
         loading.hide();
     }, 2000);
+}`
+            });
+
+            examples.push({
+                blurb: "Create branching dialogs with paging",
+                id: "paging",
+                imageUrl: "https://user-images.githubusercontent.com/14048382/92077525-b615f080-ee10-11ea-9cb4-37708e7b9634.png",
+                code: `var data = { page1: {}, page2: { interests: {} }, page3: {} };
+var dialog = new Dialog({
+    id: "onboarding",
+    width: 400,
+    height: 420,
+});
+page1();
+
+function page1() {
+    dialog.title("Customer Onboarding");
+    dialog.message("Page 1 of 3");
+    dialog.buttons([
+        new Dialog.Button("Next", function (results) {
+            // Save the current page data, e.g. data.page1.name, then move to next page
+            data.page1 = results.getData();
+            if (data.page1.subscribe) {
+                page2();
+            }
+            else {
+                // Skip page 2 (Newsletter Interests) if not subscribed
+                page3();
+            }
+        }, true),
+        new Dialog.Button("Cancel")
+    ]);
+    dialog.showPrompt([
+        new Dialog.Input({ id: "name", label: "Account Name", value: data.page1.name }),
+        new Dialog.Input({ id: "accountnumber", label: "Account Number", value: data.page1.accountnumber }),
+        new Dialog.Input({ id: "telephone1", label: "Phone Number", value: data.page1.telephone1 }),
+        new Dialog.Input({ id: "websiteurl", label: "Website", value: data.page1.websiteurl }),
+        new Dialog.Input({ id: "subscribe", label: "Subscribe to Newsletter?", type: "checkbox", value: data.page1.subscribe })
+    ]);
+}
+function page2() {
+    dialog.title("Newsletter Interests");
+    dialog.message("Page 2 of 3");
+    dialog.buttons([
+        new Dialog.Button("Previous", function (results) {
+            data.page2 = results.getData();
+            page1();
+        }),
+        new Dialog.Button("Next", function (results) {
+            data.page2 = results.getData();
+            page3();
+        }, true),
+        new Dialog.Button("Cancel")
+    ]);
+    dialog.showPrompt([
+        new Dialog.Group({
+            id: "interests", label: "Select which topics to follow", fields: [
+                new Dialog.Input({ id: "dialogbuilder", label: "Dialog Builder", type: "checkbox", value: data.page2.interests.dialogbuilder }),
+                new Dialog.Input({ id: "dynamics365", label: "Dynamics 365", type: "checkbox", value: data.page2.interests.dynamics365 }),
+                new Dialog.Input({ id: "microsoft", label: "Microsoft", type: "checkbox", value: data.page2.interests.microsoft }),
+                new Dialog.Input({ id: "magnetism", label: "Magnetism", type: "checkbox", value: data.page2.interests.magnetism }),
+                new Dialog.Input({ id: "newproducts", label: "New products", type: "checkbox", value: data.page2.interests.newproducts }),
+                new Dialog.Input({ id: "whatsnew", label: "What's new", type: "checkbox", value: data.page2.interests.whatsnew }),
+            ]
+        })
+    ]);
+}
+function page3() {
+    dialog.title("Primary Contact");
+    dialog.message("Page 3 of 3");
+    dialog.buttons([        
+        new Dialog.Button("Previous", function (results) {
+            data.page3 = results.getData();
+            if (data.page1.subscribe) {
+                page2();
+            }
+            else {
+                page1();
+            }
+        }),
+        new Dialog.Button("Finish", function (results) {
+            data.page3 = results.getData();
+
+            dialog.title("Summary");
+            dialog.message(null);
+            dialog.buttons([new Dialog.Button("Close")])
+            dialog.content(Dialog.htmlEncode(JSON.stringify(data, null, 4)));
+            dialog.show();
+        }, true),
+        new Dialog.Button("Cancel")
+    ]);
+    dialog.showPrompt([
+        new Dialog.Input({ id: "firstname", label: "First Name", value: data.page3.firstname }),
+        new Dialog.Input({ id: "lastname", label: "Last Name", value: data.page3.lastname }),
+        new Dialog.Input({ id: "title", label: "Job Title", value: data.page3.title }),
+        new Dialog.Input({ id: "emailaddress1", label: "Email Address", value: data.page3.emailaddress1 }),
+        new Dialog.Input({ id: "telephone1", label: "Phone Number", value: data.page3.telephone1 })
+    ]);
 }`
             });
             
@@ -864,9 +962,6 @@ function jsonStringify(obj, pretty) {
                     }
                 });
             });
-
-            // Jump to anchor onload
-            if (window.location.href.indexOf("#") > -1) { window.location.href = window.location.href; }
         });
     </script>
 </head>
