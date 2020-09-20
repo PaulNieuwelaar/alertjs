@@ -1,0 +1,132 @@
+@font-face {
+    font-family: "SegoeUI";
+    font-weight: 300;
+    src: url('https://d365prod-sdk.azureedge.net/assets/MASTER-1.0.5.3047/resources/fonts/segoe-ui/west-european/SegoeUI-SemiLight.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: "SegoeUI";
+    font-weight: normal;
+    src: local('Segoe UI');
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: SegoeUI,"Segoe UI",Arial,Calibre;
+    height: 100%;
+    background-color: #F9F9F9;
+}
+
+.demo {
+    height: 100%;
+    overflow: auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+    .demo .title-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .demo .title {
+        font-size: 24px;
+        margin-left: 20px;
+    }
+
+    .demo .example-wrapper {
+        margin: 20px;
+        padding-bottom: 20px;
+    }
+
+    .demo .heading {
+        margin-bottom: 8px;
+        font-size: 24px;
+        font-weight: 300;
+        color: #3B79B7;
+    }
+
+    .demo .example {
+        display: flex;
+    }
+
+    .demo textarea {
+        min-height: 200px;
+        min-width: 200px;
+        height: 350px;
+        width: 600px;
+        box-sizing: border-box;
+        margin-right: 20px;
+        padding: 10px;
+        border: none;
+        border-left: 3px solid #EFF284;
+        overflow: auto;
+        resize: both;
+        font-weight: 400;
+        color: #000;
+        background-color: #EEE;
+        line-height: 1.1em;
+        font-family: Consolas,"Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+        font-style: normal;
+        font-size: 0.8em;
+        white-space: pre;
+        outline: none;
+    }
+
+    .demo img {
+        max-height: 350px;
+        max-width: 100%;
+    }
+
+    .demo button {
+        margin-top: 8px;
+        height: 35px;
+        width: 150px;
+        padding: 5px;
+        background-color: #3B79B7;
+        color: #fff;
+        cursor: pointer;
+        border: 1px solid #3B79B7 !important;
+        font-family: SegoeUI, 'Segoe UI';
+        font-size: 1rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+        .demo button:hover {
+            background-color: #236099 !important;
+            transition: 0.3s;
+        }
+
+    .demo #toc {
+        display: block;
+        margin-left: 30px;
+        margin-bottom: 50px;
+    }
+
+    .demo a {
+        color: #3B79B7;
+        text-decoration: none;
+    }
+
+        .demo a:hover {
+            text-decoration: underline;
+        }
+
+@media (prefers-color-scheme: dark) {
+    html, body {
+        background: #2D2D30;
+        color: #ddd;
+    }
+
+    .demo a, .demo .heading {
+        color: #409AD4;
+    }
+
+    .demo textarea {
+        background-color: #242424;
+        color: #ddd;
+    }
+}
