@@ -290,11 +290,8 @@ function showSearchPrompt(searchTerm, data) {
         title: "Select an Account",
         message: "Select or search for an account.",
         icon: "SEARCH",
-        height: 420,
+        height: 500,
         buttons: [
-            new Alert.Button("Search", function (data) {
-                searchAccounts(data.getValue("search"));
-            }, false, true),
             new Alert.Button("OK", function (data) {
                 var accountId = data.getValue("account").getSelected();
                 if (accountId == null || accountId.length == 0) {
@@ -303,18 +300,24 @@ function showSearchPrompt(searchTerm, data) {
                 }
                 alert(accountId[0]);
                 dialog.hide();
-            }, true, true)
+            }, true, true),
+            new Alert.Button("Cancel")
         ]
     }).showPrompt([
-        new Dialog.Input({ id: "search", label: "Search (press enter)", value: searchTerm }),
-        new Dialog.Group({ id: "account", fields: fields }, { style: "height:190px" })
+        new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
+        new Dialog.Input({ id: "searchButton", type: "button", value: "Search"}, 
+            { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
+        new Dialog.Group({ id: "account", fields: fields }, { style: "height: 190px;" })
     ]);
-    dialog.$("#search input").on("keydown", function (e) {
+    dialog.$("#searchField input").on("keydown", function (e) {
         e = e || window.event;
         if (e.which == 13) { // Enter
             e.preventDefault();
-            searchAccounts(dialog.getPromptResponses().getValue("search"));
+            searchAccounts(dialog.getPromptResponses().getValue("searchField"));
         }
+    });
+    dialog.$("#searchButton input").on("click", function (e) {
+        searchAccounts(dialog.getPromptResponses().getValue("searchField"));
     });
 }
 searchAccounts();`
