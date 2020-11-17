@@ -820,4 +820,7 @@ function jsonStringify(obj, pretty) {
 
     // Jump to anchor onload
     if (window.location.href.indexOf("#") > -1) { window.location.href = window.location.href; }
+
+    // Set the version number
+    $("#version").html(`(v${Dialog._version})`);
 });
