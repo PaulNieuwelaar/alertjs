@@ -115,6 +115,10 @@ html, body {
             text-decoration: underline;
         }
 
+    .demo #version {
+        margin-left: 10px;
+    }
+
 @media (prefers-color-scheme: dark) {
     html, body {
         background: #2D2D30;
