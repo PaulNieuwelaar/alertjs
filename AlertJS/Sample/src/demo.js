@@ -465,6 +465,7 @@ function page3() {
             dialog.message(null);
             dialog.buttons([new Dialog.Button("Close")])
             dialog.content(Dialog.htmlEncode(JSON.stringify(data, null, 4)));
+            dialog.fields();
             dialog.show();
         }, true),
         new Dialog.Button("Cancel")
