@@ -149,20 +149,20 @@ dialog.$("#assignuser input").on("click", function () {
     message: "Select some stuff from all the different field types",
     icon: "SUCCESS"
 }).showPrompt([
-    new Alert.Input({ type: "number", label: "Number" }),
-    new Alert.Input({ type: "file", label: "File" }),
-    new Alert.Input({ type: "date", label: "Date" }),
-    new Alert.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
-    new Alert.Group({ label: "Inline Group", inline: true, fields: [
-        new Alert.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
-        new Alert.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
-        new Alert.Input({ label: "Or check this", type: "checkbox", value: true })
+    new Dialog.Input({ type: "number", label: "Number" }),
+    new Dialog.Input({ type: "file", label: "File" }),
+    new Dialog.Input({ type: "date", label: "Date" }),
+    new Dialog.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
+    new Dialog.Group({ label: "Inline Group", inline: true, fields: [
+        new Dialog.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
+        new Dialog.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
+        new Dialog.Input({ label: "Or check this", type: "checkbox", value: true })
     ] }),
-    new Alert.OptionSet({ label: "OptionSet", options: [
+    new Dialog.OptionSet({ label: "OptionSet", options: [
         { text: "One", value: "1" },
         { text: "Two", value: "2" }
     ] }),
-    new Alert.MultiLine({ label: "MultiLine", inline: false })
+    new Dialog.MultiLine({ label: "MultiLine", inline: false })
 ]);`
     });
 
@@ -240,10 +240,10 @@ process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
     message: "Google doesn't allow embedding in a frame.",
     icon: "SEARCH",
     buttons: [
-        new Alert.Button("Open New Tab", function() {
+        new Dialog.Button("Open New Tab", function() {
             window.open("https://bing.com");
         }),
-        new Alert.Button("Close", null, true)
+        new Dialog.Button("Close", null, true)
     ]
 }).showIFrame("https://bing.com");`
     });
@@ -284,7 +284,7 @@ function showSearchPrompt(searchTerm, data) {
         }, { name: "accounts" });
     });
     if (fields.length == 0) {
-        fields.push(new Alert.Group({ label: "No results" }));
+        fields.push(new Dialog.Group({ label: "No results" }));
     }
     var dialog = new Dialog({
         title: "Select an Account",
@@ -292,7 +292,7 @@ function showSearchPrompt(searchTerm, data) {
         icon: "SEARCH",
         height: 500,
         buttons: [
-            new Alert.Button("OK", function (data) {
+            new Dialog.Button("OK", function (data) {
                 var accountId = data.getValue("account").getSelected();
                 if (accountId == null || accountId.length == 0) {
                     alert("Please select an account");
@@ -301,7 +301,7 @@ function showSearchPrompt(searchTerm, data) {
                 alert(accountId[0]);
                 dialog.hide();
             }, true, true),
-            new Alert.Button("Cancel")
+            new Dialog.Button("Cancel")
         ]
     }).showPrompt([
         new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
@@ -336,18 +336,18 @@ searchAccounts();`
     height: 420,
     width: 400,
     buttons: [
-        new Alert.Button("Submit", submitTime, true, true),
-        new Alert.Button("Cancel")
+        new Dialog.Button("Submit", submitTime, true, true),
+        new Dialog.Button("Cancel")
     ]
 }).showPrompt([
-    new Alert.Input({ id: "Ticket", label: "Ticket #", type: "number" }, { min: "1000", max: "9999" }),
-    new Alert.Input({ id: "Date", label: "Date", type: "date", value: new Date() }),
-    new Alert.Input({ id: "Duration", label: "Duration (hours)", type: "number" },
+    new Dialog.Input({ id: "Ticket", label: "Ticket #", type: "number" }, { min: "1000", max: "9999" }),
+    new Dialog.Input({ id: "Date", label: "Date", type: "date", value: new Date() }),
+    new Dialog.Input({ id: "Duration", label: "Duration (hours)", type: "number" },
         {
             min: "0", max: "12", step: "0.25",
             title: "0.25 = 15 minutes\\n0.5 = 30 minutes\\n0.75 = 45 minutes\\n1 = 1 hour\\n1.25 = 1 hour and 15 minutes"
         }),
-    new Alert.MultiLine({ id: "Description", label: "Description" }, { maxlength: "350" })
+    new Dialog.MultiLine({ id: "Description", label: "Description" }, { maxlength: "350" })
 ]);
 
 function submitTime(results) {
@@ -825,3 +825,77 @@ function jsonStringify(obj, pretty) {
     // Set the version number
     $("#version").html(`(v${Dialog._version})`);
 });
+
+
+
+
+
+var callback = function (values) {
+    var fields = [];
+    for (var i = 0; i < values.length; i++) {
+        var fields2 = [];
+        if (i > 0) { fields2.push(new Dialog.Input({ type: "button", value: "🠉", id: `${i}up` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" })); }
+        fields2.push(new Dialog.Input({ value: values[i].name, id: i }));
+        if (i < values.length - 1) { fields2.push(new Dialog.Input({ type: "button", value: "🠋", id: `${i}down` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" })); }
+        fields.push(new Dialog.Group({
+            id: i + "g",
+            fields: fields2
+        }));
+    }
+    new Dialog({
+        fields: fields
+    }).show();
+}
+var dialog = new Dialog({
+    fields: [
+        new Dialog.Lookup({ allowMultiSelect: true, entityTypes: ["account"] })
+    ],
+    buttons: [new Dialog.Button("Next", function (results) {
+        var values = results[0].value;
+        callback(values);
+    })]
+}).show();
+
+
+
+
+
+
+var callback = function (values) {
+    var options = [];
+    for (var i = 0; i < values.length; i++) {
+        options.push({ text: values[i].name, value: values[i].name });
+    }
+
+    var fields = [];
+    fields.push(new Dialog.Group({
+        fields: [
+            new Dialog.OptionSet({ options: options, label: "Rearrange" }),
+            new Dialog.Input({ type: "button", label: "Move up", value: "🠉", id: `up` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" }),
+            new Dialog.Input({ type: "button", label: "Move down", value: "🠋", id: `down` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" })
+        ]
+    }));
+
+    var group = [];
+    for (var i = 0; i < values.length; i++) {
+        group.push(new Dialog.Input({ value: values[i].name, id: i }));
+    }
+
+    fields.push(new Dialog.Group({
+        id: i + "g",
+        fields: group
+    }));
+
+    new Dialog({
+        fields: fields
+    }).show();
+}
+var dialog = new Dialog({
+    fields: [
+        new Dialog.Lookup({ allowMultiSelect: true, entityTypes: ["account"] })
+    ],
+    buttons: [new Dialog.Button("Next", function (results) {
+        var values = results[0].value;
+        callback(values);
+    })]
+}).show();
