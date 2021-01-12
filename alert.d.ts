@@ -124,6 +124,11 @@ export declare class Dialog {
      * Set a custom ID to allow you to stack multiple dialogs without the previous being overwritten.
      */
     id(id: string | number): Dialog;
+    private _fields?;
+    /**
+     * Set the fields to display in the dialog, used with the showPrompt function.
+     */
+    fields(fields?: (Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Custom | Dialog.Group)[]): Dialog;
     /**
      * Use this method to show a light-box message. This can be called from a form, view, or anywhere that supports JavaScript.
      */
@@ -167,7 +172,7 @@ export declare class Dialog {
      *
      * @param fields The fields to display inside the prompt. Each type of field is constructed differently.
      */
-    showPrompt(fields?: (Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Group)[]): Dialog;
+    showPrompt(fields?: (Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Custom | Dialog.Group)[]): Dialog;
     /**
      * Use this method to get the context of an iFrame being displayed in the light-box. For example, if you're capturing input via a web resource, you can use this function to access the inputs on the web resource from inside a custom function. This allows you to use custom buttons to access the iFrame data. This value is also returned as the first parameter of each button callback when using showIFrame or showWebResource.
      */
@@ -197,6 +202,7 @@ export declare class Dialog {
     private _showLookupDialog;
     private _fileUploadedOnChange;
     private _createField;
+    private _getLookupName;
     private _utcToLocalTime;
     private _addExtraAttributes;
     private _setupDragElement;
@@ -240,7 +246,7 @@ export declare class Dialog {
     /**
      * DEPRECATED: Use new Dialog(options) instead.
      */
-    static showPrompt(fields?: (Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Group)[] | null, title?: string | null, message?: string | null, buttons?: Dialog.Button[] | null, icon?: string | null, width?: number | string | null, height?: number | string | null, baseUrl?: string | null, preventCancel?: boolean | null, padding?: number | string | null, id?: string | number | null): void;
+    static showPrompt(fields?: (Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Custom | Dialog.Group)[] | null, title?: string | null, message?: string | null, buttons?: Dialog.Button[] | null, icon?: string | null, width?: number | string | null, height?: number | string | null, baseUrl?: string | null, preventCancel?: boolean | null, padding?: number | string | null, id?: string | number | null): void;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
      */
@@ -285,15 +291,15 @@ export declare namespace Dialog {
      * Class for _Field constructor
      */
     class _Field {
-        fieldType: "Input" | "MultiLine" | "OptionSet" | "Lookup" | "Group";
+        fieldType: "Input" | "MultiLine" | "OptionSet" | "Lookup" | "Custom" | "Group";
         label?: string;
         inline?: boolean;
-        defaultValue?: string | number | string[] | Date | boolean | LookupObject[];
+        value?: string | number | string[] | Date | boolean | LookupObject[] | JQuery | HTMLElement;
         id?: string;
         extraAttributes?: {
             [key: string]: string;
         };
-        constructor(fieldType: "Input" | "MultiLine" | "OptionSet" | "Lookup" | "Group", label?: string, inline?: boolean, defaultValue?: string | number | string[] | Date | boolean | LookupObject[] | null, id?: string, extraAttributes?: {
+        constructor(fieldType: "Input" | "MultiLine" | "OptionSet" | "Lookup" | "Custom" | "Group", label?: string, inline?: boolean, value?: string | number | string[] | Date | boolean | LookupObject[] | JQuery | HTMLElement | null, id?: string, extraAttributes?: {
             [key: string]: string;
         });
     }
@@ -348,6 +354,8 @@ export declare namespace Dialog {
         entityTypes?: string[] | string;
         customFilters?: string[];
         disableMru?: boolean;
+        allowMultiSelect?: boolean;
+        callback?: (results?: LookupObject[]) => void;
         filters?: LookupFilter[];
         /**
          * Creates a lookup field in CRM version 9.0 and above.
@@ -360,10 +368,21 @@ export declare namespace Dialog {
         });
     }
     /**
+     * Class for Custom constructor
+     */
+    class Custom extends _Field {
+        /**
+         * Creates a custom html field.
+         *
+         * @param options The options for the custom html field, including id, label, and value.
+         */
+        constructor(options?: CustomOptions);
+    }
+    /**
      * Class for Group constructor
      */
     class Group extends _Field {
-        fields?: (Dialog.Group | Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup)[];
+        fields?: (Dialog.Group | Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Custom)[];
         /**
          * Creates an outlined section/container for multiple fields. Useful for displaying multiple radio buttons together. Can also be used without fields to just show an extra static label.
          *
@@ -383,7 +402,7 @@ export declare class PromptResponses extends Array<PromptResponse> {
     /**
      * Get the value of a prompt response by its index (number) or id (string).
      */
-    getValue(id: string | number): string | number | string[] | Date | FileData[] | boolean | LookupObject[] | PromptResponses | null | undefined;
+    getValue(id: string | number): string | number | string[] | Date | FileData[] | boolean | LookupObject[] | PromptResponses | JQuery | null | undefined;
     /**
      * Get the ids of any prompt responses with a value of true. Used to get just the selected field(s) from a group of radio or checkbox fields.
      */
@@ -456,6 +475,10 @@ export interface DialogOptions {
      * Set the primary color of the title, buttons, and prompt field shadows. If not specified, this will default to the CRM theme's main color.
      */
     color?: string;
+    /**
+    * Set the fields to display in the dialog, used with the showPrompt function.
+    */
+    fields?: (Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Custom | Dialog.Group)[];
     /**
      * Set a custom ID to allow you to stack multiple dialogs without the previous being overwritten.
      */
@@ -574,6 +597,14 @@ export interface LookupOptions {
      */
     disableMru?: boolean;
     /**
+    * Sets the lookup window to allow selecting multiple records.
+    */
+    allowMultiSelect?: boolean;
+    /**
+    * Specifies a callback function to run immediately after a lookup value has been selected.
+    */
+    callback?: (results?: LookupObject[]) => void;
+    /**
      * Used to filter the lookup results. Available only for Unified Interface.
      */
     filters?: LookupFilter[];
@@ -582,6 +613,27 @@ export interface LookupOptions {
      * @see {@link https://docs.microsoft.com/en-us/dynamics365/customer-engagement/developer/clientapi/reference/controls/addcustomfilter#parameters}
      */
     customFilters?: string[];
+}
+/**
+ * Interface for Custom
+ */
+export interface CustomOptions {
+    /**
+     * A unique identifier for the field. This will be used as the 'id' property when getting prompt responses.
+     */
+    id?: string;
+    /**
+     * The label text above the html. If no label is provided, the html will be displayed without a label.
+     */
+    label?: string;
+    /**
+     * Sets the label to be aligned above the html, or beside the html inline. Defaults to true.
+     */
+    inline?: boolean;
+    /**
+     * The custom html to be displayed.
+     */
+    value?: string | JQuery | HTMLElement;
 }
 /**
  * Interface for GroupOptions
@@ -602,7 +654,7 @@ export interface GroupOptions {
     /**
      * The fields to display inside the group.
      */
-    fields?: (Dialog.Group | Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup)[];
+    fields?: (Dialog.Group | Dialog.Input | Dialog.MultiLine | Dialog.OptionSet | Dialog.Lookup | Dialog.Custom)[];
 }
 /**
  * Interface for OptionSetValue
@@ -632,7 +684,7 @@ export interface PromptResponse {
     /**
      * The 'value' represents the field value. This is different depending on the type of field used. Empty values will become 'null'.
      */
-    value: string | number | string[] | Date | FileData[] | boolean | LookupObject[] | PromptResponses | null;
+    value: string | number | string[] | Date | FileData[] | boolean | LookupObject[] | PromptResponses | JQuery | null;
 }
 /**
  * Interface for LookupObject
