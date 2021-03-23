@@ -119,6 +119,28 @@ html, body {
         margin-left: 10px;
     }
 
+    .demo .buynow {
+        position: fixed;
+        right: 40px;
+        bottom: 20px;
+        background: #3B79B7;
+        border-radius: 100px;
+        font-size: 20px;
+        border: 1px solid #619dd8 !important
+    }
+
+        .demo .buynow:hover {
+            background-color: #236099 !important;
+            transition: 0.3s;
+        }
+
+        .demo .buynow a {
+            color: white;
+            text-decoration: none !important;
+            padding: 20px 40px;
+            display: block;
+        }
+
 @media (prefers-color-scheme: dark) {
     html, body {
         background: #2D2D30;
