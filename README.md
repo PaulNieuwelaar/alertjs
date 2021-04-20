@@ -6,7 +6,8 @@
 
 Please review the [licensing info](#licensing) below before downloading.
 
-![](https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png)
+
+[![](https://user-images.githubusercontent.com/14048382/115327836-bcac7900-a1e3-11eb-9bf2-f5e576763fc5.png)](https://www.youtube.com/watch?v=SKz-ENHOqig)
 
 ## Overview
 
