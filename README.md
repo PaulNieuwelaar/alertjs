@@ -7,7 +7,7 @@
 Please review the [licensing info](#licensing) below before downloading.
 
 
-[![](https://user-images.githubusercontent.com/14048382/115327836-bcac7900-a1e3-11eb-9bf2-f5e576763fc5.png)](https://www.youtube.com/watch?v=SKz-ENHOqig)
+<a href="https://www.youtube.com/watch?v=SKz-ENHOqig" target="_blank"><img src="https://user-images.githubusercontent.com/14048382/115327836-bcac7900-a1e3-11eb-9bf2-f5e576763fc5.png" /></a>
 
 ## Overview
 
