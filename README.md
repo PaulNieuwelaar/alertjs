@@ -39,14 +39,9 @@ Or check out these [working examples](https://paulnieuwelaar.github.io/alertjs/A
 
 ## Licensing
 
-### Dialog Builder v3
-Dialog Builder (previously Alert.js v3.0) is free for non-production use. This means you can use it for free in DEV and TEST systems only, or in production as a 30 day trial. The version 3 code is NOT open source, meaning you cannot modify it. By downloading version 3 you agree to the [v3 terms of use](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md). Download and install the v3 solution, then [purchase a production license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365) when you're ready to activate your organisation.
-For more information about what's new in v3, check out the latest [release notes](https://github.com/PaulNieuwelaar/alertjs/releases), or check out the [v3.0 Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
-
-### Alert.js v2.1
-Alert.js v2.1 is and always will be available for free here on Github under other releases. This version is not supported by Microsoft, and will not be supported by us with future versions and updates going forward. This version does not include any of the new features introduced in v3.0 (e.g. showPrompt) or any versions going forward. If you're using this in a commercial system we recommend using Dialog Builder v3 instead, to ensure you receive support and updates going forward. For more info about the v2.1 license details, check out the [v2.1 license](https://github.com/PaulNieuwelaar/alertjs/blob/master/license-v2.1.md) in this project.
+Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md). Download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365) when you're ready to activate your organisation.
+For more information about what's new, check out the latest [release notes](https://github.com/PaulNieuwelaar/alertjs/releases), or check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
 ---
 
-Created by [Paul Nieuwelaar](http://paulnieuwelaar.wordpress.com) - [@paulnz1](https://twitter.com/paulnz1)  
-Sponsored by [Magnetism Solutions - Dynamics CRM Specialists](http://www.magnetismsolutions.com)
+[Magnetism Solutions - Dynamics 365 Specialists](http://www.magnetismsolutions.com)  
