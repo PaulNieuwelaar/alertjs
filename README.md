@@ -3,7 +3,7 @@
 # Dialog Builder for Dynamics 365 - Custom Dialogs, Popups, Alerts, Prompts, and Wizards
 
 [![Buy Now](https://user-images.githubusercontent.com/14048382/119300824-81570b80-bcb5-11eb-95ff-89dcd68729ad.png)](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365)&nbsp;&nbsp;
-[![Free Trial](https://user-images.githubusercontent.com/14048382/119301666-f119c600-bcb6-11eb-9ee6-d88d3062fe82.png)](https://github.com/PaulNieuwelaar/alertjs/releases/download/v3.1/AlertJS_3_1_5_managed.zip) (v3.1 managed)
+[![Free Trial](https://user-images.githubusercontent.com/14048382/119301666-f119c600-bcb6-11eb-9ee6-d88d3062fe82.png)](https://github.com/PaulNieuwelaar/alertjs/releases/download/v3.1/AlertJS_3_1_5_managed.zip)
 [<img alt="Documentation" align="right" src="https://user-images.githubusercontent.com/14048382/119301470-a5671c80-bcb6-11eb-92e1-2a34cb1833c3.png"/>](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0)  
 
 
