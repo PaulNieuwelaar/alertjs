@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(async () => {
     Dialog.LM.customKey = "github-demo";
 
     var examples = [];
@@ -38,17 +38,18 @@ $(document).ready(() => {
     buttons: [
         new Dialog.Button("OK", null, true),
         new Dialog.Button("Cancel")
+    ],
+    fields: [
+        new Dialog.OptionSet({ id: "status", label: "Status Reason", value: 3, options: [
+            { text: "Won", value: 3 },
+            { text: "Canceled", value: 4 },
+            { text: "Out-Sold", value: 5 }] }),
+        new Dialog.Input({ id: "revenue", label: "Actual Revenue ($)", type: "number", value: "0.00" }),
+        new Dialog.Input({ id: "closedate", label: "Close Date", type: "date", value: new Date() }),
+        new Dialog.Lookup({ id: "competitor", label: "Competitor", entityTypes: ["competitor"] }),
+        new Dialog.MultiLine({ id: "description", label: "Description" })
     ]
-}).showPrompt([
-    new Dialog.OptionSet({ id: "status", label: "Status Reason", value: 3, options: [
-        { text: "Won", value: 3 },
-        { text: "Canceled", value: 4 },
-        { text: "Out-Sold", value: 5 }] }),
-    new Dialog.Input({ id: "revenue", label: "Actual Revenue ($)", type: "number", value: "0.00" }),
-    new Dialog.Input({ id: "closedate", label: "Close Date", type: "date", value: new Date() }),
-    new Dialog.Lookup({ id: "competitor", label: "Competitor", entityTypes: ["competitor"] }),
-    new Dialog.MultiLine({ id: "description", label: "Description" })
-]);` });
+}).show();` });
 
     // Recreate the Assign Records screen with disabled fields
     examples.push({
@@ -77,16 +78,17 @@ $(document).ready(() => {
             }
         }, true, true),
         new Dialog.Button("Cancel")
+    ],
+    fields: [
+        new Dialog.Group({
+            id: "assignto", label: "Assign to", inline: true, fields: [
+                new Dialog.Input({ id: "assignme", type: "radio", label: "Me", value: true }, { name: "assignto" }),
+                new Dialog.Input({ id: "assignuser", type: "radio", label: "User or team" }, { name: "assignto" }),
+            ]
+        }),
+        new Dialog.Lookup({ id: "userorteam", label: "User or team", entityTypes: ["systemuser", "team"] })
     ]
-}).showPrompt([
-    new Dialog.Group({
-        id: "assignto", label: "Assign to", inline: true, fields: [
-            new Dialog.Input({ id: "assignme", type: "radio", label: "Me", value: true }, { name: "assignto" }),
-            new Dialog.Input({ id: "assignuser", type: "radio", label: "User or team" }, { name: "assignto" }),
-        ]
-    }),
-    new Dialog.Lookup({ id: "userorteam", label: "User or team", entityTypes: ["systemuser", "team"] })
-]);
+}).show();
 dialog.$("#userorteam input").prop("disabled", true);
 dialog.$("#assignme input").on("click", function () {
     dialog.$("#userorteam input").prop("disabled", true);
@@ -128,14 +130,15 @@ dialog.$("#assignuser input").on("click", function () {
             }
         }, true, true),
         new Dialog.Button("Cancel")
+    ],
+    fields: [
+        new Dialog.Input({
+            id: "img",
+            label: "Image",
+            type: "file"
+        }, { accept: "image/*" })
     ]
-}).showPrompt([
-    new Dialog.Input({
-        id: "img",
-        label: "Image",
-        type: "file"
-    }, { accept: "image/*" })
-]);` });
+}).show();` });
 
     // Using various different field types
     examples.push({
@@ -147,23 +150,24 @@ dialog.$("#assignuser input").on("click", function () {
     padding: 20,
     title: "Using various different field types",
     message: "Select some stuff from all the different field types",
-    icon: "SUCCESS"
-}).showPrompt([
-    new Dialog.Input({ type: "number", label: "Number" }),
-    new Dialog.Input({ type: "file", label: "File" }),
-    new Dialog.Input({ type: "date", label: "Date" }),
-    new Dialog.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
-    new Dialog.Group({ label: "Inline Group", inline: true, fields: [
-        new Dialog.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
-        new Dialog.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
-        new Dialog.Input({ label: "Or check this", type: "checkbox", value: true })
-    ] }),
-    new Dialog.OptionSet({ label: "OptionSet", options: [
-        { text: "One", value: "1" },
-        { text: "Two", value: "2" }
-    ] }),
-    new Dialog.MultiLine({ label: "MultiLine", inline: false })
-]);`
+    icon: "SUCCESS",
+    fields: [
+        new Dialog.Input({ type: "number", label: "Number" }),
+        new Dialog.Input({ type: "file", label: "File" }),
+        new Dialog.Input({ type: "date", label: "Date" }),
+        new Dialog.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
+        new Dialog.Group({ label: "Inline Group", inline: true, fields: [
+            new Dialog.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
+            new Dialog.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
+            new Dialog.Input({ label: "Or check this", type: "checkbox", value: true })
+        ] }),
+        new Dialog.OptionSet({ label: "OptionSet", options: [
+            { text: "One", value: "1" },
+            { text: "Two", value: "2" }
+        ] }),
+        new Dialog.MultiLine({ label: "MultiLine", inline: false })
+    ]
+}).show();`
     });
 
     // Login screen with custom keypress event
@@ -184,16 +188,17 @@ var dialog = new Dialog({
     buttons: [
         new Dialog.Button("Sign in", signInCallback, true),
         new Dialog.Button("Cancel")
+    ],
+    fields: [
+        new Dialog.Group({
+            label: "Login details",
+            fields: [
+                new Dialog.Input({ id: "email", label: "Email", type: "email" }),
+                new Dialog.Input({ id: "password", label: "Password", type: "password" })
+            ]
+        })
     ]
-}).showPrompt([
-    new Dialog.Group({
-        label: "Login details",
-        fields: [
-            new Dialog.Input({ id: "email", label: "Email", type: "email" }),
-            new Dialog.Input({ id: "password", label: "Password", type: "password" })
-        ]
-    })
-]);
+}).show();
 dialog.$("#password input").on("keydown", function (e) {
     e = e || window.event;
     if (e.which == 13) { // Enter
@@ -208,9 +213,12 @@ dialog.$("#password input").on("keydown", function (e) {
         blurb: "Progress bar for async tasks",
         id: "progressbar",
         imageUrl: "https://user-images.githubusercontent.com/14048382/86429346-639e5200-bd43-11ea-8c09-65bb693f851c.png",
-        code: `function process(results, i, loading) {
-    if (i <= results.length) {
-        loading.message("Record " + (i + 1) + " of " + (results.length + 1));
+        code: `var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
+process(["Some","data","to","process","async","via","webapi","etc"], 0, loading);
+
+function process(results, i, loading) {
+    if (i < results.length) {
+        loading.message("Record " + (i + 1) + " of " + results.length);
 
         // Do something async and then call the next record to process
         setTimeout(function() {
@@ -225,9 +233,7 @@ dialog.$("#password input").on("keydown", function (e) {
             message: "All records processed successfully."
         }).show();
     }
-}
-var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
-process(["Some","data","to","process","via","webapi","etc"], 0, loading);`
+}`
     });
 
     // Displaying a simple IFrame
@@ -302,13 +308,14 @@ function showSearchPrompt(searchTerm, data) {
                 dialog.hide();
             }, true, true),
             new Dialog.Button("Cancel")
+        ],
+        fields: [
+            new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
+            new Dialog.Input({ id: "searchButton", type: "button", value: "Search"}, 
+                { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
+            new Dialog.Group({ id: "account", fields: fields }, { style: "height: 190px;" })
         ]
-    }).showPrompt([
-        new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
-        new Dialog.Input({ id: "searchButton", type: "button", value: "Search"}, 
-            { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
-        new Dialog.Group({ id: "account", fields: fields }, { style: "height: 190px;" })
-    ]);
+    }).show();
     dialog.$("#searchField input").on("keydown", function (e) {
         e = e || window.event;
         if (e.which == 13) { // Enter
@@ -338,17 +345,18 @@ searchAccounts();`
     buttons: [
         new Dialog.Button("Submit", submitTime, true, true),
         new Dialog.Button("Cancel")
+    ],
+    fields: [
+        new Dialog.Input({ id: "Ticket", label: "Ticket #", type: "number" }, { min: "1000", max: "9999" }),
+        new Dialog.Input({ id: "Date", label: "Date", type: "date", value: new Date() }),
+        new Dialog.Input({ id: "Duration", label: "Duration (hours)", type: "number" },
+            {
+                min: "0", max: "12", step: "0.25",
+                title: "0.25 = 15 minutes\\n0.5 = 30 minutes\\n0.75 = 45 minutes\\n1 = 1 hour\\n1.25 = 1 hour and 15 minutes"
+            }),
+        new Dialog.MultiLine({ id: "Description", label: "Description" }, { maxlength: "350" })
     ]
-}).showPrompt([
-    new Dialog.Input({ id: "Ticket", label: "Ticket #", type: "number" }, { min: "1000", max: "9999" }),
-    new Dialog.Input({ id: "Date", label: "Date", type: "date", value: new Date() }),
-    new Dialog.Input({ id: "Duration", label: "Duration (hours)", type: "number" },
-        {
-            min: "0", max: "12", step: "0.25",
-            title: "0.25 = 15 minutes\\n0.5 = 30 minutes\\n0.75 = 45 minutes\\n1 = 1 hour\\n1.25 = 1 hour and 15 minutes"
-        }),
-    new Dialog.MultiLine({ id: "Description", label: "Description" }, { maxlength: "350" })
-]);
+}).show();
 
 function submitTime(results) {
     var nullFields = results.filter(a => a.value == null);
@@ -390,7 +398,7 @@ var dialog = new Dialog({
     id: "onboarding",
     width: 400,
     height: 420,
-});
+}).show();
 page1();
 
 function page1() {
@@ -407,10 +415,10 @@ function page1() {
                 // Skip page 2 (Newsletter Interests) if not subscribed
                 page3();
             }
-        }, true),
+        }, true, true),
         new Dialog.Button("Cancel")
     ]);
-    dialog.showPrompt([
+    dialog.fields([
         new Dialog.Input({ id: "name", label: "Account Name", value: data.page1.name }),
         new Dialog.Input({ id: "accountnumber", label: "Account Number", value: data.page1.accountnumber }),
         new Dialog.Input({ id: "telephone1", label: "Phone Number", value: data.page1.telephone1 }),
@@ -425,14 +433,14 @@ function page2() {
         new Dialog.Button("Previous", function (results) {
             data.page2 = results.getData();
             page1();
-        }),
+        }, false, true),
         new Dialog.Button("Next", function (results) {
             data.page2 = results.getData();
             page3();
-        }, true),
+        }, true, true),
         new Dialog.Button("Cancel")
     ]);
-    dialog.showPrompt([
+    dialog.fields([
         new Dialog.Group({
             id: "interests", label: "Select which topics to follow", fields: [
                 new Dialog.Input({ id: "dialogbuilder", label: "Dialog Builder", type: "checkbox", value: data.page2.interests.dialogbuilder }),
@@ -457,20 +465,21 @@ function page3() {
             else {
                 page1();
             }
-        }),
+        }, false, true),
         new Dialog.Button("Finish", function (results) {
             data.page3 = results.getData();
 
             dialog.title("Summary");
             dialog.message(null);
-            dialog.buttons([new Dialog.Button("Close")])
+            dialog.buttons([
+                new Dialog.Button("Close")
+            ])
             dialog.content(Dialog.htmlEncode(JSON.stringify(data, null, 4)));
             dialog.fields();
-            dialog.show();
-        }, true),
+        }, true, true),
         new Dialog.Button("Cancel")
     ]);
-    dialog.showPrompt([
+    dialog.fields([
         new Dialog.Input({ id: "firstname", label: "First Name", value: data.page3.firstname }),
         new Dialog.Input({ id: "lastname", label: "Last Name", value: data.page3.lastname }),
         new Dialog.Input({ id: "title", label: "Job Title", value: data.page3.title }),
@@ -491,8 +500,8 @@ var dialog = new Dialog({
     title: "Dialog Builder... builder",
     message: "Set each option and then view the generated source code, or preview the dialog.",
     icon: "https://user-images.githubusercontent.com/14048382/86503047-34005000-bdfe-11ea-9b72-f7b7ceeeafac.png",
-    width: 600,
-    height: 900,
+    width: 800,
+    height: 950,
     buttons: [
         new Dialog.Button("Add Button", addButton, false, true),
         new Dialog.Button("Add Field", function (results) {
@@ -500,29 +509,32 @@ var dialog = new Dialog({
         }, false, true),
         new Dialog.Button("View Source", viewSource, true, true),
         new Dialog.Button("Preview", preview, true, true)
+    ],
+    fields: [
+        new Dialog.Group({
+            id: "options", label: "Dialog Options", columns: "250px 2", fields: [
+                new Dialog.Input({ id: "title", label: "Title" }),
+                new Dialog.Input({ id: "message", label: "Message" }),
+                new Dialog.Input({ id: "width", label: "Width" }),
+                new Dialog.Input({ id: "height", label: "Height" }),
+                new Dialog.Input({ id: "icon", label: "Icon" }),
+                new Dialog.MultiLine({ id: "content", label: "Content" }, { style: "height: 79px" }),
+                new Dialog.Input({ id: "columns", label: "Columns" }),
+                new Dialog.Input({ id: "id", label: "ID" }),
+                new Dialog.Input({ id: "padding", label: "Padding" }),
+                new Dialog.Input({ id: "color", label: "Color" }),
+                new Dialog.Input({ id: "preventClose", label: "Prevent Close (Hide × button)", type: "checkbox" }),
+                new Dialog.Input({ id: "preventResize", label: "Prevent Resize (Hide ⛶ button)", type: "checkbox" }),
+                new Dialog.Input({ id: "allowDismiss", label: "Allow Dismiss (Outside of dialog)", type: "checkbox" }),
+                new Dialog.Input({ id: "fullscreen", label: "Fullscreen (By default)", type: "checkbox" })
+            ]
+        }),
+        new Dialog.MultiLine({ id: "buttons", label: "Buttons", inline: false },
+            { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Button(label, callback, setFocus, preventClose)\\n]" }),
+        new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false },
+            { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" })
     ]
-}).showPrompt([
-    new Dialog.Group({
-        id: "options", label: "Dialog Options", fields: [
-            new Dialog.Input({ id: "title", label: "Title" }),
-            new Dialog.Input({ id: "message", label: "Message" }),
-            new Dialog.MultiLine({ id: "content", label: "Content" }, { style: "height: 35px" }),
-            new Dialog.Input({ id: "icon", label: "Icon" }),
-            new Dialog.Input({ id: "width", label: "Width" }),
-            new Dialog.Input({ id: "height", label: "Height" }),
-            new Dialog.Input({ id: "preventCancel", label: "Prevent Cancel", type: "checkbox" }),
-            new Dialog.Input({ id: "allowDismiss", label: "Allow Dismiss", type: "checkbox" }),
-            new Dialog.Input({ id: "padding", label: "Padding" }),
-            new Dialog.Input({ id: "fullscreen", label: "Fullscreen", type: "checkbox" }),
-            new Dialog.Input({ id: "color", label: "Color" }),
-            new Dialog.Input({ id: "id", label: "ID" })
-        ]
-    }, { style: "height: 300px" }),
-    new Dialog.MultiLine({ id: "buttons", label: "Buttons", inline: false },
-        { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Button(label, callback, setFocus, preventClose)\\n]" }),
-    new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false },
-        { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" })
-]);
+}).show();
 
 function viewSource(results) {
     var options = results.getValue("options").filter(a => a.value !== null && a.value !== false).getData();
@@ -532,17 +544,23 @@ function viewSource(results) {
     var buttonsTemp = eval(buttonsString);
     var fieldsTemp = eval(fieldsString);
     options.buttons = buttonsTemp || undefined;
+    options.fields = fieldsTemp || undefined;
 
     var buttonsPlaceholder;
     if (options.buttons) {
         buttonsPlaceholder = jsonStringify(options.buttons, true).replace(/\\n/g, "\\n    ");
     }
 
+    var fieldsPlaceholder;
+    if (options.fields) {
+        fieldsPlaceholder = jsonStringify(options.fields, true).replace(/\\n/g, "\\n    ");
+    }
+
     var optionsJson = jsonStringify(options, true);
     if (buttonsPlaceholder) { optionsJson = optionsJson.replace(buttonsPlaceholder, buttonsString.replace(/\\n/g, "\\n    ")) }
+    if (fieldsPlaceholder) { optionsJson = optionsJson.replace(fieldsPlaceholder, fieldsString.replace(/\\n/g, "\\n    ")) }
 
-    var functionName = fieldsString ? ("showPrompt(" + fieldsString + ")") : "show()";
-    var sourceCode = "new Dialog(" + (optionsJson != "{}" ? optionsJson : "") + ")." + functionName + ";";
+    var sourceCode = "new Dialog(" + (optionsJson != "{}" ? optionsJson : "") + ").show();";
 
     new Dialog({
         id: "viewSource",
@@ -560,15 +578,9 @@ function viewSource(results) {
 function preview(results) {
     var options = results.getValue("options").filter(a => a.value !== null && a.value !== false).getData();
     options.buttons = eval(results.getValue("buttons"));
-    var fields = eval(results.getValue("fields"));
+    options.fields = eval(results.getValue("fields"));
 
-    var previewDialog = new Dialog(options);
-    if (fields) {
-        previewDialog.showPrompt(fields);
-    }
-    else {
-        previewDialog.show();
-    }
+    new Dialog(options).show();
 }
 
 
@@ -585,13 +597,14 @@ function addButton(results) {
                 addButtonCallback(buttonResults, buttons, buttonDialog);
             }, true, true),
             new Dialog.Button("Cancel")
+        ],
+        fields: [
+            new Dialog.Input({ label: "Label", value: "OK" }),
+            new Dialog.MultiLine({ label: "Callback", inline: false, value: "function (results) {\\n    \\n}" }),
+            new Dialog.Input({ label: "Set Focus", value: true, type: "checkbox" }),
+            new Dialog.Input({ label: "Prevent Close", value: false, type: "checkbox" })
         ]
-    }).showPrompt([
-        new Dialog.Input({ label: "Label", value: "OK" }),
-        new Dialog.MultiLine({ label: "Callback", inline: false, value: "function (results) {\\n    \\n}" }),
-        new Dialog.Input({ label: "Set Focus", value: true, type: "checkbox" }),
-        new Dialog.Input({ label: "Prevent Close", value: false, type: "checkbox" })
-    ]);
+    }).show();
 }
 
 function addButtonCallback(results, buttons, buttonDialog) {
@@ -643,20 +656,21 @@ function addField(results, dialogContext, id) {
                 addFieldType(fieldResults, fieldsValue, dialogContext, id);
             }, true),
             new Dialog.Button("Cancel")
+        ],
+        fields: [
+            new Dialog.OptionSet({
+                label: "Type",
+                value: "Input",
+                options: [
+                    { text: "Input", value: "Input" },
+                    { text: "OptionSet", value: "OptionSet" },
+                    { text: "Lookup", value: "Lookup" },
+                    { text: "MultiLine", value: "MultiLine" },
+                    { text: "Group", value: "Group" }
+                ]
+            })
         ]
-    }).showPrompt([
-        new Dialog.OptionSet({
-            label: "Type",
-            value: "Input",
-            options: [
-                { text: "Input", value: "Input" },
-                { text: "OptionSet", value: "OptionSet" },
-                { text: "Lookup", value: "Lookup" },
-                { text: "MultiLine", value: "MultiLine" },
-                { text: "Group", value: "Group" }
-            ]
-        })
-    ]);
+    }).show();
 }
 
 function addFieldType(results, fieldsValue, dialogContext, id) {
@@ -683,6 +697,7 @@ function addFieldType(results, fieldsValue, dialogContext, id) {
         fields.push(new Dialog.MultiLine({ id: "filters", label: "Filters (Array)" }));
     }
     if (fieldType == "Group") {
+        fields.push(new Dialog.Input({ id: "columns", label: "Columns" }));
         fields.push(new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false, value: "[\\n    \\n]" },
             { style: "height: 100px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" }));
     }
@@ -707,8 +722,9 @@ function addFieldType(results, fieldsValue, dialogContext, id) {
         id: id + "-addField",
         title: "Add " + fieldType,
         height: fieldType == "Lookup" ? 640 : 540,
-        buttons: buttons
-    }).showPrompt(fields);
+        buttons: buttons,
+        fields: fields,
+    }).show();
 }
 
 function addFieldTypeCallback(results, fieldType, fieldsValue, addFieldDialog, dialogContext) {
@@ -756,8 +772,8 @@ function mapFieldsText(fields, indent) {
     var fieldsText = fields.map(a => {
         var fieldType = a.fieldType;
         a.fieldType = undefined;
-        if (typeof a.value == "undefined") { a.value = a.defaultValue; }
-        if (a.value === "") { a.value = undefined; }
+        if (typeof a.value === "undefined") { a.value = a.defaultValue; }
+        if (a.value === "" || a.value === null) { a.value = undefined; }
         a.defaultValue = undefined;
         a.type = a.type || undefined;
 
@@ -801,16 +817,16 @@ function jsonStringify(obj, pretty) {
 }`
     });
 
-    examples.forEach((example) => {
+    examples.forEach(async (example) => {
         let $element = $("<div>", { class: "example-wrapper" });
         $element.html(`<div class="heading"><a id="${example.id}"></a>${example.blurb}</div><div class="example"><div><textarea spellcheck="false" id="code-${example.id}">${example.code}</textarea><div><button id="button-${example.id}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
         $("#exampleWrapper").append($element);
 
         $("#toc").append(`<li><a href="#${example.id}">${example.blurb}</a></li>`)
 
-        $(`#button-${example.id}`).click(() => {
-            try {
-                eval($(`#code-${example.id}`).val());
+        $(`#button-${example.id}`).click(async () => {
+            try {                
+                eval("(async()=>{" + $(`#code-${example.id}`).val() + "\n})();");                
             }
             catch (e) {
                 console.error(e);
@@ -825,77 +841,3 @@ function jsonStringify(obj, pretty) {
     // Set the version number
     $("#version").html(`(v${Dialog._version})`);
 });
-
-
-
-
-
-var callback = function (values) {
-    var fields = [];
-    for (var i = 0; i < values.length; i++) {
-        var fields2 = [];
-        if (i > 0) { fields2.push(new Dialog.Input({ type: "button", value: "🠉", id: `${i}up` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" })); }
-        fields2.push(new Dialog.Input({ value: values[i].name, id: i }));
-        if (i < values.length - 1) { fields2.push(new Dialog.Input({ type: "button", value: "🠋", id: `${i}down` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" })); }
-        fields.push(new Dialog.Group({
-            id: i + "g",
-            fields: fields2
-        }));
-    }
-    new Dialog({
-        fields: fields
-    }).show();
-}
-var dialog = new Dialog({
-    fields: [
-        new Dialog.Lookup({ allowMultiSelect: true, entityTypes: ["account"] })
-    ],
-    buttons: [new Dialog.Button("Next", function (results) {
-        var values = results[0].value;
-        callback(values);
-    })]
-}).show();
-
-
-
-
-
-
-var callback = function (values) {
-    var options = [];
-    for (var i = 0; i < values.length; i++) {
-        options.push({ text: values[i].name, value: values[i].name });
-    }
-
-    var fields = [];
-    fields.push(new Dialog.Group({
-        fields: [
-            new Dialog.OptionSet({ options: options, label: "Rearrange" }),
-            new Dialog.Input({ type: "button", label: "Move up", value: "🠉", id: `up` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" }),
-            new Dialog.Input({ type: "button", label: "Move down", value: "🠋", id: `down` }, { style: "color:#fff;background-color:rgb(59, 121, 183);width:50px" })
-        ]
-    }));
-
-    var group = [];
-    for (var i = 0; i < values.length; i++) {
-        group.push(new Dialog.Input({ value: values[i].name, id: i }));
-    }
-
-    fields.push(new Dialog.Group({
-        id: i + "g",
-        fields: group
-    }));
-
-    new Dialog({
-        fields: fields
-    }).show();
-}
-var dialog = new Dialog({
-    fields: [
-        new Dialog.Lookup({ allowMultiSelect: true, entityTypes: ["account"] })
-    ],
-    buttons: [new Dialog.Button("Next", function (results) {
-        var values = results[0].value;
-        callback(values);
-    })]
-}).show();
