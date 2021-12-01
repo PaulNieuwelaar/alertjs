@@ -259,15 +259,16 @@ function process(results, i, loading) {
         blurb: "Showing filtered lookup/search results as a list of options",
         id: "filteredsearch",
         imageUrl: "https://user-images.githubusercontent.com/14048382/86499824-4a4be300-bde1-11ea-8f1d-d1bdb81053e5.png",
-        code: `function searchAccounts(searchTerm) {
+        code: `function searchAccounts(dialog, searchTerm) {
     var loading = new Dialog({ id: "loading" }).showLoading();
     searchTerm = (searchTerm || "").toLowerCase();
+
     setTimeout(function () {
-        var accounts = ["ABC Limited", "Contoso", "Dialog Builder", 
+        var accounts = ["ABC Limited", "Contoso", "Dialog Builder",
             "Fabrikam", "Magnetism", "Microsoft"];
         accounts = accounts.filter(a => a.toLowerCase().indexOf(searchTerm) != -1);
         accounts = accounts.map(function (a) { return { name: a, accountid: a } });
-        showSearchPrompt(searchTerm, accounts);
+        showSearchPrompt(dialog, searchTerm, accounts);
         loading.remove();
     }, 1000);
     //Xrm.WebApi.retrieveMultipleRecords("account",
@@ -276,11 +277,12 @@ function process(results, i, loading) {
     //    "&$orderby=name")
     //    .then(function (results) {
     //        var accounts = results.entities;
-    //        showSearchPrompt(searchTerm, accounts);
+    //        showSearchPrompt(dialog, searchTerm, accounts);
     //        loading.remove();
     //    });
 }
-function showSearchPrompt(searchTerm, data) {
+
+function showSearchPrompt(dialog, searchTerm, data) {
     var fields = data.map(function (account) {
         return new Dialog.Input({
             type: "radio",
@@ -292,7 +294,31 @@ function showSearchPrompt(searchTerm, data) {
     if (fields.length == 0) {
         fields.push(new Dialog.Group({ label: "No results" }));
     }
-    var dialog = new Dialog({
+
+    setDialogFields(dialog, searchTerm, fields);
+
+    dialog.$("#searchField input").on("keydown", function (e) {
+        e = e || window.event;
+        if (e.which == 13) { // Enter
+            e.preventDefault();
+            searchAccounts(dialog, dialog.getPromptResponses().getValue("searchField"));
+        }
+    });
+    dialog.$("#searchButton input").on("click", function (e) {
+        searchAccounts(dialog, dialog.getPromptResponses().getValue("searchField"));
+    });
+}
+
+function setDialogFields(diolog, searchTerm, fields) {
+    dialog.fields([
+            new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
+            new Dialog.Input({ id: "searchButton", type: "button", value: "Search"},
+                { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
+            new Dialog.Group({ id: "account", fields: fields }, { style: "height: 190px;" })
+        ]);
+}
+
+var dialog = new Dialog({
         title: "Select an Account",
         message: "Select or search for an account.",
         icon: "SEARCH",
@@ -308,26 +334,11 @@ function showSearchPrompt(searchTerm, data) {
                 dialog.hide();
             }, true, true),
             new Dialog.Button("Cancel")
-        ],
-        fields: [
-            new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
-            new Dialog.Input({ id: "searchButton", type: "button", value: "Search"}, 
-                { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
-            new Dialog.Group({ id: "account", fields: fields }, { style: "height: 190px;" })
         ]
     }).show();
-    dialog.$("#searchField input").on("keydown", function (e) {
-        e = e || window.event;
-        if (e.which == 13) { // Enter
-            e.preventDefault();
-            searchAccounts(dialog.getPromptResponses().getValue("searchField"));
-        }
-    });
-    dialog.$("#searchButton input").on("click", function (e) {
-        searchAccounts(dialog.getPromptResponses().getValue("searchField"));
-    });
-}
-searchAccounts();`
+
+setDialogFields(dialog);
+searchAccounts(dialog);`
     });
 
     // Time tracker with required fields validation
@@ -486,6 +497,50 @@ function page3() {
         new Dialog.Input({ id: "emailaddress1", label: "Email Address", value: data.page3.emailaddress1 }),
         new Dialog.Input({ id: "telephone1", label: "Phone Number", value: data.page3.telephone1 })
     ]);
+}`
+    });
+
+    // Customize and build your own dialog right from within Dialog Builder
+    examples.push({
+        blurb: "Using showAsync and awaiting a response",
+        id: "async",
+        //imageUrl: "https://user-images.githubusercontent.com/14048382/86889882-95068b80-c150-11ea-94f2-08d2d432ae41.png",
+        code: `var dialog = new Dialog({
+    id: "async",
+    title: "Enter a value to return",
+    message: "Code execution will resume once the dialog closes.",
+    buttons: [
+        new Dialog.Button("OK", function (results) {
+            // Validation only
+            if (results[0].value == null) {
+                new Dialog({ title: "Input required", width: 300, height: 200 }).show();
+
+                // Prevent the await response from firing
+                return false;
+            }
+
+            // Validation passed
+            dialog.close();
+
+            // Fire the await response
+            return true;
+        }, true, true),
+        new Dialog.Button("Cancel")
+    ],
+    fields: [
+        new Dialog.Input({ id: "input", label: "Input" }),
+    ]
+});
+
+var response = await dialog.showAsync();
+
+if (response.button.label === "OK") {
+    var input = response.data.input; // input is the field ID
+    new Dialog({ title: input }).show();
+}
+else {
+    // Dialog cancelled or closed
+    new Dialog({ title: "Dialog cancelled" }).show();
 }`
     });
 
