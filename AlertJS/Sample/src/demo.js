@@ -504,7 +504,7 @@ function page3() {
     examples.push({
         blurb: "Using showAsync and awaiting a response",
         id: "async",
-        //imageUrl: "https://user-images.githubusercontent.com/14048382/86889882-95068b80-c150-11ea-94f2-08d2d432ae41.png",
+        imageUrl: "https://user-images.githubusercontent.com/14048382/144333620-9592e049-bb2d-4bd6-8587-6d3e8c30a81c.png",
         code: `var dialog = new Dialog({
     id: "async",
     title: "Enter a value to return",
