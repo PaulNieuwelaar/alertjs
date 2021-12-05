@@ -656,8 +656,8 @@ function addButton(results) {
         fields: [
             new Dialog.Input({ label: "Label", value: "OK" }),
             new Dialog.MultiLine({ label: "Callback", inline: false, value: "function (results) {\\n    \\n}" }),
-            new Dialog.Input({ label: "Set Focus", value: true, type: "checkbox" }),
-            new Dialog.Input({ label: "Prevent Close", value: false, type: "checkbox" })
+            new Dialog.Input({ label: "Set Focus (primary button)", value: true, type: "checkbox" }),
+            new Dialog.Input({ label: "Prevent Close (keep dialog open)", value: false, type: "checkbox" })
         ]
     }).show();
 }
@@ -734,14 +734,14 @@ function addFieldType(results, fieldsValue, dialogContext, id) {
     var fields = [
         new Dialog.Input({ id: "id", label: "ID" }),
         new Dialog.Input({ id: "label", label: "Label" }),
-        new Dialog.Input({ id: "inline", label: "Inline", type: "checkbox", value: fieldType != "Group" }),
+        new Dialog.Input({ id: "inline", label: "Inline (label beside field)", type: "checkbox", value: fieldType != "Group" }),
     ];
 
     if (fieldType != "Group") {
-        fields.push(new Dialog.Input({ id: "value", label: "Value" }));
+        fields.push(new Dialog.Input({ id: "value", label: "Value (default)" }));
     }
     if (fieldType == "Input") {
-        fields.push(new Dialog.Input({ id: "type", label: "Type" }));
+        fields.push(new Dialog.Input({ id: "type", label: "Type (text, number, date, ...)" }));
     }
     if (fieldType == "OptionSet") {
         fields.push(new Dialog.MultiLine({ id: "options", label: "Options (Array)", value: "[\\n    { text: \\"\\", value: \\"\\" },\\n]" }));
