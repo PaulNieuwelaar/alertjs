@@ -578,10 +578,10 @@ var dialog = new Dialog({
                 new Dialog.Input({ id: "id", label: "ID" }),
                 new Dialog.Input({ id: "padding", label: "Padding" }),
                 new Dialog.Input({ id: "color", label: "Color" }),
-                new Dialog.Input({ id: "preventClose", label: "Prevent Close (Hide × button)", type: "checkbox" }),
-                new Dialog.Input({ id: "preventResize", label: "Prevent Resize (Hide ⛶ button)", type: "checkbox" }),
-                new Dialog.Input({ id: "allowDismiss", label: "Allow Dismiss (Outside of dialog)", type: "checkbox" }),
-                new Dialog.Input({ id: "fullscreen", label: "Fullscreen (By default)", type: "checkbox" })
+                new Dialog.Input({ id: "preventClose", label: "Prevent Close (hide × button)", type: "checkbox" }),
+                new Dialog.Input({ id: "preventResize", label: "Prevent Resize (hide ⛶ button)", type: "checkbox" }),
+                new Dialog.Input({ id: "allowDismiss", label: "Allow Dismiss (outside of dialog)", type: "checkbox" }),
+                new Dialog.Input({ id: "fullscreen", label: "Fullscreen (by default)", type: "checkbox" })
             ]
         }),
         new Dialog.MultiLine({ id: "buttons", label: "Buttons", inline: false },
