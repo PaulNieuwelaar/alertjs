@@ -314,7 +314,7 @@ function setDialogFields(diolog, searchTerm, fields) {
             new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
             new Dialog.Input({ id: "searchButton", type: "button", value: "Search"},
                 { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
-            new Dialog.Group({ id: "account", fields: fields }, { style: "height: 190px;" })
+            new Dialog.Group({ id: "account", fields: fields })
         ]);
 }
 
@@ -322,7 +322,7 @@ var dialog = new Dialog({
         title: "Select an Account",
         message: "Select or search for an account.",
         icon: "SEARCH",
-        height: 500,
+        height: 530,
         buttons: [
             new Dialog.Button("OK", function (data) {
                 var accountId = data.getValue("account").getSelected();
