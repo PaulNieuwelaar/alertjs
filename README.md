@@ -38,7 +38,7 @@ Or check out these [working examples](https://paulnieuwelaar.github.io/alertjs/A
 
 ## Licensing
 
-Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md). Start your trial to download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365) when you're ready to activate your organisation.
+Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md). Start your trial to download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365/?SQF_SOURCE=GithubLicense#buynow) when you're ready to activate your organisation.
 For more information about what's new, check out the latest [release notes](https://github.com/PaulNieuwelaar/alertjs/releases), or check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0).
 
 ---
