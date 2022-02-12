@@ -1,6 +1,4 @@
 $(document).ready(async () => {
-    Dialog.LM.customKey = "github-demo";
-
     var examples = [];
 
     // Simple dialog with callback
