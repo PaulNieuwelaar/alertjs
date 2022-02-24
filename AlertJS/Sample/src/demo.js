@@ -542,6 +542,43 @@ else {
 }`
     });
 
+    // Create a dialog using all the available dialog options
+    examples.push({
+        blurb: "Create a dialog using all the available dialog options",
+        id: "options",
+        imageUrl: "https://user-images.githubusercontent.com/14048382/155616396-09953801-d8a2-4766-9aa9-71a304c9f7f9.png",
+        code: `var options = {
+    title: "The main (large) text to display inside the message",
+    message: "The sub-heading (smaller) text to display directly below the title.",
+    content: "This displays below the title, message, and icon, but above any fields.",
+    fields: [
+        new Dialog.Input({ id: "input", label: "Input field", value: "Default text" }),
+        new Dialog.MultiLine({ id: "multi", label: "MultiLine field", value: "Default text", inline: false }, { style: "height: 200px" }),
+    ],
+    buttons: [
+        new Dialog.Button("OK", function(results) {
+            var data = results.getData();
+            new Dialog({ content: data.input + "<br>" + data.multi }).show();
+        }, true, false),
+        new Dialog.Button("Cancel")
+    ],
+    icon: "INFO",
+    width: 800,
+    height: 500,
+    preventClose: true,
+    allowDismiss: true,
+    padding: 30,
+    fullscreen: false,
+    preventResize: false,
+    columns: 1,
+    color: "#555555",
+    id: "new-dialog",
+    jQuery: window.jQuery
+};
+
+var dialog = new Dialog(options).show();`
+    });
+
     // Customize and build your own dialog right from within Dialog Builder
     examples.push({
         blurb: "Customize and build your own dialog right from within Dialog Builder!",
