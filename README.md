@@ -24,9 +24,8 @@ Dialog Builder gives you the power to extend Dynamics 365 with a seamless user e
 * Capture simple or complex input from users and process their responses
 * Display informative messages to users, including errors and warnings
 * Fully customisable buttons and callback functions
-* Display custom web resources as an inline popup
 * Fully customisable UI allowing you to create unique dialogs to suit your needs
-* Open custom HTML web resources inside a lightbox
+* Open custom HTML web resources as an inline popup
 * Display a loading spinner during async tasks
 
 ![](https://user-images.githubusercontent.com/14048382/86217379-827dd680-bbd3-11ea-9b30-2f3a2262c619.png)
