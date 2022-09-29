@@ -211,27 +211,19 @@ dialog.$("#password input").on("keydown", function (e) {
         blurb: "Progress bar for async tasks",
         id: "progressbar",
         imageUrl: "https://user-images.githubusercontent.com/14048382/86429346-639e5200-bd43-11ea-8c09-65bb693f851c.png",
-        code: `var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
-process(["Some","data","to","process","async","via","webapi","etc"], 0, loading);
+        code: `var data = ["Some", "data", "to", "process", "async", "via", "webapi", "etc"];
+var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
 
-function process(results, i, loading) {
-    if (i < results.length) {
-        loading.message("Record " + (i + 1) + " of " + results.length);
+for (var i = 1; i <= data.length; i++) {
+    loading.message("Record " + i + " of " + data.length);
 
-        // Do something async and then call the next record to process
-        setTimeout(function() {
-            process(results, ++i, loading);
-        }, 1000);
-    }
-    else {
-        loading.remove();
-        new Dialog({
-            icon: "SUCCESS",
-            title: "Process complete!",
-            message: "All records processed successfully."
-        }).show();
-    }
-}`
+    // Do something async (waits 1 second)
+    await new Promise(resolve => setTimeout(resolve, 1000));
+}
+
+loading.remove();
+
+new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
     });
 
     // Displaying a simple IFrame
@@ -915,8 +907,8 @@ function jsonStringify(obj, pretty) {
         $("#toc").append(`<li><a href="#${example.id}">${example.blurb}</a></li>`)
 
         $(`#button-${example.id}`).click(async () => {
-            try {                
-                eval("(async()=>{" + $(`#code-${example.id}`).val() + "\n})();");                
+            try {
+                eval("(async()=>{" + $(`#code-${example.id}`).val() + "\n})();");
             }
             catch (e) {
                 console.error(e);
