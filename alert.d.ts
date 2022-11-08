@@ -1,7 +1,5 @@
 /// <reference types="powerapps-component-framework" />
 /// <reference types="jquery" />
-/// <reference types="jquery" />
-/// <reference types="jquery" />
 /**
  * Class for Dialog Builder
  * https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0
