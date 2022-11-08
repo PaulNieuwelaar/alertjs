@@ -1,13 +1,7 @@
 @font-face {
     font-family: "SegoeUI";
     font-weight: 300;
-    src: url('https://d365prod-sdk.azureedge.net/assets/MASTER-1.0.5.3047/resources/fonts/segoe-ui/west-european/SegoeUI-SemiLight.woff2') format('woff2');
-}
-
-@font-face {
-    font-family: "SegoeUI";
-    font-weight: normal;
-    src: local('Segoe UI');
+    src: url('../fonts/SegoeUI-SemiLight.woff2') format('woff2');
 }
 
 html, body {
