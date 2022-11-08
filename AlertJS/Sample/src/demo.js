@@ -1,4 +1,4 @@
-$(document).ready(async () => {
+async function onLoad() {
     var examples = [];
 
     // Simple dialog with callback
@@ -72,7 +72,7 @@ $(document).ready(async () => {
                 }).show();
             }
             else {
-                dialog.hide();
+                dialog.close();
             }
         }, true, true),
         new Dialog.Button("Cancel")
@@ -87,12 +87,16 @@ $(document).ready(async () => {
         new Dialog.Lookup({ id: "userorteam", label: "User or team", entityTypes: ["systemuser", "team"] })
     ]
 }).show();
-dialog.$("#userorteam input").prop("disabled", true);
-dialog.$("#assignme input").on("click", function () {
-    dialog.$("#userorteam input").prop("disabled", true);
+
+var userOrTeamInput = dialog.getElement("#userorteam input");
+userOrTeamInput.disabled = true;
+
+dialog.getElement("#assignme input").addEventListener("click", function () {
+    userOrTeamInput.disabled = true;
 });
-dialog.$("#assignuser input").on("click", function () {
-    dialog.$("#userorteam input").prop("disabled", false).focus();
+dialog.getElement("#assignuser input").addEventListener("click", function () {
+    userOrTeamInput.disabled = false;
+    userOrTeamInput.focus();
 });` });
 
     // Example using file upload, and using the base64 data to display the image on screen
@@ -197,7 +201,7 @@ var dialog = new Dialog({
         })
     ]
 }).show();
-dialog.$("#password input").on("keydown", function (e) {
+dialog.getElement("#password input").addEventListener("keydown", function (e) {
     e = e || window.event;
     if (e.which == 13) { // Enter
         e.preventDefault();
@@ -287,14 +291,14 @@ function showSearchPrompt(dialog, searchTerm, data) {
 
     setDialogFields(dialog, searchTerm, fields);
 
-    dialog.$("#searchField input").on("keydown", function (e) {
+    dialog.getElement("#searchField input").addEventListener("keydown", function (e) {
         e = e || window.event;
         if (e.which == 13) { // Enter
             e.preventDefault();
             searchAccounts(dialog, dialog.getPromptResponses().getValue("searchField"));
         }
     });
-    dialog.$("#searchButton input").on("click", function (e) {
+    dialog.getElement("#searchButton input").addEventListener("click", function (e) {
         searchAccounts(dialog, dialog.getPromptResponses().getValue("searchField"));
     });
 }
@@ -321,7 +325,7 @@ var dialog = new Dialog({
                     return;
                 }
                 alert(accountId[0]);
-                dialog.hide();
+                dialog.close();
             }, true, true),
             new Dialog.Button("Cancel")
         ]
@@ -384,7 +388,7 @@ function submitTime(results) {
             height: 180
         }).show();
 
-        loading.hide();
+        loading.close();
     }, 2000);
 }`
     });
@@ -699,7 +703,7 @@ function addButtonCallback(results, buttons, buttonDialog) {
     buttons.push(new Dialog.Button(label, callback, setFocus, preventClose));
 
     var buttonsText = mapButtonText(buttons);
-    dialog.$("#buttons textarea").val(buttonsText);
+    dialog.getElement("#buttons textarea").value = buttonsText;
 
     buttonDialog.remove();
 }
@@ -825,7 +829,7 @@ function addFieldTypeCallback(results, fieldType, fieldsValue, addFieldDialog, d
     fieldsValue.push(data);
 
     var fieldsText = mapFieldsText(fieldsValue);
-    dialogContext.$("#fields textarea").val(fieldsText);
+    dialogContext.getElement("#fields textarea").value = fieldsText;
 
     addFieldDialog.remove();
 }
@@ -900,15 +904,19 @@ function jsonStringify(obj, pretty) {
     });
 
     examples.forEach(async (example) => {
-        let $element = $("<div>", { class: "example-wrapper" });
-        $element.html(`<div class="heading"><a id="${example.id}"></a>${example.blurb}</div><div class="example"><div><textarea spellcheck="false" id="code-${example.id}">${example.code}</textarea><div><button id="button-${example.id}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`);
-        $("#exampleWrapper").append($element);
+        let element = document.createElement("div");
+        element.classList.add("example-wrapper");
 
-        $("#toc").append(`<li><a href="#${example.id}">${example.blurb}</a></li>`)
+        element.innerHTML = `<div class="heading"><a id="${example.id}"></a>${example.blurb}</div><div class="example"><div><textarea spellcheck="false" id="code-${example.id}">${example.code}</textarea><div><button id="button-${example.id}" class="preview-button">Preview</button></div></div><div><img src="${example.imageUrl}"></div></div>`;
+        document.getElementById("exampleWrapper").append(element);
 
-        $(`#button-${example.id}`).click(async () => {
+        let tocElement = document.createElement("li");
+        tocElement.innerHTML = `<a href="#${example.id}">${example.blurb}</a>`;
+        document.getElementById("toc").append(tocElement);
+
+        document.getElementById(`button-${example.id}`).addEventListener("click", async () => {
             try {
-                eval("(async()=>{" + $(`#code-${example.id}`).val() + "\n})();");
+                eval("(async()=>{" + document.getElementById(`code-${example.id}`).value + "\n})();");
             }
             catch (e) {
                 console.error(e);
@@ -921,5 +929,5 @@ function jsonStringify(obj, pretty) {
     if (window.location.href.indexOf("#") > -1) { window.location.href = window.location.href; }
 
     // Set the version number
-    $("#version").html(`(v${Dialog._version})`);
-});
+    document.getElementById("version").innerText = `(v${Dialog._version})`;
+}
