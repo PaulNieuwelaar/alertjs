@@ -1,31 +1,22 @@
-/// <reference types="powerapps-component-framework" />
-/// <reference types="jquery" />
 /**
  * Class for Dialog Builder
- * https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0
+ * https://www.magnetismsolutions.com/documentation/dialog-builder
  */
 declare class Dialog {
+    #private;
     private static _version;
-    private static _defaultColor;
-    private static _crmColor;
-    private static _context;
-    private static _crmContext;
-    private _element;
-    private _getDialogId;
-    private _getPopupName;
-    private _resolvePromise?;
     /**
      * Within a Dynamics 365 PCF control, set this to context.factory.getPopupService() to use the supported popup service instead of adding custom HTML to the DOM.
      */
-    static popupService: ComponentFramework.FactoryApi.Popup.PopupService;
+    static popupService: any;
     /**
      * Within a Dynamics 365 PCF control, set this to context.utils to use the supported lookupObjects instead of accessing it from the parent page.
      */
-    static utility: ComponentFramework.Utility;
+    static utility: any;
     /**
      * Within a Dynamics 365 PCF control, set this to context.webAPI to use the supported Web API instead of accessing it from the parent page.
      */
-    static webAPI: ComponentFramework.WebApi;
+    static webAPI: any;
     /**
      * Create a new instance of a dialog, passing in all the options required for the dialog. This can then be used and reused with the supported functions, e.g. show(), hide(), etc.
      *
@@ -35,61 +26,53 @@ declare class Dialog {
     /**
      * DEPRECATED: Sets the global jQuery reference to be used by all dialogs. If not set, the window/parent jQuery reference will be used.
      */
-    static jQuery: JQueryStatic;
+    static jQuery: any;
     /**
      * DEPRECATED: Sets the global jQuery reference to be used by all dialogs. If not set, the window/parent jQuery reference will be used.
      */
-    jQuery(jQuery: JQueryStatic): Dialog;
+    jQuery(jQuery: any): Dialog;
     /**
      * DEPRECATED: This function acts as a wrapper for jQuery, which can be used to access elements within a Dialog.
      *
      * @param selector The jQuery selector to use, e.g. ".dialog-js-dialog-wrapper div".
      * @param context The context in which to apply the selector. Use .get() to scope to a particular dialog, otherwise scopes to all dialogs by default.
      */
-    static $(selector: string, context?: JQuery | HTMLElement | Document): JQuery;
+    static $(selector: string, context?: HTMLElement | Document): any;
     /**
      * DEPRECATED: This function acts as a wrapper for jQuery, which can be used to access elements within a Dialog.
      *
      * @param selector The jQuery selector to use, e.g. ".dialog-js-title".
      * @param context The context in which to apply the selector. Defaults to the scope of the current dialog.
      */
-    $(selector: string, context?: JQuery | HTMLElement | Document): JQuery;
-    private _title?;
+    $(selector: string, context?: HTMLElement | Document): any;
     /**
      * The main (large) text to display inside the message. This should not exceed a single line on the dialog.
      */
     title(title?: string): Dialog;
-    private _message?;
     /**
      * The sub-heading (smaller) text to display below the title. This should not exceed a single line on the dialog.
      */
     message(message?: string): Dialog;
-    private _content?;
     /**
      * The content to display directly below the message. This value accepts an HTML string, or an HTML Element, so if you want to display more complex messages, you can pass in custom HTML. You can also display plugin traces or error messages here, or even create more complex HTML objects like iframes etc spanning multiple lines, displaying a scrollbar as needed. Note: use the htmlEncode function to display things like XML.
      */
     content(content?: string | Element): Dialog;
-    private _buttons?;
     /**
      * The buttons to display inside the dialog. If this is set to null, a default "OK" button is displayed, which simply closes the message. If this is set to an empty array, no buttons will be displayed.
      */
     buttons(buttons?: Dialog.Button[]): Dialog;
-    private _icon?;
     /**
      * The icon or custom image URL to display beside the message. ERROR | WARNING | INFO | SUCCESS | QUESTION | LOADING | SEARCH
      */
     icon(icon?: string): Dialog;
-    private _width?;
     /**
      * The width of the dialog. If not specified, this will default to 500px.
      */
     width(width?: number | string): Dialog;
-    private _height?;
     /**
      * The height of the dialog. If not specified, this will default to 250px. If the message content exceeds the height of the dialog, a scroll bar will be added allowing the user to read the whole message.
      */
     height(height?: number | string): Dialog;
-    private _baseUrl?;
     /**
      * DEPRECATED: The CRM server base URL. Not required on forms or views.
      */
@@ -98,42 +81,34 @@ declare class Dialog {
      * DEPRECATED: Use preventClose instead.
      */
     preventCancel(preventCancel?: boolean): Dialog;
-    private _preventClose?;
     /**
      * Specify whether the 'X' to close the dialog should be hidden. This prevents the user from closing the dialog without using one of the specified buttons.
      */
     preventClose(preventClose?: boolean): Dialog;
-    private _preventResize?;
     /**
      * Specify whether the 'Fullscreen' button on the dialog should be hidden. This prevents the user from expanding or resizing the dialog.
      */
     preventResize(preventResize?: boolean): Dialog;
-    private _allowDismiss?;
     /**
      * Specify whether to allow the user to dismiss/cancel the dialog by clicking outside of the dialog. If this is set to true, clicking anywhere outside of the dialog will perform a 'hide' on the topmost dialog, without firing any button callbacks. This performs similar to clicking the 'X' in the top right corner.
      */
     allowDismiss(allowDismiss?: boolean): Dialog;
-    private _padding?;
     /**
      * Specify custom padding around the popup. If not specified, or set to null, this will default to 20px for standard dialogs and prompts, and 10px for iframes and web resources.
      */
     padding(padding?: number | string): Dialog;
-    private _fullscreen?;
     /**
      * Setting this to true will cause the dialog to expand to 100% of the available screen size. This overrides the width and height properties.
      */
     fullscreen(fullscreen?: boolean): Dialog;
-    private _color?;
     /**
      * Set the primary color of the title and buttons. If not specified, this will default to the CRM theme's main color.
      */
     color(hex?: string): Dialog;
-    private _id;
     /**
      * Set a custom ID to allow you to stack multiple dialogs without the previous being overwritten.
      */
     id(id: string | number): Dialog;
-    private _fields?;
     /**
      * Set the fields to display in the dialog, used with the showPrompt function.
      */
@@ -146,39 +121,32 @@ declare class Dialog {
      * Removes a specific field from the dialog by its ID (string) or index (number).
      */
     removeField(id: string | number): Dialog;
-    private _columns?;
     /**
      * Set the number of columns to display dialog fields in. Defaults to 1.
      */
     columns(columns?: number | string): Dialog;
-    private _canvasAppName?;
     /**
      * Set the canvas app unique name from the current environment to display in an iframe.
      */
     canvasAppName(canvasAppName?: string): Dialog;
-    private _webResourceName?;
     /**
      * Set the web resource name from the current environment to display inside an iframe.
      */
     webResourceName(webResourceName?: string): Dialog;
-    private _iframeUrl?;
     /**
      * Set the iframe URL to display inside the dialog.
      */
     iframeUrl(iframeUrl?: string): Dialog;
-    private _iframeContent?;
     /**
      * Set the iframe content to display custom HTML inside an iframe.
      */
     iframeContent(iframeContent?: string): Dialog;
-    private _iframeQueryStrings?;
     /**
      * Set the query string parameters to append to the iframe URL. Each Object key is a new query string parameter, and the Object value is the query string value.
      */
     iframeQueryStrings(iframeQueryStrings?: {
         [key: string]: string;
     }): Dialog;
-    private _internalId?;
     /**
      * Use this method to show a light-box message. This can be called from a form, view, or anywhere that supports JavaScript.
      */
@@ -245,7 +213,7 @@ declare class Dialog {
      */
     getIFrameWindow(): Window | null;
     /**
-     * This method gives you context of the CRM form (or client API wrapper if turbo forms are enabled). This allows you to access CRM functions, and your own custom JavaScript libraries from inside iFrame dialogs. From inside a web resource, for example, you can call new parent.Dialog().getCrmWindow().doSomething();, where "doSomething()" represents a custom function loaded onto the parent form.
+     * DEPRECATED: This method gives you context of the CRM form (or client API wrapper if turbo forms are enabled). This allows you to access CRM functions, and your own custom JavaScript libraries from inside iFrame dialogs. From inside a web resource, for example, you can call new parent.Dialog().getCrmWindow().doSomething();, where "doSomething()" represents a custom function loaded onto the parent form.
      */
     getCrmWindow(): Window;
     /**
@@ -263,34 +231,13 @@ declare class Dialog {
     /**
      * DEPRECATED: This method gets the jquery object for this dialog. Used for accessing specific inner elements when multiple dialogs are displayed. This must be called after showing the dialog.
      */
-    get(): JQuery;
+    get(): any;
     /**
      * Use this method to encode a custom message which contains HTML characters, to allow it to be displayed inside the dialog message. For example, if displaying formatted XML with indented spacing and XML tags, calling this method will format the text into an HTML friendly message that displays nicely inside the dialog. The returned value should then be passed to the 'message' of the Dialog.show method. NOTE: If you want to actually use HTML tags, like <b>bold</b>, you should not use this method.
      *
      * @param text The text to encode, e.g. a trace log.
      */
     htmlEncode(text: string): string;
-    private _createDialog;
-    private static _createElement;
-    private _attachEventHandlers;
-    private _buttonClicked;
-    private _getChildFieldResponses;
-    private _showLookupDialog;
-    private _fileUploadedOnChange;
-    private _createField;
-    private _getLookupName;
-    private _utcToLocalTime;
-    private _addExtraAttributes;
-    private _setupDragElement;
-    private _showHeadingOrContent;
-    private _createIframe;
-    private _brightenColor;
-    private _brightenRgbComponent;
-    private _setDialogColors;
-    private _getBaseUrl;
-    static _setGlobals(): void;
-    private static _getColorFromCrm;
-    private static _getDialogContext;
     private static LM;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
@@ -343,7 +290,7 @@ declare class Dialog {
     /**
      * DEPRECATED: Use new Dialog(options) instead.
      */
-    static get(id?: string | number | null): JQuery;
+    static get(id?: string | number | null): any;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
      */
@@ -368,22 +315,6 @@ declare namespace Dialog {
          * @param preventClose Specify whether this button should not close the dialog after executing the callback function. By default, if this value is not specified, the dialog will be automatically closed after clicking the button. Set this to true if you want to keep the dialog open, for example if your button does something like the 'download log' for CRM errors, where you want to keep the error open, or if you want to run some validation before closing the dialog.
          */
         constructor(label?: string, callback?: ((data: Dialog.PromptResponses | Window) => void) | null, setFocus?: boolean | null, preventClose?: boolean | null);
-    }
-    /**
-     * Class for _Field constructor
-     */
-    class _Field {
-        fieldType: "Input" | "MultiLine" | "OptionSet" | "Lookup" | "Custom" | "Group";
-        id?: string;
-        label?: string;
-        inline?: boolean;
-        value?: any;
-        extraAttributes?: {
-            [key: string]: string;
-        };
-        constructor(fieldType: "Input" | "MultiLine" | "OptionSet" | "Lookup" | "Custom" | "Group", label?: string, inline?: boolean, value?: any, id?: string, extraAttributes?: {
-            [key: string]: string;
-        });
     }
     /**
      * Class for Input constructor
@@ -602,8 +533,7 @@ interface DialogOptions {
     /**
      * DEPRECATED: Sets the global jQuery reference to be used by all dialogs. If not set, the window/parent jQuery reference will be used.
      */
-    jQuery?: JQueryStatic;
-    _internalId?: string;
+    jQuery?: any;
 }
 /**
  * Interface for FieldOptions
@@ -832,9 +762,13 @@ interface CRMLookupOptions {
     viewIds?: string[];
 }
 /**
- * Interface for PopupOptions (supported properties missing from ComponentFramework)
+ * Interface for PopupOptions (includes supported properties missing from ComponentFramework.FactoryApi.Popup.Popup)
  */
-interface PopupOptions extends ComponentFramework.FactoryApi.Popup.Popup {
+interface PopupOptions {
+    name: string;
+    closeOnOutsideClick?: boolean | undefined;
+    type: 1 | 2;
+    content: HTMLElement;
     popupStyle: {};
 }
 /**
