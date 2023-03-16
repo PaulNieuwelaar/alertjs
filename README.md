@@ -31,13 +31,13 @@ Dialog Builder gives you the power to extend Dynamics 365 with a seamless user e
 ![](https://user-images.githubusercontent.com/14048382/86217379-827dd680-bbd3-11ea-9b30-2f3a2262c619.png)
 
 ## How it Works
-Check out the [Documentation](https://github.com/PaulNieuwelaar/alertjs/wiki/Documentation-v3.0) page for installation and usage details.
+Check out the [Documentation](https://www.magnetismsolutions.com/documentation/dialog-builder) page for installation and usage details.
 
 Or check out these [working examples](https://paulnieuwelaar.github.io/alertjs/AlertJS/Sample/html/demo.html) of some common use cases.
 
 ## Licensing
 
-Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://github.com/PaulNieuwelaar/alertjs/blob/master/license.md). Start your trial to download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365/?SQF_SOURCE=GithubLicense#buynow) when you're ready to activate your organisation.
+Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://www.magnetismsolutions.com/terms-of-use). Start your trial to download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365/?SQF_SOURCE=GithubLicense#buynow) when you're ready to activate your organisation.
 For more information about what's new, check out the latest [release notes](https://www.magnetismsolutions.com/releases/dialog-builder), or check out the [Documentation](https://www.magnetismsolutions.com/documentation/dialog-builder).
 
 ---
