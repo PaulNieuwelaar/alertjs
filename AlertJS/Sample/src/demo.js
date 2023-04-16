@@ -225,7 +225,7 @@ for (var i = 1; i <= data.length; i++) {
     await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
-loading.remove();
+loading.close();
 
 new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
     });
@@ -263,7 +263,7 @@ new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
         accounts = accounts.filter(a => a.toLowerCase().indexOf(searchTerm) != -1);
         accounts = accounts.map(function (a) { return { name: a, accountid: a } });
         showSearchPrompt(dialog, searchTerm, accounts);
-        loading.remove();
+        loading.close();
     }, 1000);
     //Xrm.WebApi.retrieveMultipleRecords("account",
     //    "?$select=name,accountid" +
@@ -272,7 +272,7 @@ new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
     //    .then(function (results) {
     //        var accounts = results.entities;
     //        showSearchPrompt(dialog, searchTerm, accounts);
-    //        loading.remove();
+    //        loading.close();
     //    });
 }
 
@@ -704,7 +704,7 @@ function addButtonCallback(results, buttons, buttonDialog) {
     var buttonsText = mapButtonText(buttons);
     dialog.getElement("#buttons textarea").value = buttonsText;
 
-    buttonDialog.remove();
+    buttonDialog.close();
 }
 
 function mapButtonText(buttons) {
@@ -830,7 +830,7 @@ function addFieldTypeCallback(results, fieldType, fieldsValue, addFieldDialog, d
     var fieldsText = mapFieldsText(fieldsValue);
     dialogContext.getElement("#fields textarea").value = fieldsText;
 
-    addFieldDialog.remove();
+    addFieldDialog.close();
 }
 
 function mapValue(value, fieldType, inputType) {
