@@ -544,6 +544,7 @@ else {
         id: "options",
         imageUrl: "https://user-images.githubusercontent.com/14048382/155616396-09953801-d8a2-4766-9aa9-71a304c9f7f9.png",
         code: `var options = {
+    id: "new-dialog",
     title: "The main (large) text to display inside the message",
     message: "The sub-heading (smaller) text to display directly below the title.",
     content: "This displays below the title, message, and icon, but above any fields.",
@@ -567,9 +568,7 @@ else {
     fullscreen: false,
     preventResize: false,
     columns: 1,
-    color: "#555555",
-    id: "new-dialog",
-    jQuery: window.jQuery
+    color: "#555555"
 };
 
 var dialog = new Dialog(options).show();`
