@@ -370,6 +370,7 @@ declare namespace Dialog {
         allowMultiSelect?: boolean;
         callback?: (results?: LookupObject[]) => void;
         filters?: LookupFilter[];
+        viewIds?: string[];
         /**
          * Creates a lookup field in CRM version 9.0 and above.
          *
@@ -625,6 +626,10 @@ interface LookupOptions extends FieldOptions {
      */
     filters?: LookupFilter[];
     /**
+     * The view ID's to include in the lookup window. The first view is set as the default view. If not specified, all views are displayed.
+     */
+    viewIds?: string[];
+    /**
      * DEPRECATED: Use filters instead. Custom filters to apply to the lookup results. Each custom filter will be applied to each of the specified entityTypes. These should not be URL encoded.
      * @see {@link https://docs.microsoft.com/en-us/dynamics365/customer-engagement/developer/clientapi/reference/controls/addcustomfilter#parameters}
      */
@@ -758,8 +763,8 @@ interface CRMLookupOptions {
     defaultEntityType: string;
     entityTypes: string[];
     allowMultiSelect: boolean;
-    defaultViewId?: string;
     viewIds?: string[];
+    defaultViewId?: string;
 }
 /**
  * Interface for PopupOptions (includes supported properties missing from ComponentFramework.FactoryApi.Popup.Popup)
@@ -781,6 +786,7 @@ interface DialogInputElement extends HTMLInputElement {
     filters?: LookupFilter[];
     customFilters?: string[];
     entityTypes?: string[];
+    viewIds?: string[];
     lookupValue?: LookupObject[] | null | string;
     fileData?: string[] | null;
 }
