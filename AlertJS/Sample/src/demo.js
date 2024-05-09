@@ -622,7 +622,12 @@ var dialog = new Dialog({
 }).show();
 
 function viewSource(results) {
-    var options = results.getValue("options").filter(a => a.value !== null && a.value !== false).getData();
+    var options = results.getValue("options").getData();
+
+    for (var prop in options) {
+        if (options[prop] === null || options[prop] === false) { delete options[prop]; }
+    }
+
     var buttonsString = results.getValue("buttons");
     var fieldsString = results.getValue("fields");
 
@@ -661,7 +666,12 @@ function viewSource(results) {
 }
 
 function preview(results) {
-    var options = results.getValue("options").filter(a => a.value !== null && a.value !== false).getData();
+    var options = results.getValue("options").getData();
+
+    for (var prop in options) {
+        if (options[prop] === null || options[prop] === false) { delete options[prop]; }
+    }
+
     options.buttons = eval(results.getValue("buttons"));
     options.fields = eval(results.getValue("fields"));
 
@@ -813,7 +823,12 @@ function addFieldType(results, fieldsValue, dialogContext, id) {
 }
 
 function addFieldTypeCallback(results, fieldType, fieldsValue, addFieldDialog, dialogContext) {
-    var data = results.filter(a => a.value !== null).getData();
+    var data = results.getData();
+
+    for (var prop in data) {
+        if (data[prop] === null) { delete data[prop]; }
+    }
+
     data.fieldType = fieldType;
     if (data.inline === true && fieldType != "Group") { data.inline = undefined; }
     if (data.inline === false && fieldType == "Group") { data.inline = undefined; }
