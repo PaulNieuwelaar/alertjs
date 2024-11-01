@@ -94,7 +94,7 @@ declare class Dialog {
      */
     allowDismiss(allowDismiss?: boolean): Dialog;
     /**
-     * Specify custom padding around the popup. If not specified, or set to null, this will default to 20px for standard dialogs and prompts, and 10px for iframes and web resources.
+     * Specify custom padding around the popup. If not specified, or set to null, this will default to 24px for standard dialogs and prompts, and 10px for iframes and web resources.
      */
     padding(padding?: number | string): Dialog;
     /**
@@ -125,6 +125,10 @@ declare class Dialog {
      * Set the number of columns to display dialog fields in. Defaults to 1.
      */
     columns(columns?: number | string): Dialog;
+    /**
+     * Set the CSS direction property of the dialog content for use with right-to-left languages.
+     */
+    direction(direction?: string): Dialog;
     /**
      * Set the canvas app unique name from the current environment to display in an iframe.
      */
@@ -160,11 +164,11 @@ declare class Dialog {
      */
     hide(): Dialog;
     /**
-     * DEPRECATED: Use this method to completely remove the dialog from the document. By default dialogs are only hidden when closed, and will remain in the DOM. Use this function to completely remove it once you're done accessing any information from the dialog.
+     * DEPRECATED: Use this method to completely remove the dialog from the page. By default dialogs are only hidden when closed, and will remain in the DOM. Use this function to completely remove it once you're done accessing any information from the dialog.
      */
     remove(): Dialog;
     /**
-    * Use this method to close the dialog and completely remove it from the document.
+    * Use this method to close the dialog and completely remove it from the page.
     */
     close(): Dialog;
     /**
@@ -238,7 +242,6 @@ declare class Dialog {
      * @param text The text to encode, e.g. a trace log.
      */
     htmlEncode(text: string): string;
-    private static LM;
     /**
      * DEPRECATED: Use new Dialog(options) instead.
      */
@@ -486,7 +489,7 @@ interface DialogOptions {
      */
     allowDismiss?: boolean;
     /**
-     * Specify custom padding around the popup (in pixels). If not specified, or set to null, this will default to 20px for standard dialogs and prompts, and 10px for iframes and web resources.
+     * Specify custom padding around the popup (in pixels). If not specified, or set to null, this will default to 24px for standard dialogs and prompts, and 10px for iframes and web resources.
      */
     padding?: number | string;
     /**
@@ -505,6 +508,10 @@ interface DialogOptions {
      * Set the number of columns to display fields in, and optionally the minimum width per column, e.g. "100px 2". Defaults to 1 column if unspecified.
      */
     columns?: number | string;
+    /**
+     * Set the CSS direction property of the dialog content for use with right-to-left languages.
+     */
+    direction?: string;
     /**
      * The unique name of a canvas app from the current environment to display in an iframe. This can be obtained from a solution, and is the 'Name' of the app component. Canvas app unique names are persisted when deployed across environments.
      */
@@ -552,6 +559,10 @@ interface FieldOptions {
      * Sets the label to be aligned above the field, or beside the field inline. Defaults to true.
      */
     inline?: boolean;
+    /**
+     * Shows a vertical line at the bottom of the field to show clear separation of fields. Can be useful for radio/checkbox fields or grids. Defaults to false.
+     */
+    divider?: boolean;
 }
 /**
  * Interface for InputOptions
@@ -780,7 +791,7 @@ interface PopupOptions {
  * Interface for storing extra attributes on inputs (for lookups and file pickers)
  */
 interface DialogInputElement extends HTMLInputElement {
-    callback?: (results?: LookupObject[] | undefined) => void;
+    callback?: (results?: LookupObject[] | null) => void;
     allowMultiSelect?: boolean;
     disableMru?: boolean;
     filters?: LookupFilter[];
