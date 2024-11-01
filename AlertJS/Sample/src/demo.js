@@ -614,7 +614,7 @@ var dialog = new Dialog({
                 new Dialog.Input({ id: "columns", label: "Columns" }),
                 new Dialog.Input({ id: "id", label: "ID" }),
                 new Dialog.Input({ id: "padding", label: "Padding" }),
-                new Dialog.Input({ id: "color", label: "Color" }),
+                new Dialog.Input({ id: "direction", label: "Direction" }),
                 new Dialog.Input({ id: "preventClose", label: "Prevent Close (hide × button)", type: "checkbox" }),
                 new Dialog.Input({ id: "preventResize", label: "Prevent Resize (hide ⛶ button)", type: "checkbox" }),
                 new Dialog.Input({ id: "allowDismiss", label: "Allow Dismiss (outside of dialog)", type: "checkbox" }),
