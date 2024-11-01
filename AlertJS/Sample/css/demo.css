@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "SegoeUI";
+    font-family: "Segoe UI";
     font-weight: 300;
     src: url('../fonts/SegoeUI-SemiLight.woff2') format('woff2');
 }
@@ -7,7 +7,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: SegoeUI,"Segoe UI",Arial,Calibre;
+    font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
     height: 100%;
     background-color: #F9F9F9;
 }
@@ -82,7 +82,7 @@ html, body {
         color: #fff;
         cursor: pointer;
         border: 1px solid #3B79B7 !important;
-        font-family: SegoeUI, 'Segoe UI';
+        font-family: 'Segoe UI', 'Segoe UI Web (West European)', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', sans-serif;
         font-size: 1rem;
         text-overflow: ellipsis;
         overflow: hidden;
