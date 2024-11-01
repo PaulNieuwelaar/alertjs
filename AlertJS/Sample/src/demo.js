@@ -5,10 +5,10 @@ async function onLoad() {
     examples.push({
         blurb: "Simple dialog with callback",
         id: "simplecallback",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86217559-c1139100-bbd3-11ea-9dd1-edf455430eac.png",
+        imageUrl: "https://github.com/user-attachments/assets/19604543-3bbd-4a01-8bb3-8ef664a4cb77",
         code: `new Dialog({
     title: "Would you like to create a sale?",
-    message: "This will create and open the new sale record",
+    message: "This will create and open the new sale record.",
     icon: "INFO",
     buttons: [
         new Dialog.Button("Create Sale", function() {
@@ -26,10 +26,10 @@ async function onLoad() {
     examples.push({
         blurb: "Recreate the Close Opportunity screen",
         id: "opportunity",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86326459-d81ab780-bc95-11ea-88cb-02b50f85724b.png",
+        imageUrl: "https://github.com/user-attachments/assets/b629b119-e051-446e-8041-eb99fa5c8100",
         code: `new Dialog({
     id: "closeOpp",
-    height: 480,
+    height: 500,
     width: 450,
     title: "Close Opportunity",
     message: "Provide the following information about why this opportunity is being closed.",
@@ -53,10 +53,10 @@ async function onLoad() {
     examples.push({
         blurb: "Recreate the Assign Records screen with disabled fields",
         id: "assign",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/90304139-9e7dd300-df08-11ea-81d9-af5823aeb869.png",
+        imageUrl: "https://github.com/user-attachments/assets/845d1a76-3b67-43f2-bb20-dc12552c75f0",
         code: `var dialog = new Dialog({
     id: "assign",
-    height: 300,
+    height: 330,
     width: 400,
     title: "Assign Lead",
     message: "You have selected 1 Lead. To whom would you like to assign it?",
@@ -103,11 +103,11 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
     examples.push({
         blurb: "Example using file upload, and using the base64 data to display the image on screen",
         id: "fileupload",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86326576-08625600-bc96-11ea-911e-a3f6b291a72b.png",
+        imageUrl: "https://github.com/user-attachments/assets/c96d780d-8129-41fa-9e93-3a6d44e1045b",
         code: `new Dialog({
     id: "image",
-    width: 380,
-    height: 200,
+    width: 430,
+    height: 230,
     title: "Image Preview",
     message: "Please select an image file you wish to preview.",
     buttons: [
@@ -146,7 +146,7 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
     examples.push({
         blurb: "Using various different field types",
         id: "variousfields",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86327421-680d3100-bc97-11ea-9f9b-551f366223ff.png",
+        imageUrl: "https://github.com/user-attachments/assets/eccc8257-9eb6-4ff1-9cf5-335cf6656b51",
         code: `new Dialog({
     height: 700,
     padding: 20,
@@ -159,9 +159,9 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
         new Dialog.Input({ type: "date", label: "Date" }),
         new Dialog.Lookup({ label: "Lookup", entityTypes: ["contact"] }),
         new Dialog.Group({ label: "Inline Group", inline: true, fields: [
-            new Dialog.Input({ label: "Click this", type: "radio", value: true }, { name: "clickThis" }),
-            new Dialog.Input({ label: "Or this", type: "radio" }, { name: "clickThis" }),
-            new Dialog.Input({ label: "Or check this", type: "checkbox", value: true })
+            new Dialog.Input({ label: "Click this", type: "radio", value: true, divider: true }, { name: "clickThis" }),
+            new Dialog.Input({ label: "Or this", type: "radio", divider: true }, { name: "clickThis" }),
+            new Dialog.Input({ label: "Or check this", type: "checkbox", value: true, divider: true })
         ] }),
         new Dialog.OptionSet({ label: "OptionSet", options: [
             { text: "One", value: "1" },
@@ -176,7 +176,7 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
     examples.push({
         blurb: "Login screen with custom keypress event",
         id: "loginkeypress",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86327927-2466f700-bc98-11ea-8d6a-6435b6d74576.png",
+        imageUrl: "https://github.com/user-attachments/assets/f54a7a00-2776-4231-9c89-88e13afacd36",
         code: `function signInCallback(data) {
     new Dialog({
         title: data.getValue(0).getValue("email") + "<br />" + data.getValue(0).getValue("password")
@@ -186,7 +186,7 @@ var dialog = new Dialog({
     icon: "SEARCH",
     title: "Portal Sign-in",
     message: "Please enter your login details below (don't worry this is all client side).",
-    height: 300,
+    height: 340,
     buttons: [
         new Dialog.Button("Sign in", signInCallback, true),
         new Dialog.Button("Cancel")
@@ -214,12 +214,12 @@ dialog.getElement("#password input").addEventListener("keydown", function (e) {
     examples.push({
         blurb: "Progress bar for async tasks",
         id: "progressbar",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86429346-639e5200-bd43-11ea-8c09-65bb693f851c.png",
+        imageUrl: "https://github.com/user-attachments/assets/d341bde4-b117-4a7c-89db-7e0badfc7ac2",
         code: `var data = ["Some", "data", "to", "process", "async", "via", "webapi", "etc"];
 var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
 
 for (var i = 1; i <= data.length; i++) {
-    loading.message("Record " + i + " of " + data.length);
+    loading.content("Record " + i + " of " + data.length);
 
     // Do something async (waits 1 second)
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -234,25 +234,25 @@ new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
     examples.push({
         blurb: "Displaying a simple IFrame",
         id: "iframe",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86431682-86336980-bd49-11ea-955f-ec9b2c6ba684.png",
+        imageUrl: "https://github.com/user-attachments/assets/bb5e6129-b9a6-40c3-9bfb-eb6917b99bd4",
         code: `new Dialog({
-    title: "Just Bing it!",
-    message: "Google doesn't allow embedding in a frame.",
-    icon: "SEARCH",
+    title: "Display webpages in an iframe!",
+    message: "Some websites don't allow embedding in iframes on other sites.",
+    icon: "INFO",
     buttons: [
         new Dialog.Button("Open New Tab", function() {
-            window.open("https://bing.com");
+            window.open("https://www.magnetismsolutions.com/");
         }),
         new Dialog.Button("Close", null, true)
     ]
-}).showIFrame("https://bing.com");`
+}).showIFrame("https://www.magnetismsolutions.com/");`
     });
 
     // Showing filtered lookup/search results as a list of options
     examples.push({
         blurb: "Showing filtered lookup/search results as a list of options",
         id: "filteredsearch",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86499824-4a4be300-bde1-11ea-8f1d-d1bdb81053e5.png",
+        imageUrl: "https://github.com/user-attachments/assets/99418239-8f53-4e09-85bf-dea4ed2e749f",
         code: `function searchAccounts(dialog, searchTerm) {
     var loading = new Dialog({ id: "loading" }).showLoading();
     searchTerm = (searchTerm || "").toLowerCase();
@@ -268,6 +268,7 @@ new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
     //Xrm.WebApi.retrieveMultipleRecords("account",
     //    "?$select=name,accountid" +
     //    "&$filter=statecode eq 0 and contains(name,'" + searchTerm + "')" +
+    //    "&$top=100" +
     //    "&$orderby=name")
     //    .then(function (results) {
     //        var accounts = results.entities;
@@ -282,6 +283,7 @@ function showSearchPrompt(dialog, searchTerm, data) {
             type: "radio",
             label: account.name,
             id: account.accountid,
+            divider: true,
             value: data.length == 1
         }, { name: "accounts" });
     });
@@ -295,41 +297,44 @@ function showSearchPrompt(dialog, searchTerm, data) {
         e = e || window.event;
         if (e.which == 13) { // Enter
             e.preventDefault();
-            searchAccounts(dialog, dialog.getPromptResponses().getValue("searchField"));
+            searchAccounts(dialog, dialog.getPromptResponses().getValue("search").getValue("searchField"));
         }
     });
     dialog.getElement("#searchButton input").addEventListener("click", function (e) {
-        searchAccounts(dialog, dialog.getPromptResponses().getValue("searchField"));
+        searchAccounts(dialog, dialog.getPromptResponses().getValue("search").getValue("searchField"));
     });
 }
 
 function setDialogFields(diolog, searchTerm, fields) {
     dialog.fields([
-            new Dialog.Input({ id: "searchField", label: "Search for an Account", inline: false, value: searchTerm }),
-            new Dialog.Input({ id: "searchButton", type: "button", value: "Search"},
-                { style: "background-color: #236099; color: #fff; width: 100px; cursor: pointer" }),
+            new Dialog.Group({ id: "search", columns: 2, fields: [
+                new Dialog.Input({ id: "searchField", value: searchTerm }),
+                new Dialog.Input({ id: "searchButton", type: "button", value: "Search"},
+                    { style: "width: 100px;", class: "dialog-js-button primary" })
+            ]}),
             new Dialog.Group({ id: "account", fields: fields })
         ]);
 }
 
 var dialog = new Dialog({
-        title: "Select an Account",
-        message: "Select or search for an account.",
-        icon: "SEARCH",
-        height: 530,
-        buttons: [
-            new Dialog.Button("OK", function (data) {
-                var accountId = data.getValue("account").getSelected();
-                if (accountId == null || accountId.length == 0) {
-                    alert("Please select an account");
-                    return;
-                }
-                alert(accountId[0]);
-                dialog.close();
-            }, true, true),
-            new Dialog.Button("Cancel")
-        ]
-    }).show();
+    id: "filter",
+    title: "Select an Account",
+    message: "Select or search for an account.",
+    icon: "SEARCH",
+    height: 530,
+    buttons: [
+        new Dialog.Button("OK", function (data) {
+            var accountId = data.getValue("account").getSelected();
+            if (accountId == null || accountId.length == 0) {
+                new Dialog({ title: "Please select an account", width: 350, height: 150 }).show();
+                return;
+            }
+            new Dialog({ title: accountId[0], width: 350, height: 150 }).show();
+            dialog.close();
+        }, true, true),
+        new Dialog.Button("Cancel")
+    ]
+}).show();
 
 setDialogFields(dialog);
 searchAccounts(dialog);`
@@ -339,7 +344,7 @@ searchAccounts(dialog);`
     examples.push({
         blurb: "Time tracker with required fields validation",
         id: "timetracker",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/87120947-d1172900-c2d5-11ea-80ad-020f306832c3.png",
+        imageUrl: "https://github.com/user-attachments/assets/4bcefdd9-3206-456e-9628-874c42c7eb81",
         code: `var timeTracker = new Dialog({
     id: "timetracker",
     icon: "https://user-images.githubusercontent.com/14048382/87119185-5ea44a00-c2d1-11ea-89df-8367771f6344.png",
@@ -371,8 +376,8 @@ function submitTime(results) {
             icon: "ERROR",
             title: "Required fields",
             message: "You must provide a value for: " + nullFields.map(a => a.id).join(", "),
-            width: 280,
-            height: 180
+            width: 320,
+            height: 200
         }).show();
         return;
     }
@@ -397,12 +402,12 @@ function submitTime(results) {
     examples.push({
         blurb: "Create branching dialogs with paging",
         id: "paging",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/92077525-b615f080-ee10-11ea-9cb4-37708e7b9634.png",
+        imageUrl: "https://github.com/user-attachments/assets/24d55cce-99f5-45e4-92a7-00accc6c0193",
         code: `var data = { page1: { subscribe: true }, page2: { interests: {} }, page3: {} };
 var dialog = new Dialog({
     id: "onboarding",
     width: 400,
-    height: 420,
+    height: 450,
 }).show();
 page1();
 
@@ -498,16 +503,17 @@ function page3() {
     examples.push({
         blurb: "Using showAsync and awaiting a response",
         id: "async",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/144333620-9592e049-bb2d-4bd6-8587-6d3e8c30a81c.png",
+        imageUrl: "https://github.com/user-attachments/assets/a8e58756-bef2-46bf-a78c-f55f61cace71",
         code: `var dialog = new Dialog({
     id: "async",
     title: "Enter a value to return",
     message: "Code execution will resume once the dialog closes.",
+    allowDismiss: true,
     buttons: [
         new Dialog.Button("OK", function (results) {
             // Validation only
             if (results[0].value == null) {
-                new Dialog({ title: "Input required", width: 300, height: 200 }).show();
+                new Dialog({ title: "Input required", icon: "ERROR", width: 300, height: 150 }).show();
 
                 // Prevent the await response from firing
                 return false;
@@ -542,7 +548,7 @@ else {
     examples.push({
         blurb: "Create a dialog using all the available dialog options",
         id: "options",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/155616396-09953801-d8a2-4766-9aa9-71a304c9f7f9.png",
+        imageUrl: "https://github.com/user-attachments/assets/3a7c904a-0057-4acf-b499-de5348e3946f",
         code: `var options = {
     id: "new-dialog",
     title: "The main (large) text to display inside the message",
@@ -568,7 +574,8 @@ else {
     fullscreen: false,
     preventResize: false,
     columns: 1,
-    color: "#555555"
+    color: "#555555",
+    direction: "ltr"
 };
 
 var dialog = new Dialog(options).show();`
@@ -578,7 +585,7 @@ var dialog = new Dialog(options).show();`
     examples.push({
         blurb: "Customize and build your own dialog right from within Dialog Builder!",
         id: "builder",
-        imageUrl: "https://user-images.githubusercontent.com/14048382/86889882-95068b80-c150-11ea-94f2-08d2d432ae41.png",
+        imageUrl: "https://github.com/user-attachments/assets/72c124e1-9d8e-4da8-893f-9f41ffb196ad",
         code: `// This is an overly complex example to show just how far this solution can go
 var dialog = new Dialog({
     id: "dialogBuilder",
@@ -603,7 +610,7 @@ var dialog = new Dialog({
                 new Dialog.Input({ id: "width", label: "Width" }),
                 new Dialog.Input({ id: "height", label: "Height" }),
                 new Dialog.Input({ id: "icon", label: "Icon" }),
-                new Dialog.MultiLine({ id: "content", label: "Content" }, { style: "height: 79px" }),
+                new Dialog.MultiLine({ id: "content", label: "Content" }, { style: "height: 80px" }),
                 new Dialog.Input({ id: "columns", label: "Columns" }),
                 new Dialog.Input({ id: "id", label: "ID" }),
                 new Dialog.Input({ id: "padding", label: "Padding" }),
@@ -615,9 +622,9 @@ var dialog = new Dialog({
             ]
         }),
         new Dialog.MultiLine({ id: "buttons", label: "Buttons", inline: false },
-            { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Button(label, callback, setFocus, preventClose)\\n]" }),
+            { style: "height: 140px", title: "Example:\\n[\\n    new Dialog.Button(label, callback, setFocus, preventClose)\\n]" }),
         new Dialog.MultiLine({ id: "fields", label: "Fields", inline: false },
-            { style: "height: 150px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" })
+            { style: "height: 140px", title: "Example:\\n[\\n    new Dialog.Input(options, extraAttributes)\\n]" })
     ]
 }).show();
 
@@ -656,7 +663,7 @@ function viewSource(results) {
         id: "viewSource",
         title: "Dialog Source",
         width: 550,
-        height: 170 + sourceCode.split("\\n").length * 12,
+        height: 160 + sourceCode.split("\\n").length * 20,
         content: "<pre>" + sourceCode + "</pre>",
         buttons: [
             new Dialog.Button("Preview", function () { eval(sourceCode); }, false, true),
@@ -816,7 +823,7 @@ function addFieldType(results, fieldsValue, dialogContext, id) {
     var addFieldDialog = new Dialog({
         id: id + "-addField",
         title: "Add " + fieldType,
-        height: fieldType == "Lookup" ? 640 : 540,
+        height: fieldType == "Lookup" ? 640 : 570,
         buttons: buttons,
         fields: fields,
     }).show();
