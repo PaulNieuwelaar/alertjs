@@ -5,7 +5,7 @@ async function onLoad() {
     examples.push({
         blurb: "Simple dialog with callback",
         id: "simplecallback",
-        imageUrl: "https://github.com/user-attachments/assets/19604543-3bbd-4a01-8bb3-8ef664a4cb77",
+        imageUrl: "../img/assets/simple-dialog.png",
         code: `new Dialog({
     title: "Would you like to create a sale?",
     message: "This will create and open the new sale record.",
@@ -26,7 +26,7 @@ async function onLoad() {
     examples.push({
         blurb: "Recreate the Close Opportunity screen",
         id: "opportunity",
-        imageUrl: "https://github.com/user-attachments/assets/b629b119-e051-446e-8041-eb99fa5c8100",
+        imageUrl: "../img/assets/close-opp.png",
         code: `new Dialog({
     id: "closeOpp",
     height: 500,
@@ -53,7 +53,7 @@ async function onLoad() {
     examples.push({
         blurb: "Recreate the Assign Records screen with disabled fields",
         id: "assign",
-        imageUrl: "https://github.com/user-attachments/assets/845d1a76-3b67-43f2-bb20-dc12552c75f0",
+        imageUrl: "../img/assets/assign-records.png",
         code: `var dialog = new Dialog({
     id: "assign",
     height: 330,
@@ -103,7 +103,7 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
     examples.push({
         blurb: "Example using file upload, and using the base64 data to display the image on screen",
         id: "fileupload",
-        imageUrl: "https://github.com/user-attachments/assets/c96d780d-8129-41fa-9e93-3a6d44e1045b",
+        imageUrl: "../img/assets/file-upload.png",
         code: `new Dialog({
     id: "image",
     width: 430,
@@ -146,7 +146,7 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
     examples.push({
         blurb: "Using various different field types",
         id: "variousfields",
-        imageUrl: "https://github.com/user-attachments/assets/eccc8257-9eb6-4ff1-9cf5-335cf6656b51",
+        imageUrl: "../img/assets/various-fields.png",
         code: `new Dialog({
     height: 700,
     padding: 20,
@@ -176,7 +176,7 @@ dialog.getElement("#assignuser input").addEventListener("click", function () {
     examples.push({
         blurb: "Login screen with custom keypress event",
         id: "loginkeypress",
-        imageUrl: "https://github.com/user-attachments/assets/f54a7a00-2776-4231-9c89-88e13afacd36",
+        imageUrl: "../img/assets/login-screen.png",
         code: `function signInCallback(data) {
     new Dialog({
         title: data.getValue(0).getValue("email") + "<br />" + data.getValue(0).getValue("password")
@@ -214,12 +214,12 @@ dialog.getElement("#password input").addEventListener("keydown", function (e) {
     examples.push({
         blurb: "Progress bar for async tasks",
         id: "progressbar",
-        imageUrl: "https://github.com/user-attachments/assets/d341bde4-b117-4a7c-89db-7e0badfc7ac2",
+        imageUrl: "../img/assets/progress-bar.png",
         code: `var data = ["Some", "data", "to", "process", "async", "via", "webapi", "etc"];
 var loading = new Dialog({ id: "loading", title: "Processing..." }).showLoading();
 
 for (var i = 1; i <= data.length; i++) {
-    loading.content("Record " + i + " of " + data.length);
+    loading.content("Processing record " + i + " of " + data.length);
 
     // Do something async (waits 1 second)
     await new Promise(resolve => setTimeout(resolve, 1000));
@@ -234,25 +234,27 @@ new Dialog({ icon: "SUCCESS", title: "Process complete!" }).show();`
     examples.push({
         blurb: "Displaying a simple IFrame",
         id: "iframe",
-        imageUrl: "https://github.com/user-attachments/assets/bb5e6129-b9a6-40c3-9bfb-eb6917b99bd4",
+        imageUrl: "../img/assets/simple-iframe.png",
         code: `new Dialog({
+    id: "iframe-" + new Date().getTime(),
     title: "Display webpages in an iframe!",
     message: "Some websites don't allow embedding in iframes on other sites.",
     icon: "INFO",
+    iframeUrl: "demo.html#iframe",
     buttons: [
         new Dialog.Button("Open New Tab", function() {
-            window.open("https://www.magnetismsolutions.com/");
+            window.open("demo.html#iframe");
         }),
         new Dialog.Button("Close", null, true)
     ]
-}).showIFrame("https://www.magnetismsolutions.com/");`
+}).show();`
     });
 
     // Showing filtered lookup/search results as a list of options
     examples.push({
         blurb: "Showing filtered lookup/search results as a list of options",
         id: "filteredsearch",
-        imageUrl: "https://github.com/user-attachments/assets/99418239-8f53-4e09-85bf-dea4ed2e749f",
+        imageUrl: "../img/assets/filtered-lookup.png",
         code: `function searchAccounts(dialog, searchTerm) {
     var loading = new Dialog({ id: "loading" }).showLoading();
     searchTerm = (searchTerm || "").toLowerCase();
@@ -344,7 +346,7 @@ searchAccounts(dialog);`
     examples.push({
         blurb: "Time tracker with required fields validation",
         id: "timetracker",
-        imageUrl: "https://github.com/user-attachments/assets/4bcefdd9-3206-456e-9628-874c42c7eb81",
+        imageUrl: "../img/assets/time-tracker.png",
         code: `var timeTracker = new Dialog({
     id: "timetracker",
     icon: "https://user-images.githubusercontent.com/14048382/87119185-5ea44a00-c2d1-11ea-89df-8367771f6344.png",
@@ -402,7 +404,7 @@ function submitTime(results) {
     examples.push({
         blurb: "Create branching dialogs with paging",
         id: "paging",
-        imageUrl: "https://github.com/user-attachments/assets/24d55cce-99f5-45e4-92a7-00accc6c0193",
+        imageUrl: "../img/assets/branching.png",
         code: `var data = { page1: { subscribe: true }, page2: { interests: {} }, page3: {} };
 var dialog = new Dialog({
     id: "onboarding",
@@ -503,7 +505,7 @@ function page3() {
     examples.push({
         blurb: "Using showAsync and awaiting a response",
         id: "async",
-        imageUrl: "https://github.com/user-attachments/assets/a8e58756-bef2-46bf-a78c-f55f61cace71",
+        imageUrl: "../img/assets/async.png",
         code: `var dialog = new Dialog({
     id: "async",
     title: "Enter a value to return",
@@ -548,7 +550,7 @@ else {
     examples.push({
         blurb: "Create a dialog using all the available dialog options",
         id: "options",
-        imageUrl: "https://github.com/user-attachments/assets/3a7c904a-0057-4acf-b499-de5348e3946f",
+        imageUrl: "../img/assets/dialog-options.png",
         code: `var options = {
     id: "new-dialog",
     title: "The main (large) text to display inside the message",
@@ -566,7 +568,7 @@ else {
         new Dialog.Button("Cancel")
     ],
     icon: "INFO",
-    width: 800,
+    width: 700,
     height: 500,
     preventClose: true,
     allowDismiss: true,
@@ -574,7 +576,6 @@ else {
     fullscreen: false,
     preventResize: false,
     columns: 1,
-    color: "#555555",
     direction: "ltr"
 };
 
@@ -585,7 +586,7 @@ var dialog = new Dialog(options).show();`
     examples.push({
         blurb: "Customize and build your own dialog right from within Dialog Builder!",
         id: "builder",
-        imageUrl: "https://github.com/user-attachments/assets/72c124e1-9d8e-4da8-893f-9f41ffb196ad",
+        imageUrl: "../img/assets/dialog-builder.png",
         code: `// This is an overly complex example to show just how far this solution can go
 var dialog = new Dialog({
     id: "dialogBuilder",
