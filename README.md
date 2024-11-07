@@ -2,8 +2,8 @@
 
 # Dialog Builder for Dynamics 365 - Custom Dialogs, Popups, Alerts, Prompts, and Wizards
 
-[![Buy Now](https://user-images.githubusercontent.com/14048382/119300824-81570b80-bcb5-11eb-95ff-89dcd68729ad.png)](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365/?SQF_SOURCE=GithubBuy#buynow)&nbsp;&nbsp;
-[![Free Trial](https://user-images.githubusercontent.com/14048382/119301666-f119c600-bcb6-11eb-9ee6-d88d3062fe82.png)](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365/?SQF_SOURCE=GithubTrial#trial)
+[![Buy Now](https://user-images.githubusercontent.com/14048382/119300824-81570b80-bcb5-11eb-95ff-89dcd68729ad.png)](https://www.magnetismsolutions.com/products/dialog-builder-for-dynamics-365/?SQF_SOURCE=GithubBuy#pricing)&nbsp;&nbsp;
+[![Free Trial](https://user-images.githubusercontent.com/14048382/119301666-f119c600-bcb6-11eb-9ee6-d88d3062fe82.png)](https://www.magnetismsolutions.com/products/dialog-builder-for-dynamics-365/?SQF_SOURCE=GithubTrial#trial)
 [<img alt="Documentation" align="right" src="https://user-images.githubusercontent.com/14048382/119301470-a5671c80-bcb6-11eb-92e1-2a34cb1833c3.png"/>](https://www.magnetismsolutions.com/documentation/dialog-builder)  
 
 <a href="https://www.youtube.com/watch?v=SKz-ENHOqig" target="_blank"><img src="https://user-images.githubusercontent.com/14048382/115327836-bcac7900-a1e3-11eb-9bf2-f5e576763fc5.png" /></a>
@@ -37,7 +37,7 @@ Or check out these [working examples](https://paulnieuwelaar.github.io/alertjs/A
 
 ## Licensing
 
-Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://www.magnetismsolutions.com/terms-of-use). Start your trial to download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/our-products/alertjs-alert-popup-for-d365/?SQF_SOURCE=GithubLicense#buynow) when you're ready to activate your organisation.
+Dialog Builder is free to trial for 30 days. By downloading you agree to the [terms of use](https://www.magnetismsolutions.com/terms-of-use). Start your trial to download and install the solution, then [purchase a license](https://www.magnetismsolutions.com/products/dialog-builder-for-dynamics-365/?SQF_SOURCE=GithubLicense#pricing) when you're ready to activate your organisation.
 For more information about what's new, check out the latest [release notes](https://www.magnetismsolutions.com/releases/dialog-builder), or check out the [Documentation](https://www.magnetismsolutions.com/documentation/dialog-builder).
 
 ---
